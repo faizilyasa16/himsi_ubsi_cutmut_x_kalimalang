@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/asset/font/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Spartan';
+    src: url('/asset/font/Spartan/LeagueSpartan-SemiBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+.Spartan {
+    font-family: 'Spartan', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom left,
+        #0d47a1,   
+        #4fc3f7 50%,  
+        #0d47a1      
+    );
+    font-family: 'Poppins', sans-serif;
+}
+.card {
+    border-radius: 0.5rem;
+    border: none;
+}
+.input-group-text {
+    border-left: 0;
+    background-color: white;
+}
+
+.password-field {
+    border-right: 0;
+}
+
+/* Remove the focus outline that shows the gap */
+.password-field:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.input-group:focus-within {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-radius: 0.375rem;
+}
+.btn-login {
+    background-color: #00008B;
+    color: white;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+}
+.btn-login:hover {
+    background-color: #4A90E2;
+    color: white;
+}
