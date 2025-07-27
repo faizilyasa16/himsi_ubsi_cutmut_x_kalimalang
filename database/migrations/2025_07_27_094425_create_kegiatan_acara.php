@@ -20,9 +20,9 @@ return new class extends Migration
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
             $table->string('slug', 200)->unique();
             $table->dateTime('tgl_mulai');
-            $table->timestamp('waktu_mulai');
+            $table->time('waktu_mulai');
             $table->dateTime('tgl_selesai')->nullable();
-            $table->timestamp('waktu_selesai')->nullable();
+            $table->time('waktu_selesai')->nullable();
             $table->string('link_pendaftaran', 200)->nullable();
             $table->string('link_wa', 200)->nullable();
             $table->string('biaya', 100)->nullable();

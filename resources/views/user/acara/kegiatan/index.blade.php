@@ -22,8 +22,8 @@
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Lokasi</th>
-                            <th>Tanggal</th>
-                            <th>Waktu</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Waktu Mulai</th>
                             <th>Status</th>
                             <th>Kuota</th>
                             <th>Poster</th>
@@ -37,8 +37,8 @@
                                 <td>{{ $acara->nama }}</td>
                                 <td>{{ $acara->kategori->nama ?? 'Tidak ada kategori' }}</td>
                                 <td>{{ $acara->lokasi }}</td>
-                                <td>{{ $acara->tgl_mulai }}</td>
-                                <td>{{ $acara->waktu_mulai }}</td>
+                                <td>{{ \Carbon\Carbon::parse($acara->tgl_mulai)->format('d-m-Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($acara->waktu_mulai)->format('H:i') }}</td>
                                 <td>{{ $acara->status }}</td>
                                 <td>{{ $acara->kuota }}</td>
                                 <td>
@@ -49,10 +49,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-sm">
+                                    <a href="{{ route('kegiatan-acara.edit', $acara) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <form action="#" method="POST" class="d-inline">
+
+                                    <form action="{{ route('kegiatan-acara.destroy', $acara->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus acara ini?')">
