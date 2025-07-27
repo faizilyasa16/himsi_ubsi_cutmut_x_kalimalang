@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Acara\KategoriController;
+use App\Http\Controllers\Acara\KegiatanController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/', function () {
     return view('home.beranda.home');
 })->name('beranda');
-
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
 
 Route::get('/pengurus', function () {
     return view('home.profile.pengurus');
@@ -41,3 +43,31 @@ Route::get('/artikel', function () {
 Route::get('/acara', function () {
     return view('home.layanan.acara');
 })->name('acara');
+
+Route::get('/login',[LoginController::class,'show'])->name('login');
+Route::post('/login',[LoginController::class,'store'])->name('login');
+
+Route::middleware('isLoggedIn')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('user.dashboard.index');
+    })->name('dashboard');
+
+    // profile routes
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/update-password', [ProfileController::class, 'update_password'])->name('profile.update_password');
+
+    // pengurus routes
+    Route::resource('pengurus', UserController::class); // kalau pakai resource
+
+    // kategori acara routes
+    Route::resource('kategori-acara', KategoriController::class);
+
+    // kegiatan acara routes
+    Route::resource('kegiatan-acara', KegiatanController::class);
+
+
+    
+    // logout route
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});

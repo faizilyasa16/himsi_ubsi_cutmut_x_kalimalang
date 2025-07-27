@@ -56,7 +56,7 @@
         <section class="col-12 mb-5" style="margin-top: 200px; margin-bottom: 100px;" aria-labelledby="heading-himsi-aksi">
             <div class="d-flex justify-content-between align-items-center mb-5 px-3 Spartan">
                 <h3 id="heading-himsi-aksi" class="mb-1 fw-bold">HIMSI DALAM AKSI</h3>
-                <a href="#" class="text-decoration-none">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                <a href="{{ route('acara') }}" class="text-decoration-none">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="col-12 col-md-4 mb-4 px-2">
@@ -231,7 +231,7 @@
         <div class="col-12 mb-5" style="margin-bottom: 100px;">
             <div class="d-flex justify-content-between align-items-center mb-5 px-3 Spartan">
                 <h3 id="heading-artikel" class="mb-1">Artikel Terbaru</h3>
-                <a href="#" class="text-decoration-none ">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                <a href="{{ route('artikel') }}" class="text-decoration-none ">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="d-flex flex-wrap Poppins">
                 <div class="col-12 col-lg-6 mb-4 px-2">
@@ -356,6 +356,6 @@
 
 @section('scripts')
     <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('home/js/layout.js') }}"></script>
-    <script src="{{ asset('home/js/home.js') }}"></script>
+    <script src="{{ asset('home/home/layout.js') }}"></script>
+    <script src="{{ asset('home/home/home.js') }}"></script>
 @endsection

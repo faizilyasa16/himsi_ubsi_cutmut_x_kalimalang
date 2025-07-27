@@ -24,11 +24,24 @@
                                     </div>
                                     <h5 class="card-title mb-0 Spartan">HIMSI UBSI Kampus Cut Mutia x Kalimalang</h5>
                                 </div>
-                                <form action="#" method="POST">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>      
+                                @elseif (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                <form action="{{ route('login') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="email" class="form-label">NIM</label>
-                                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter your NIM" required>
+                                        <label for="nim" class="form-label">NIM</label>
+                                        <input type="text" class="form-control" id="nim" name="nim" placeholder="Enter your NIM" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>

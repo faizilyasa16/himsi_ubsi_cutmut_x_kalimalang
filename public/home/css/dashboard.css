@@ -1,0 +1,414 @@
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('/asset/font/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Spartan';
+    src: url('/asset/font/Spartan/LeagueSpartan-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+.Poppins {
+    font-family: 'Poppins-Regular', sans-serif;
+}
+.Spartan {
+    font-family: 'Spartan', sans-serif;
+}
+/* Toggle Button - Fixed position di pojok kiri atas */
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 20px; /* Di pojok kiri atas */
+    left: 290px; /* Di sebelah kanan sidebar saat terbuka */
+    z-index: 1050;
+    width: 45px;
+    height: 45px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar-toggle-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.sidebar-toggle-btn:active {
+    transform: translateY(0);
+}
+
+/* Position saat sidebar collapsed - pindah ke pojok kiri */
+.sidebar-toggle-btn.collapsed {
+    left: 20px; /* Pindah ke pojok kiri saat sidebar tertutup */
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 767.98px) {
+    .sidebar-toggle-btn {
+        left: 15px; /* Di pojok kiri untuk mobile karena sidebar selalu collapsed */
+        top: 20px; /* Di pojok kiri atas */
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    
+    .sidebar-toggle-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+    }
+    
+    .sidebar-toggle-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Sidebar - menggunakan Bootstrap sebagai base, hapus duplikasi */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    z-index: 999;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+.sidebar-content {
+    /* Bootstrap sudah handle padding dengan .p-3 */
+}
+
+/* Sidebar Welcome Section */
+.sidebar-welcome {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/* Navigation Links - minimal custom styling */
+.sidebar .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link.active {
+    background-color: #0d6efd !important;
+    color: #ffffff !important;
+}
+
+/* Dropdown parent links - tidak ada active state */
+.sidebar .nav-link[data-bs-toggle="collapse"] {
+    /* Hapus active state untuk dropdown parent */
+}
+
+.sidebar .nav-link[data-bs-toggle="collapse"]:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link[data-bs-toggle="collapse"].active {
+    background-color: transparent !important; /* Override active state */
+    color: inherit !important;
+}
+
+/* Dropdown arrows - arrow menghadap ke bawah di awal, rotasi saat expand */
+.sidebar .nav-link[data-bs-toggle="collapse"] i.bi-chevron-down {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg); /* Default menghadap ke bawah */
+}
+
+.sidebar .nav-link[data-bs-toggle="collapse"]:not(.collapsed) i.bi-chevron-down {
+    transform: rotate(180deg); /* Rotate saat expanded */
+}
+
+/* Submenu styling - menggunakan Bootstrap indent dengan .ms-4 */
+.sidebar .collapse .nav-link {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-left: 0;
+}
+
+.sidebar .collapse .nav-link:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    transform: translateX(10px);
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 280px;
+    margin-top: 0;
+    padding: 2rem;
+    transition: margin-left 0.3s ease;
+    min-height: 100vh;
+}
+
+.main-content.expanded {
+    margin-left: 0;
+}
+
+/* Cards - mengandalkan Bootstrap, hanya hover effect */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Badge positioning untuk notification */
+.nav-link .badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.65rem;
+}
+
+/* Responsive - menggunakan Bootstrap breakpoints */
+@media (max-width: 768px) {
+    .sidebar {
+        top: 0;
+        width: 320px; /* Lebih lebar untuk mobile */
+        height: 100vh;
+        transform: translateX(-100%);
+        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+        box-shadow: 5px 0 25px rgba(0,0,0,0.3);
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    .sidebar .nav-link {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        margin: 0.25rem 1rem;
+    }
+    
+    .sidebar .nav-link i {
+        width: 25px;
+        font-size: 1.2rem;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 1.5rem;
+        min-height: 100vh;
+    }
+    
+    .sidebar-toggle-btn {
+        top: 20px; /* Update untuk tablet */
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        top: 0;
+        height: 100vh;
+        width: 300px; /* Sedikit lebih kecil untuk mobile kecil */
+    }
+    
+    .sidebar .nav-link {
+        padding: 0.9rem 1.25rem;
+        font-size: 1rem;
+    }
+    
+    .main-content {
+        margin-top: 0;
+        padding: 1rem;
+        min-height: 100vh;
+    }
+    
+    .sidebar-toggle-btn {
+        left: 12px; /* Di pojok kiri untuk mobile kecil */
+        top: 20px; /* Di pojok kiri atas */
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+    }
+    
+    /* Toggle button mengikuti sidebar di mobile kecil */
+    .sidebar-toggle-btn.show {
+        left: 310px; /* Pindah ke sebelah kanan sidebar saat terbuka (300px + 10px) */
+    }
+}
+
+/* Overlay untuk mobile */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 80, 0.4));
+    backdrop-filter: blur(5px);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile gesture improvements */
+@media (max-width: 768px) {
+    .sidebar {
+        transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+    
+    .sidebar-toggle-btn {
+        transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        will-change: transform;
+    }
+    
+    /* Toggle button mengikuti sidebar di mobile */
+    .sidebar-toggle-btn.show {
+        left: 330px; /* Pindah ke sebelah kanan sidebar saat terbuka di mobile (320px + 10px) */
+    }
+    
+    /* Touch-friendly navigation */
+    .sidebar .nav-link {
+        min-height: 48px; /* Minimum touch target */
+        display: flex;
+        align-items: center;
+    }
+    
+    .sidebar .collapse .nav-link {
+        min-height: 44px;
+        padding-left: 3rem;
+    }
+    
+    /* Better visual feedback for touch */
+    .sidebar .nav-link:active {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        transform: scale(0.98);
+    }
+    
+    .sidebar .nav-link[data-bs-toggle="collapse"]:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Scrollbar untuk sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Ripple effect - tetap custom */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Print styles - sembunyikan sidebar saat print */
+@media print {
+    .sidebar {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+    }
+}
+
+/* Focus states untuk accessibility */
+.sidebar .nav-link:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Custom utilities yang tidak ada di Bootstrap */
+.border-4 {
+    border-width: 4px !important;
+}
+
+/* Smooth transitions untuk semua interactive elements */
+* {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+/* Scroll to Top Button - Fixed Styling */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: none; /* Awalnya disembunyikan */
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    pointer-events: auto !important; /* Memastikan button dapat diklik */
+}
+/* Pastikan button tetap dapat dilihat dan diklik */
+#scrollToTopBtn.visible {
+    display: block !important;
+}
