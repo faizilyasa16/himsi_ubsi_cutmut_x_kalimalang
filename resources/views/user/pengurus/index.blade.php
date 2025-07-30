@@ -11,7 +11,7 @@
             <div class="data_table">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1 class="m-0">Data Pengurus</h1>
-                    <a href="{{ route('pengurus.create') }}" class="btn btn-primary m-0">
+                    <a href="{{ route('pengurus-user.create') }}" class="btn btn-primary m-0">
                         <i class="bi bi-plus-circle"></i> Tambah Pengurus
                     </a>
                 </div>
@@ -53,10 +53,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('pengurus.edit', $pengurus->id) }}" class="btn btn-warning btn-sm">
+                                    <a href="{{ route('pengurus-user.edit', $pengurus->id) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <form action="{{ route('pengurus.destroy', $pengurus->id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('pengurus-user.destroy', $pengurus->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pengurus ini?')">

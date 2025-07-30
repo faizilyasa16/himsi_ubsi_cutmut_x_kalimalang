@@ -66,8 +66,10 @@
 
                                 <div class="mb-3">
                                     <label for="poster" class="form-label">Poster (nama file)</label>
-                                    <input type="file" accept="image/*" name="poster" id="poster" class="form-control">
-                                    <span class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</span><span class="form-text text-danger"></span>
+                                    <span class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</span>
+                                    <input type="file" accept="image/*" name="poster" id="poster" class="form-control" onchange="previewFoto(event)" required>
+                                    <span class="form-text text-muted">Poster Preview:</span>
+                                    <img id="preview" src="#" alt="Preview Poster" style="max-width: 200px; display: none; margin-top: 10px;">
                                 </div>
                             </div>
 
@@ -172,4 +174,5 @@
 
 @section('scripts')
 <script src="{{ asset('home/dashboard/slug.js') }}"></script>
+<script src="{{ asset('home/dashboard/preview.js') }}"></script>
 @endsection

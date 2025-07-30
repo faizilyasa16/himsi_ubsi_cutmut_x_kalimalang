@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Http\Controllers\PemilihanUmum;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Pemilihan;
+use App\Models\User;
+use App\Models\Kandidat;
+use Illuminate\Support\Facades\Storage;
+class KandidatController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        // Ambil semua kandidat
+        $kandidat = Kandidat::all();
+        return view('user.pemilihan-umum.kandidat.index', compact('kandidat'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        // Ambil data pemilihan dan pengurus untuk dropdown
+        $pemilihans =Pemilihan::all();
+        $pengurus = User::all();
+        return view('user.pemilihan-umum.kandidat.create', compact('pemilihans', 'pengurus'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'kandidat_ketua_id' => 'required|exists:users,id',
+            'kandidat_wakil_id' => 'required|exists:users,id|different:kandidat_ketua_id',
+            'pemilihan_id'      => 'required|exists:pemilihan,id',
+            'no_urut'           => 'required|integer',
+            'visi'              => 'required|string',
+            'misi'              => 'required|string',
+            'poster'            => 'nullable|image|max:2048', // Max 2MB
+        ]);
+
+        // Simpan poster ke storage/app/public/poster_kandidat
+        if ($request->hasFile('poster')) {
+            $validated['poster'] = $request->file('poster')->store('poster_kandidat', 'public');
+        }
+
+
+        // Simpan data ke tabel kandidat
+        Kandidat::create($validated);
+
+        return redirect()->route('kandidat.index')->with('success', 'Kandidat berhasil ditambahkan.');
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $kandidat = Kandidat::findOrFail($id);
+        $pemilihans = Pemilihan::all();
+        $pengurus = User::all();
+        return view('user.pemilihan-umum.kandidat.edit', compact('kandidat', 'pemilihans', 'pengurus'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+
+    public function update(Request $request, string $id)
+    {
+        $kandidat = Kandidat::findOrFail($id);
+
+        // Validasi input
+        $validated = $request->validate([
+            'kandidat_ketua_id' => 'required|exists:users,id',
+            'kandidat_wakil_id' => 'required|exists:users,id',
+            'pemilihan_id' => 'required|exists:pemilihan,id',
+            'visi' => 'required|string',
+            'misi' => 'required|string',
+            'no_urut' => 'required|integer',
+            'poster' => 'nullable|image|max:2048', // maksimal 2MB
+        ]);
+
+        // Handle file upload jika ada
+        if ($request->hasFile('poster')) {
+            // Hapus poster lama jika ada
+            if ($kandidat->poster && Storage::disk('public')->exists($kandidat->poster)) {
+                Storage::disk('public')->delete($kandidat->poster);
+            }
+
+            // Simpan poster baru
+            $validated['poster'] = $request->file('poster')->store('poster_kandidat', 'public');
+        }
+
+        // Update data
+        $kandidat->update($validated);
+
+        return redirect()->route('kandidat.index')->with('success', 'Data kandidat berhasil diperbarui.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $kandidat = Kandidat::findOrFail($id);
+        $kandidat->delete();
+        return redirect()->route('kandidat.index')->with('success', 'Kandidat berhasil dihapus.');
+    }
+}

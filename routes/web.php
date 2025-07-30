@@ -6,6 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Acara\KategoriController;
 use App\Http\Controllers\Acara\KegiatanController;
+use App\Http\Controllers\Gallery\AlbumController;
+use App\Http\Controllers\Gallery\KontenController;
+use App\Http\Controllers\PemilihanUmum\KandidatController;
+use App\Http\Controllers\PemilihanUmum\PemilihanController;
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\Absensi\AbsensiController;
+use App\Http\Controllers\Absensi\KegiatanController as AbsensiKegiatanController;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 Route::get('/', function () {
@@ -58,7 +65,7 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::put('/profile/update-password', [ProfileController::class, 'update_password'])->name('profile.update_password');
 
     // pengurus routes
-    Route::resource('pengurus', UserController::class); // kalau pakai resource
+    Route::resource('pengurus-user', UserController::class); // kalau pakai resource
 
     // kategori acara routes
     Route::resource('kategori-acara', KategoriController::class);
@@ -67,6 +74,24 @@ Route::middleware('isLoggedIn')->group(function () {
     Route::resource('kegiatan-acara', KegiatanController::class);
 
 
+    // gallery kategori routes
+    Route::resource('album-gallery', AlbumController::class);
+
+    // gallery konten routes
+    Route::resource('konten-gallery', KontenController::class);
+
+    // pemilu routes
+    Route::resource('/pemilihan', PemilihanController::class);
+
+    // pemilu kandidat routes
+    Route::resource('/kandidat', KandidatController::class);
+
+    // artikel routes
+    Route::resource('artikel', ArtikelController::class);
+
+    // absensi routes
+    Route::resource('absensi', AbsensiController::class);
+    Route::resource('kegiatan-absensi', AbsensiKegiatanController::class);
     
     // logout route
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

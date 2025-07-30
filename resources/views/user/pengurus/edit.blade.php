@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('pengurus.update', $pengurus->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('pengurus-user.update', $pengurus->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -73,8 +73,15 @@
             <label for="photo" class="form-label">Ganti Foto (opsional)</label>
             <input type="file" class="form-control" id="photo" name="photo">
             @if ($pengurus->photo)
-                <div class="mt-2">
-                    <img src="{{ asset('storage/' . $pengurus->photo) }}" alt="Foto Pengurus" style="width: auto; height: 80px;">
+                <div class="d-flex justify-content-start align-items-center">
+                    <div class="d-flex flex-column">
+                        <span class="form-text text-muted">Foto Sebelumnya:</span>
+                        <img src="{{ asset('storage/' . $pengurus->photo) }}" alt="Preview Foto" style="max-width: 200px; margin-top: 10px;">
+                    </div>
+                    <div class="ms-3">
+                        <span class="form-text text-muted">Foto Baru:</span>
+                        <img id="preview" src="#" alt="Preview Foto Baru" style="max-width: 200px; display: none; margin-top: 10px;">
+                    </div>
                 </div>
             @endif
         </div>
@@ -82,4 +89,8 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </main>
+@endsection
+
+@section('scripts')
+    <script charset="utf-8" src="{{ asset('home/dashboard/preview.js') }}"></script>
 @endsection

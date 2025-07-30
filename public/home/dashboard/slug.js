@@ -7,3 +7,4 @@ document.getElementById('nama').addEventListener('input', function () {
         .trim();
     document.getElementById('slug').value = slug;
 });
+

@@ -70,9 +70,15 @@
                                     <input type="file" accept="image/*" name="poster" id="poster" class="form-control">
                                     <span class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</span>
                                     @if($kegiatanAcara->poster)
-                                        <div class="mt-2">
-                                            <p>Poster saat ini:</p>
-                                            <img src="{{ asset('storage/' . $kegiatanAcara->poster) }}" alt="Poster" class="img-fluid" style="max-width: 200px;">
+                                        <div class="d-flex justify-content-start align-items-center">
+                                            <div class="d-flex flex-column">
+                                                <span class="form-text text-muted">Foto Sebelumnya:</span>
+                                                <img src="{{ asset('storage/' . $kegiatanAcara->poster) }}" alt="Preview Foto" style="max-width: 200px; margin-top: 10px;">
+                                            </div>
+                                            <div class="ms-3">
+                                                <span class="form-text text-muted">Foto Baru:</span>
+                                                <img id="preview" src="#" alt="Preview Foto Baru" style="max-width: 200px; display: none; margin-top: 10px;">
+                                            </div>
                                         </div>
                                     @endif
                                 </div>

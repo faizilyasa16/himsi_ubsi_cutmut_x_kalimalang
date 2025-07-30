@@ -12,7 +12,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('pengurus.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('pengurus-user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label for="nim" class="mt-2">NIM</label>
@@ -49,10 +49,20 @@
             <option value="kominfo">Kominfo</option>
         </select>
 
-        <label for="photo" class="mt-2">Foto (opsional)</label>
-        <input type="file" id="photo" name="photo" class="form-control">
+        <div class="mb-3 d-flex flex-column">
+            <label for="photo" class="mt-2">Foto (opsional)</label>
+            <span class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</span>
+            <input type="file" id="photo" name="photo" class="form-control" accept="image/*" onchange="previewFoto(event)">
+            <span class="form-text text-muted">
+                Foto Preview:
+            </span>
+            <img id="preview" src="#" alt="Preview Foto" style="max-width: 200px; display: none; margin-top: 10px;">
+        </div>
 
         <button type="submit" class="btn btn-primary mt-3">Simpan</button>
     </form>
 </main>
+@endsection
+@section('scripts')
+    <script src="{{ asset('home/dashboard/preview.js') }}"></script>
 @endsection

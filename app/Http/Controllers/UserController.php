@@ -61,7 +61,7 @@ class UserController extends Controller
             'photo' => $photoPath,
         ]);
 
-        return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil ditambahkan.');
+        return redirect()->route('pengurus-user.index')->with('success', 'Pengurus berhasil ditambahkan.');
     }
 
 
@@ -126,7 +126,7 @@ class UserController extends Controller
 
         $pengurus->save();
 
-        return redirect()->route('pengurus.index')->with('success', 'Data pengurus berhasil diupdate.');
+        return redirect()->route('pengurus-user.index')->with('success', 'Data pengurus berhasil diupdate.');
     }
 
     /**
@@ -137,6 +137,6 @@ class UserController extends Controller
         $pengurus = User::findOrFail($id);
         $pengurus->delete();
 
-        return redirect()->route('pengurus.index')->with('success', 'Pengurus berhasil dihapus.');
+        return redirect()->route('pengurus-user.index')->with('success', 'Pengurus berhasil dihapus.');
     }
 }

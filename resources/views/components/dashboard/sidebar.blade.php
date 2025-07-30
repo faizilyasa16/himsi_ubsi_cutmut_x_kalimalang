@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('pengurus.index') }}" class="nav-link text-light d-flex align-items-center">
+                <a href="{{ route('pengurus-user.index') }}" class="nav-link text-light d-flex align-items-center">
                     <i class="bi bi-people me-3"></i>
                     <span class="flex-grow-1">Pengurus</span>
                 </a>
@@ -52,7 +52,12 @@
                     </ul>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a href="{{ route('artikel.index') }}" class="nav-link text-light d-flex align-items-center">
+                    <i class="bi bi-newspaper me-3"></i>
+                    <span class="flex-grow-1">Artikel</span>
+                </a>
+            </li>
             <!-- Orders dengan dropdown -->
             <li class="nav-item">
                 <a href="#" class="nav-link text-light d-flex align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#ordersMenu" role="button">
@@ -63,13 +68,10 @@
                 <div class="collapse" id="ordersMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Kegiatan</a>
+                            <a href="{{ route('kegiatan-absensi.index') }}" class="nav-link text-light py-2">Kegiatan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Kelola Absensi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Rekap Absensi</a>
+                            <a href="{{ route('absensi.index') }}" class="nav-link text-light py-2">Kelola Absensi</a>
                         </li>
                     </ul>
                 </div>
@@ -85,10 +87,10 @@
                 <div class="collapse" id="pemiluMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Pemilihan</a>
+                            <a href="{{ route('pemilihan.index') }}" class="nav-link text-light py-2">Pemilihan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Kandidat</a>
+                            <a href="{{ route('kandidat.index') }}" class="nav-link text-light py-2">Kandidat</a>
                         </li>
                     </ul>
                 </div>
@@ -104,10 +106,10 @@
                 <div class="collapse" id="settingsMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Kategori</a>
+                            <a href="{{ route('album-gallery.index') }}" class="nav-link text-light py-2">Album</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light py-2">Konten</a>
+                            <a href="{{ route('konten-gallery.index') }}" class="nav-link text-light py-2">Konten</a>
                         </li>
                     </ul>
                 </div>
