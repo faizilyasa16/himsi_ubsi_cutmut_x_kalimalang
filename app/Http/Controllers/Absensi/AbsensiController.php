@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\KegiatanAbsensi;
 use App\Models\Absensi;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+use SweetAlert2\Laravel\Swal;
+
 class AbsensiController extends Controller
 {
     /**
@@ -69,7 +72,7 @@ class AbsensiController extends Controller
     public function update(Request $request, string $id)
     {
         // Validasi input (opsional)
-        $validated = $request->validate([
+        $request->validate([
             'absensi' => 'required|array',
             'absensi.*.status' => 'in:hadir,tidak_hadir,izin',
             'absensi.*.keterangan' => 'nullable|string|max:255',
@@ -90,8 +93,9 @@ class AbsensiController extends Controller
             }
             // Kalau user belum ada, abaikan (tidak membuat entri baru)
         }
-
-        return redirect()->route('absensi.edit', $id)->with('success', 'Data absensi berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Data absensi berhasil diperbarui.');
+        return redirect()->route('absensi.edit', $id);
     }
 
     /**

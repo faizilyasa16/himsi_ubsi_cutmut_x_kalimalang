@@ -11,22 +11,16 @@
             <div class="data_table">
                 <div class="d-flex flex-column justify-content-start mb-4">
                     <h1 class="m-0">Kelola Absensi</h1>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @elseif (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
                 </div>
-
-                {{-- Ubah ke route penyimpanan --}}
+                @if ($errors -> any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('absensi.update', $kegiatan->id) }}" method="POST">
                     @csrf
                     @method('PUT')

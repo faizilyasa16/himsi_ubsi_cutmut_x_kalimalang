@@ -8,6 +8,7 @@ use App\Models\Acara;
 use Illuminate\Support\Str;
 use App\Models\KategoriAcara;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 class KegiatanController extends Controller
 {
     /**
@@ -17,6 +18,10 @@ class KegiatanController extends Controller
     {
         // Ambil semua acara dengan relasi kategori
         $acara = Acara::with('kategori')->get();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Acara';
+        $text = "Apakah Anda yakin ingin menghapus acara ini? Semua data terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.acara.kegiatan.index', compact('acara'));
     }
 
@@ -75,9 +80,10 @@ class KegiatanController extends Controller
 
         // Simpan data ke database
         Acara::create($validated);
-
-        return redirect()->route('kegiatan-acara.index')
-            ->with('success', 'Acara berhasil ditambahkan.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Acara berhasil ditambahkan.');
+        return redirect()->route('kegiatan-acara.index');
     }
 
     /**
@@ -140,9 +146,10 @@ class KegiatanController extends Controller
 
         // Update data
         $kegiatanAcara->update($validated);
-
-        return redirect()->route('kegiatan-acara.index')
-            ->with('success', 'Acara berhasil diperbarui.');
+        // tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Acara berhasil diperbarui.');
+        return redirect()->route('kegiatan-acara.index');
     }
 
     /**
@@ -159,8 +166,9 @@ class KegiatanController extends Controller
         }
 
         $kegiatanAcara->delete();
-
-        return redirect()->route('kegiatan-acara.index')
-            ->with('success', 'Acara berhasil dihapus.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Acara berhasil dihapus.');
+        return redirect()->route('kegiatan-acara.index');
     }
 }

@@ -34,13 +34,9 @@
                                     <a href="{{ route('kategori-acara.edit', $kategori) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <form action="{{ route('kategori-acara.destroy', $kategori->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('kategori-acara.destroy', $kategori->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

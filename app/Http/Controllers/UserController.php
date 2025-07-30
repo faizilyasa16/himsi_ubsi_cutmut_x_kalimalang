@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
     /**
@@ -16,6 +16,10 @@ class UserController extends Controller
     public function index()
     {
         $pengurus = User::all();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Pengurus';
+        $text = "Apakah Anda yakin ingin menghapus pengurus ini? Semua data terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.pengurus.index', compact('pengurus'));
     }
 
@@ -60,8 +64,10 @@ class UserController extends Controller
             'divisi' => $request->divisi,
             'photo' => $photoPath,
         ]);
-
-        return redirect()->route('pengurus-user.index')->with('success', 'Pengurus berhasil ditambahkan.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Pengurus berhasil ditambahkan.');
+        return redirect()->route('pengurus-user.index');
     }
 
 
@@ -125,8 +131,10 @@ class UserController extends Controller
 
 
         $pengurus->save();
-
-        return redirect()->route('pengurus-user.index')->with('success', 'Data pengurus berhasil diupdate.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Data pengurus berhasil diupdate.');
+        return redirect()->route('pengurus-user.index');
     }
 
     /**
@@ -137,6 +145,6 @@ class UserController extends Controller
         $pengurus = User::findOrFail($id);
         $pengurus->delete();
 
-        return redirect()->route('pengurus-user.index')->with('success', 'Pengurus berhasil dihapus.');
+        return redirect()->route('pengurus-user.index');
     }
 }

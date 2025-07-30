@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class ProfileController extends Controller
 {
     public function index()
@@ -45,8 +45,10 @@ class ProfileController extends Controller
             'email' => $request->email,
             'photo' => $photoPath,
         ]);
-
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Profil berhasil diperbarui.');
+        return redirect()->back();
     }
 
 
@@ -67,7 +69,9 @@ class ProfileController extends Controller
         // Jika password lama sesuai, update password baru
         $user->password = Hash::make($request->new_password);
         $user->save();
-
-        return back()->with('success', 'Password berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Password berhasil diperbarui.');
+        return back();
     }
 }

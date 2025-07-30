@@ -38,13 +38,9 @@
                                     <a href="{{ route('kandidat.edit', $kandidat->id) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <form action="{{ route('kandidat.destroy', $kandidat->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus kandidat ini?')">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('kandidat.destroy', $kandidat->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

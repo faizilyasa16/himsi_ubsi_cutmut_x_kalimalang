@@ -53,13 +53,9 @@
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
 
-                                    <form action="{{ route('kegiatan-acara.destroy', $acara->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus acara ini?')">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('kegiatan-acara.destroy', $acara->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

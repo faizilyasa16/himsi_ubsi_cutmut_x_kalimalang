@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\KegiatanAbsensi;
 use App\Models\Absensi;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 class KegiatanController extends Controller
 {
     /**
@@ -17,7 +18,9 @@ class KegiatanController extends Controller
     {
         // Ambil semua kegiatan absensi
         $kegiatan = KegiatanAbsensi::all();
-
+        $title = 'Konfirmasi Hapus Kegiatan Absensi';
+        $text = "Apakah Anda yakin ingin menghapus kegiatan ini? Semua data absensi terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.absensi.kegiatan.index', compact('kegiatan'));
     }
 
@@ -66,8 +69,9 @@ class KegiatanController extends Controller
                 'keterangan'  => null,
             ]);
         }
-
-        return redirect()->route('kegiatan-absensi.index')->with('success', 'Kegiatan & absensi berhasil ditambahkan.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Kegiatan & absensi berhasil ditambahkan.');
+        return redirect()->route('kegiatan-absensi.index');
     }
     /**
      * Display the specified resource.
@@ -105,8 +109,9 @@ class KegiatanController extends Controller
 
         // Update ke database
         $kegiatan->update($validated);
-
-        return redirect()->route('kegiatan-absensi.index')->with('success', 'Kegiatan berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Kegiatan berhasil diperbarui.');
+        return redirect()->route('kegiatan-absensi.index');
     }
 
     /**
@@ -116,6 +121,8 @@ class KegiatanController extends Controller
     {
         $kegiatan = KegiatanAbsensi::find($id);
         $kegiatan->delete();
-        return redirect()->route('kegiatan-absensi.index')->with('success', 'Kegiatan berhasil dihapus.');
+        
+        Alert::success('Berhasil', 'Kegiatan berhasil dihapus.');
+        return redirect()->route('kegiatan-absensi.index');
     }
 }

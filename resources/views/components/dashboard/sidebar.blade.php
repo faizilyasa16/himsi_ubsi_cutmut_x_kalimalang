@@ -16,19 +16,19 @@
         <ul class="nav flex-column">
             <!-- Dashboard -->
             <li class="nav-item">
-                <a href="{{ route('dashboard') }}" class="nav-link text-light active d-flex align-items-center">
+                <a href="{{ route('dashboard') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('dashboard') ? 'active text-white bg-primary' : 'text-light' }}">
                     <i class="bi bi-grid me-3"></i>
                     <span class="flex-grow-1">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('profile') }}" class="nav-link text-light d-flex align-items-center">
+                <a href="{{ route('profile') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('profile') ? 'active text-white bg-primary' : 'text-light' }}">
                     <i class="bi bi-person me-3"></i>
                     <span class="flex-grow-1">Profile</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('pengurus-user.index') }}" class="nav-link text-light d-flex align-items-center">
+                <a href="{{ route('pengurus-user.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('pengurus-user.*') ? 'active text-white bg-primary' : 'text-light' }}">
                     <i class="bi bi-people me-3"></i>
                     <span class="flex-grow-1">Pengurus</span>
                 </a>
@@ -36,7 +36,7 @@
 
             <!-- Products dengan dropdown -->
             <li class="nav-item">
-                <a href="#" class="nav-link text-light d-flex align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#productsMenu" role="button">
+                <a href="#" class="nav-link d-flex align-items-center {{ request()->routeIs('kategori-acara.*') || request()->routeIs('kegiatan-acara.*') ? 'active text-white bg-primary' : 'text-light' }} collapsed" data-bs-toggle="collapse" data-bs-target="#productsMenu" role="button">
                     <i class="bi bi-calendar me-3"></i>
                     <span class="flex-grow-1">Acara</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
@@ -44,23 +44,23 @@
                 <div class="collapse" id="productsMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="{{ route('kategori-acara.index') }}" class="nav-link text-light py-2">Kategori</a>
+                            <a href="{{ route('kategori-acara.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('kategori-acara.*') ? 'text-white' : 'text-light' }} py-2">Kategori</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kegiatan-acara.index') }}" class="nav-link text-light py-2">Kegiatan</a>
+                            <a href="{{ route('kegiatan-acara.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('kegiatan-acara.*') ? 'text-white' : 'text-light' }} py-2">Kegiatan</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a href="{{ route('artikel.index') }}" class="nav-link text-light d-flex align-items-center">
+                <a href="{{ route('artikel.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('artikel.*') ? 'active text-white bg-primary' : 'text-light' }}">
                     <i class="bi bi-newspaper me-3"></i>
                     <span class="flex-grow-1">Artikel</span>
                 </a>
             </li>
             <!-- Orders dengan dropdown -->
             <li class="nav-item">
-                <a href="#" class="nav-link text-light d-flex align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#ordersMenu" role="button">
+                <a href="#" class="nav-link d-flex align-items-center {{ request()->routeIs('kegiatan-absensi.*') || request()->routeIs('absensi.*') ? 'active text-white bg-primary' : 'text-light' }} collapsed" data-bs-toggle="collapse" data-bs-target="#ordersMenu" role="button">
                     <i class="bi bi-card-checklist me-3"></i>
                     <span class="flex-grow-1">Absensi Himsi</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
@@ -68,10 +68,10 @@
                 <div class="collapse" id="ordersMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="{{ route('kegiatan-absensi.index') }}" class="nav-link text-light py-2">Kegiatan</a>
+                            <a href="{{ route('kegiatan-absensi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('kegiatan-absensi.*') ? 'text-white' : 'text-light' }} py-2">Kegiatan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('absensi.index') }}" class="nav-link text-light py-2">Kelola Absensi</a>
+                            <a href="{{ route('absensi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('absensi.*') ? 'text-white' : 'text-light' }} py-2">Kelola Absensi</a>
                         </li>
                     </ul>
                 </div>
@@ -79,7 +79,7 @@
 
             <!-- Settings dengan dropdown -->
             <li class="nav-item">
-                <a href="#" class="nav-link text-light d-flex align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#pemiluMenu" role="button">
+                <a href="#" class="nav-link d-flex align-items-center {{ request()->routeIs('pemilihan.*') || request()->routeIs('kandidat.*') ? 'active text-white bg-primary' : 'text-light' }} collapsed" data-bs-toggle="collapse" data-bs-target="#pemiluMenu" role="button">
                     <i class="bi-envelope-open me-3"></i>
                     <span class="flex-grow-1">Pemilihan Umum</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
@@ -87,10 +87,10 @@
                 <div class="collapse" id="pemiluMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="{{ route('pemilihan.index') }}" class="nav-link text-light py-2">Pemilihan</a>
+                            <a href="{{ route('pemilihan.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('pemilihan.*') ? 'text-white' : 'text-light' }} py-2">Pemilihan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kandidat.index') }}" class="nav-link text-light py-2">Kandidat</a>
+                            <a href="{{ route('kandidat.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('kandidat.*') ? 'text-white' : 'text-light' }} py-2">Kandidat</a>
                         </li>
                     </ul>
                 </div>
@@ -98,7 +98,7 @@
 
             <!-- Settings dengan dropdown -->
             <li class="nav-item">
-                <a href="#" class="nav-link text-light d-flex align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#settingsMenu" role="button">
+                <a href="#" class="nav-link d-flex align-items-center {{ request()->routeIs('album-gallery.*') || request()->routeIs('konten-gallery.*') ? 'active text-white bg-primary' : 'text-light' }} collapsed" data-bs-toggle="collapse" data-bs-target="#settingsMenu" role="button">
                     <i class="bi bi-images me-3"></i>
                     <span class="flex-grow-1">Galery</span>
                     <i class="bi bi-chevron-down ms-auto"></i>
@@ -106,10 +106,10 @@
                 <div class="collapse" id="settingsMenu">
                     <ul class="nav flex-column ms-4">
                         <li class="nav-item">
-                            <a href="{{ route('album-gallery.index') }}" class="nav-link text-light py-2">Album</a>
+                            <a href="{{ route('album-gallery.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('album-gallery.*') ? 'text-white' : 'text-light' }} py-2">Album</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('konten-gallery.index') }}" class="nav-link text-light py-2">Konten</a>
+                            <a href="{{ route('konten-gallery.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('konten-gallery.*') ? 'text-white' : 'text-light' }} py-2">Konten</a>
                         </li>
                     </ul>
                 </div>
@@ -120,7 +120,7 @@
             </form>
 
             <li class="nav-item">
-                <a href="#" class="nav-link text-light d-flex align-items-center"
+                <a href="#" class="nav-link d-flex align-items-center text-light"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="bi bi-box-arrow-right me-3"></i>
                     <span>Log out</span>

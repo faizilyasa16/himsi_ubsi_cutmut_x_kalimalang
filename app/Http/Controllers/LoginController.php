@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class LoginController extends Controller
 {
     public function show()
@@ -37,6 +37,7 @@ class LoginController extends Controller
         }
 
         $request->session()->regenerate();
+        Alert::toast('Selamat datang, ' . Auth::user()->name . '!', 'success');
         return redirect()->intended('/dashboard');
     }
 

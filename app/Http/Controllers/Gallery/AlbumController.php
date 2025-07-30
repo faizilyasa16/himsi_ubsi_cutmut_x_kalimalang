@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Album;
 use Illuminate\Support\Str;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class AlbumController extends Controller
 {
     /**
@@ -16,6 +16,10 @@ class AlbumController extends Controller
     {
         // Ambil semua kategori gallery
         $album = Album::all();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Album';
+        $text = "Apakah Anda yakin ingin menghapus album ini? Semua foto terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.gallery.album.index', compact('album'));
     }
 
@@ -45,9 +49,10 @@ class AlbumController extends Controller
 
         // Simpan ke database
         Album::create($validated);
-
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Album berhasil ditambahkan.');
         // Redirect atau respon
-        return redirect()->route('album-gallery.index')->with('success', 'Album berhasil ditambahkan.');
+        return redirect()->route('album-gallery.index');
     }
 
     /**
@@ -88,8 +93,9 @@ class AlbumController extends Controller
 
         // Update data
         $album->update($validated);
-
-        return redirect()->route('album-gallery.index')->with('success', 'Album berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Album berhasil diperbarui.');
+        return redirect()->route('album-gallery.index');
     }
     /**
      * Remove the specified resource from storage.
@@ -98,6 +104,8 @@ class AlbumController extends Controller
     {
         $album = Album::findOrFail($id);
         $album->delete();
-        return redirect()->route('album-gallery.index')->with('success', 'Album berhasil dihapus.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Album berhasil dihapus.');
+        return redirect()->route('album-gallery.index');
     }
 }

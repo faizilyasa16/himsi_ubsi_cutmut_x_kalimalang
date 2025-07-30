@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\KategoriAcara;
 use Illuminate\Support\Str;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class KategoriController extends Controller
 {
     /**
@@ -15,6 +15,10 @@ class KategoriController extends Controller
     public function index()
     {
         $kategoriAcara = KategoriAcara::all();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Kategori Acara';
+        $text = "Apakah Anda yakin ingin menghapus kategori acara ini? Semua acara terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.acara.kategori.index', compact('kategoriAcara'));
     }
 
@@ -41,8 +45,10 @@ class KategoriController extends Controller
             'slug' => Str::slug($request->nama),
             'deskripsi' => $request->deskripsi,
         ]);
-
-        return redirect()->route('kategori-acara.index')->with('success', 'Kategori acara berhasil ditambahkan.');
+        // Redirect dengan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Kategori acara berhasil ditambahkan.');
+        return redirect()->route('kategori-acara.index');
     }
 
     /**
@@ -79,8 +85,9 @@ class KategoriController extends Controller
             'slug' => $request->slug,
             'deskripsi' => $request->deskripsi,
         ]);
-
-        return redirect()->route('kategori-acara.index')->with('success', 'Kategori Acara berhasil diperbarui.');
+        // Redirect dengan pesan sukses
+        Alert::success('Berhasil', 'Kategori Acara berhasil diperbarui.');
+        return redirect()->route('kategori-acara.index');
     }
 
 
@@ -91,7 +98,8 @@ class KategoriController extends Controller
     {
         $kategoriAcara = KategoriAcara::findOrFail($id);
         $kategoriAcara->delete();
-
-        return redirect()->route('kategori-acara.index')->with('success', 'Kategori Acara berhasil dihapus.');
+        // Redirect dengan pesan sukses
+        Alert::success('Berhasil', 'Kategori Acara berhasil dihapus.');
+        return redirect()->route('kategori-acara.index');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Artikel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 class ArtikelController extends Controller
 {
     /**
@@ -15,6 +16,10 @@ class ArtikelController extends Controller
     {
         // Ambil semua artikel
         $artikel = Artikel::all();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Artikel';
+        $text = "Apakah Anda yakin ingin menghapus artikel ini? Semua data terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.artikel.index', compact('artikel'));
     }
 
@@ -57,8 +62,10 @@ class ArtikelController extends Controller
             'deskripsi' => $validated['deskripsi'],
             'konten'    => $filename,
         ]);
-
-        return redirect()->route('artikel.index')->with('success', 'Artikel berhasil disimpan.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Artikel berhasil disimpan.');
+        return redirect()->route('artikel.index');
     }
     /**
      * Display the specified resource.
@@ -108,8 +115,10 @@ class ArtikelController extends Controller
         $validated['user_id'] = Auth::user()->id; // pastikan user login
 
         $artikel->update($validated);
-
-        return redirect()->route('artikel.index')->with('success', 'Artikel berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Artikel berhasil diperbarui.');
+        return redirect()->route('artikel.index');
     }
 
 
@@ -126,7 +135,9 @@ class ArtikelController extends Controller
         }
 
         $artikel->delete();
-
-        return redirect()->route('artikel.index')->with('success', 'Artikel berhasil dihapus.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Artikel berhasil dihapus.');
+        return redirect()->route('artikel.index');
     }
 }

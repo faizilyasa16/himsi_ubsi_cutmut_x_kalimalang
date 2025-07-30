@@ -56,13 +56,9 @@
                                     <a href="{{ route('pengurus-user.edit', $pengurus->id) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <form action="{{ route('pengurus-user.destroy', $pengurus->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus pengurus ini?')">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('pengurus-user.destroy', $pengurus->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

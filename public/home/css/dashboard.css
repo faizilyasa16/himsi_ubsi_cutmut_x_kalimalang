@@ -131,10 +131,6 @@
     transform: translateX(5px);
 }
 
-.sidebar .nav-link[data-bs-toggle="collapse"].active {
-    background-color: transparent !important; /* Override active state */
-    color: inherit !important;
-}
 
 /* Dropdown arrows - arrow menghadap ke bawah di awal, rotasi saat expand */
 .sidebar .nav-link[data-bs-toggle="collapse"] i.bi-chevron-down {

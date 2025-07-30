@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Models\KontenAlbum as KontenGallery;
+use RealRashid\SweetAlert\Facades\Alert;
 class KontenController extends Controller
 {
     /**
@@ -15,6 +16,10 @@ class KontenController extends Controller
     {
         // Ambil semua konten album
         $konten = KontenGallery::with('album')->get(); // Eager load
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Konten Gallery';
+        $text = "Apakah Anda yakin ingin menghapus konten ini? Semua data terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.gallery.konten.index', compact('konten'));
     }
 
@@ -47,8 +52,9 @@ class KontenController extends Controller
 
         // Simpan data ke database
         KontenGallery::create($validated);
-
-        return redirect()->route('konten-gallery.index')->with('success', 'Konten berhasil ditambahkan.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Konten berhasil ditambahkan.');
+        return redirect()->route('konten-gallery.index');
     }
 
 
@@ -91,9 +97,10 @@ class KontenController extends Controller
         // Update data ke database
         $konten = KontenGallery::findOrFail($id);
         $konten->update($validated);
-
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Konten berhasil diperbarui.');
         // Redirect atau response
-        return redirect()->route('konten-gallery.index')->with('success', 'Konten berhasil diperbarui.');
+        return redirect()->route('konten-gallery.index');
     }
 
     /**
@@ -103,6 +110,9 @@ class KontenController extends Controller
     {
         $konten = KontenGallery::findOrFail($id);
         $konten->delete();
-        return redirect()->route('konten-gallery.index')->with('success', 'Konten berhasil dihapus.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Konten berhasil dihapus.');
+        return redirect()->route('konten-gallery.index');
     }
 }

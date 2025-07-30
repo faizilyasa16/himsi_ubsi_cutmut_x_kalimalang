@@ -38,13 +38,9 @@
                             <td>{{ $artikel->created_at }}</td>
                             <td>
                                 <a href="{{ route('artikel.edit', $artikel) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
-                                <form action="{{ route('artikel.destroy', $artikel->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus artikel ini?')">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </button>
-                                </form>
+                                <a href="{{ route('artikel.destroy', $artikel->id) }}" class="btn btn-danger" data-confirm-delete="true">
+                                    <i class="bi bi-trash"></i> Hapus
+                                </a>
                             </td>
                         </tr>
                        @endforeach

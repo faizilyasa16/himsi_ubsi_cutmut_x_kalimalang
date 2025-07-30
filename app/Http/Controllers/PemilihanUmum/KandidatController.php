@@ -8,6 +8,7 @@ use App\Models\Pemilihan;
 use App\Models\User;
 use App\Models\Kandidat;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 class KandidatController extends Controller
 {
     /**
@@ -17,6 +18,10 @@ class KandidatController extends Controller
     {
         // Ambil semua kandidat
         $kandidat = Kandidat::all();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Kandidat';
+        $text = "Apakah Anda yakin ingin menghapus kandidat ini? Semua data terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.pemilihan-umum.kandidat.index', compact('kandidat'));
     }
 
@@ -54,8 +59,10 @@ class KandidatController extends Controller
 
         // Simpan data ke tabel kandidat
         Kandidat::create($validated);
-
-        return redirect()->route('kandidat.index')->with('success', 'Kandidat berhasil ditambahkan.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Kandidat berhasil ditambahkan.');
+        return redirect()->route('kandidat.index');
     }
 
 
@@ -75,6 +82,7 @@ class KandidatController extends Controller
         $kandidat = Kandidat::findOrFail($id);
         $pemilihans = Pemilihan::all();
         $pengurus = User::all();
+        
         return view('user.pemilihan-umum.kandidat.edit', compact('kandidat', 'pemilihans', 'pengurus'));
     }
 
@@ -110,8 +118,10 @@ class KandidatController extends Controller
 
         // Update data
         $kandidat->update($validated);
-
-        return redirect()->route('kandidat.index')->with('success', 'Data kandidat berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        // Menggunakan SweetAlert untuk notifikasi
+        Alert::success('Berhasil', 'Data kandidat berhasil diperbarui.');
+        return redirect()->route('kandidat.index');
     }
 
     /**
@@ -121,6 +131,12 @@ class KandidatController extends Controller
     {
         $kandidat = Kandidat::findOrFail($id);
         $kandidat->delete();
-        return redirect()->route('kandidat.index')->with('success', 'Kandidat berhasil dihapus.');
+        // Hapus poster jika ada
+        if ($kandidat->poster && Storage::disk('public')->exists($kandidat->poster)) {
+            Storage::disk('public')->delete($kandidat->poster);
+        }
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Kandidat berhasil dihapus.');
+        return redirect()->route('kandidat.index');
     }
 }

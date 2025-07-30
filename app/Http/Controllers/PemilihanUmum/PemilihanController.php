@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pemilihan;
 use Illuminate\Support\Str;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class PemilihanController extends Controller
 {
     /**
@@ -16,6 +16,10 @@ class PemilihanController extends Controller
     {
         // Ambil semua data pemilihan
         $pemilihan = Pemilihan::all();
+        // Konfirmasi hapus dengan SweetAlert
+        $title = 'Konfirmasi Hapus Pemilihan';
+        $text = "Apakah Anda yakin ingin menghapus pemilihan ini? Semua data terkait akan hilang.";
+        confirmDelete($title, $text);
         return view('user.pemilihan-umum.pemilihan.index', compact('pemilihan'));
     }
 
@@ -50,8 +54,9 @@ class PemilihanController extends Controller
             'status' => $request->status,
             'deskripsi' => $request->deskripsi,
         ]);
-
-        return redirect()->route('pemilihan.index')->with('success', 'Pemilihan berhasil ditambahkan.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Pemilihan berhasil ditambahkan.');
+        return redirect()->route('pemilihan.index');
     }
 
     /**
@@ -86,8 +91,9 @@ class PemilihanController extends Controller
         $validated['slug'] = Str::slug($validated['nama']);
 
         $pemilihan->update($validated);
-
-        return redirect()->route('pemilihan.index')->with('success', 'Data pemilihan berhasil diperbarui.');
+        // Tampilkan pesan sukses
+        Alert::success('Berhasil', 'Data pemilihan berhasil diperbarui.');
+        return redirect()->route('pemilihan.index');
     }
 
     /**
@@ -97,7 +103,7 @@ class PemilihanController extends Controller
     {
         $pemilihan = Pemilihan::findOrFail($id);
         $pemilihan->delete();
-
-        return redirect()->route('pemilihan.index')->with('success', 'Pemilihan berhasil dihapus.');
+        Alert::success('Berhasil', 'Pemilihan berhasil dihapus.');
+        return redirect()->route('pemilihan.index');
     }
 }
