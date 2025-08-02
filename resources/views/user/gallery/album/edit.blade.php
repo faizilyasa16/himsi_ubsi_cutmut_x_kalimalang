@@ -24,11 +24,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="slug" class="form-label">Slug</label>
-            <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug', $album->slug) }}" class="form-control" readonly>
-        </div>
-
-        <div class="mb-3">
             <label for="tahun" class="form-label">Tahun</label>
             <input type="number" name="tahun" id="tahun" class="form-control" required value="{{ old('tahun', $album->tahun) }}">
         </div>
@@ -40,8 +35,4 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </main>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('home/dashboard/slug.js') }}"></script>
 @endsection

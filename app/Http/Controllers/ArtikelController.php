@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Artikel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Traits\SlugGenerator;
+
 class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    use SlugGenerator;
     public function index()
     {
         // Ambil semua artikel
@@ -39,38 +43,39 @@ class ArtikelController extends Controller
         // Validasi input
         $validated = $request->validate([
             'judul'     => 'required|string|max:255',
-            'slug'      => 'required|string|unique:artikels,slug',
             'kategori'  => 'required|in:pre-event,event,post-event,artikel',
             'status'    => 'required|in:draft,published,archived',
             'deskripsi' => 'required|string',
             'konten'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Buat slug unik
+        $slug = $this->generateUniqueSlug($validated['judul']);
         // Simpan file gambar jika ada
         $filename = null;
         if ($request->hasFile('konten')) {
             $filename = $request->file('konten')->store('artikel/foto', 'public');
         }
-
         // Simpan data ke database
         Artikel::create([
-            'user_id'   => Auth::user()->id, // pastikan user login
             'judul'     => $validated['judul'],
-            'slug'      => $validated['slug'],
+            'slug'      => $slug,
             'kategori'  => $validated['kategori'],
             'status'    => $validated['status'],
             'deskripsi' => $validated['deskripsi'],
             'konten'    => $filename,
+            'user_id'   => Auth::id(), // pastikan user login
         ]);
-        // Tampilkan pesan sukses
-        // Menggunakan SweetAlert untuk notifikasi
+
+        // Notifikasi sukses
         Alert::success('Berhasil', 'Artikel berhasil disimpan.');
         return redirect()->route('artikel.index');
     }
+
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
         //
     }
@@ -91,32 +96,53 @@ class ArtikelController extends Controller
     {
         $artikel = Artikel::where('slug', $slug)->firstOrFail();
 
+        // Validasi input
         $validated = $request->validate([
             'judul'     => 'required|string|max:255',
-            'slug'      => 'required|string|unique:artikels,slug,' . $artikel->id,
             'kategori'  => 'required|in:pre-event,event,post-event,artikel',
             'status'    => 'required|in:draft,published,archived',
             'deskripsi' => 'required|string',
             'konten'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Jika ada file baru dikirim
-        if ($request->hasFile('konten')) {
-            // Hapus konten lama jika ada
-            if ($artikel->konten && Storage::exists('public/' . $artikel->konten)) {
-                Storage::delete('public/' . $artikel->konten);
+        // Jika judul berubah, generate slug baru (tanpa tambahan -1, -2, dll)
+        if ($validated['judul'] !== $artikel->judul) {
+            $newSlug = Str::slug($validated['judul']);
+
+            // Cek apakah slug sudah digunakan oleh artikel lain
+            $slugExists = Artikel::where('slug', $newSlug)
+                ->where('id', '!=', $artikel->id)
+                ->exists();
+
+            if ($slugExists) {
+                return back()->withErrors(['judul' => 'Slug dari judul ini sudah digunakan. Silakan ubah judul.'])->withInput();
             }
 
-            // Simpan konten baru
-            $path = $request->file('konten')->store('artikel', 'public');
-            $validated['konten'] = $path;
+            $validated['slug'] = $newSlug;
+        } else {
+            $validated['slug'] = $artikel->slug;
         }
 
-        $validated['user_id'] = Auth::user()->id; // pastikan user login
+        // Simpan file baru jika ada
+        $filename = $artikel->konten;
+        if ($request->hasFile('konten')) {
+            if ($artikel->konten) {
+                Storage::delete('public/' . $artikel->konten);
+            }
+            $filename = $request->file('konten')->store('artikel/foto', 'public');
+        }
 
-        $artikel->update($validated);
-        // Tampilkan pesan sukses
-        // Menggunakan SweetAlert untuk notifikasi
+        // Update data
+        $artikel->update([
+            'judul'     => $validated['judul'],
+            'slug'      => $validated['slug'],
+            'kategori'  => $validated['kategori'],
+            'status'    => $validated['status'],
+            'deskripsi' => $validated['deskripsi'],
+            'konten'    => $filename,
+            'user_id'   => Auth::id(),
+        ]);
+
         Alert::success('Berhasil', 'Artikel berhasil diperbarui.');
         return redirect()->route('artikel.index');
     }

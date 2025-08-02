@@ -20,10 +20,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="slug" class="form-label">Slug</label>
-            <input type="text" name="slug" id="slug" class="form-control" readonly>
-        </div>
-        <div class="mb-3">
             <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
             <input type="datetime-local" name="tgl_mulai" id="tgl_mulai" class="form-control">
         </div>
@@ -50,8 +46,4 @@
     </form>
 
 </main>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('home/dashboard/slug.js') }}"></script>
 @endsection

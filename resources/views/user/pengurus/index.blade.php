@@ -42,13 +42,13 @@
                                 <td>{{ $pengurus->divisi }}</td>
                                 <td>{{ $pengurus->role }}</td>
                                 <td>
-                                    @if ($pengurus->sp == null)
+                                    @if ($pengurus->peringatan == null)
                                         -
-                                    @elseif($pengurus->sp == 'sp_1')
+                                    @elseif($pengurus->peringatan == 'sp_1')
                                         <span class="badge bg-primary">SP 1</span>
-                                    @elseif($pengurus->sp == 'sp_2')
+                                    @elseif($pengurus->peringatan == 'sp_2')
                                         <span class="badge bg-warning">SP 2</span>
-                                    @elseif($pengurus->sp == 'sp_3')
+                                    @elseif($pengurus->peringatan == 'sp_3')
                                         <span class="badge bg-danger">SP 3</span>
                                     @endif
                                 </td>

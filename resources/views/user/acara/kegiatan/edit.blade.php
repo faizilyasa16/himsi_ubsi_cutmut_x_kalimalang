@@ -37,112 +37,100 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="kategori_id" class="form-label">Kategori</label>
-                                    <select name="kategori_id" id="kategori_id" class="form-control" required>
+                                    <select name="kategori_id" id="kategori_id" class="form-control">
                                         <option value="" disabled>Pilih kategori</option>
                                         @foreach($kategoriAcara as $kategori)
-                                            <option value="{{ $kategori->id }}" {{ $kegiatanAcara->kategori_id == $kategori->id ? 'selected' : '' }}>{{ $kategori->nama }}</option>
+                                            <option value="{{ $kategori->id }}" {{ (old('kategori_id', $kegiatanAcara->kategori_id) == $kategori->id) ? 'selected' : '' }}>{{ $kategori->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama Acara</label>
-                                    <input type="text" name="nama" id="nama" class="form-control" required value="{{ $kegiatanAcara->nama }}">
+                                    <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama', $kegiatanAcara->nama) }}" required>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="slug" class="form-label">Slug</label>
-                                    <input type="text" name="slug" id="slug" class="form-control" readonly value="{{ $kegiatanAcara->slug }}">
-                                </div>
+                                <input type="hidden" name="slug" id="slug" value="{{ old('slug', $kegiatanAcara->slug) }}" class="form-control">
 
                                 <div class="mb-3">
                                     <label for="lokasi" class="form-label">Lokasi</label>
-                                    <input type="text" name="lokasi" id="lokasi" class="form-control" value="{{ $kegiatanAcara->lokasi }}">
+                                    <input type="text" name="lokasi" id="lokasi" value="{{ old('lokasi', $kegiatanAcara->lokasi) }}" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="contact_person" class="form-label">Contact Person</label>
-                                    <input type="text" name="contact_person" id="contact_person" class="form-control" value="{{ $kegiatanAcara->contact_person }}">
+                                    <input type="text" name="contact_person" id="contact_person" value="{{ old('contact_person', $kegiatanAcara->contact_person) }}" class="form-control">
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="poster" class="form-label">Poster</label>
-                                    <input type="file" accept="image/*" name="poster" id="poster" class="form-control">
-                                    <span class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</span>
-                                    @if($kegiatanAcara->poster)
-                                        <div class="d-flex justify-content-start align-items-center">
-                                            <div class="d-flex flex-column">
-                                                <span class="form-text text-muted">Foto Sebelumnya:</span>
-                                                <img src="{{ asset('storage/' . $kegiatanAcara->poster) }}" alt="Preview Foto" style="max-width: 200px; margin-top: 10px;">
-                                            </div>
-                                            <div class="ms-3">
-                                                <span class="form-text text-muted">Foto Baru:</span>
-                                                <img id="preview" src="#" alt="Preview Foto Baru" style="max-width: 200px; display: none; margin-top: 10px;">
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="kuota" class="form-label">Kuota</label>
-                                    <input type="number" name="kuota" id="kuota" class="form-control" value="{{ $kegiatanAcara->kuota }}">
+                                    <input type="number" name="kuota" id="kuota" value="{{ old('kuota', $kegiatanAcara->kuota) }}" class="form-control">
                                 </div>
-
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
-                                    <select name="status" id="status" class="form-control" required>
+                                    <select name="status" id="status" class="form-control">
                                         <option value="" disabled>Pilih status</option>
-                                        <option value="draft" {{ $kegiatanAcara->status == 'draft' ? 'selected' : '' }}>Draft</option>
-                                        <option value="published" {{ $kegiatanAcara->status == 'published' ? 'selected' : '' }}>Published</option>
-                                        <option value="archived" {{ $kegiatanAcara->status == 'archived' ? 'selected' : '' }}>Archived</option>
+                                        <option value="draft" {{ old('status', $kegiatanAcara->status) == 'draft' ? 'selected' : '' }}>Draft</option>
+                                        <option value="published" {{ old('status', $kegiatanAcara->status) == 'published' ? 'selected' : '' }}>Published</option>
+                                        <option value="archived" {{ old('status', $kegiatanAcara->status) == 'archived' ? 'selected' : '' }}>Archived</option>
                                     </select>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="tgl_mulai" class="form-label">Tanggal Mulai</label>
-                                    <input type="date" name="tgl_mulai" id="tgl_mulai" class="form-control" value="{{ $kegiatanAcara->tgl_mulai ? date('Y-m-d', strtotime($kegiatanAcara->tgl_mulai)) : '' }}">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="tgl_selesai" class="form-label">Tanggal Selesai</label>
-                                    <input type="date" name="tgl_selesai" id="tgl_selesai" class="form-control" value="{{ $kegiatanAcara->tgl_selesai ? date('Y-m-d', strtotime($kegiatanAcara->tgl_selesai)) : '' }}">
-                                </div>
-
-
                                 <div class="mb-3">
                                     <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
-                                    <input type="time" name="waktu_mulai" id="waktu_mulai" class="form-control" value="{{ $kegiatanAcara->waktu_mulai ? date('H:i', strtotime($kegiatanAcara->waktu_mulai)) : '' }}">
+                                    <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" 
+                                        value="{{ old('waktu_mulai', $kegiatanAcara->waktu_mulai ? date('Y-m-d\TH:i', strtotime($kegiatanAcara->waktu_mulai)) : '') }}" 
+                                        class="form-control">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="waktu_selesai" class="form-label">Waktu Selesai</label>
-                                    <input type="time" name="waktu_selesai" id="waktu_selesai" class="form-control" value="{{ $kegiatanAcara->waktu_selesai ? date('H:i', strtotime($kegiatanAcara->waktu_selesai)) : '' }}">
+                                    <input type="datetime-local" name="waktu_selesai" id="waktu_selesai" 
+                                        value="{{ old('waktu_selesai', $kegiatanAcara->waktu_selesai ? date('Y-m-d\TH:i', strtotime($kegiatanAcara->waktu_selesai)) : '') }}" 
+                                        class="form-control">
                                 </div>
 
+                                <div class="mb-3">
+                                    <label for="poster" class="form-label">Poster</label>
+                                    <span class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</span>
+                                    <input type="file" accept="image/*" name="poster" id="poster" class="form-control" onchange="previewFoto(event)">
+                                    
+                                    <div class="d-flex align-items-center">
+                                    @if($kegiatanAcara->poster)
+                                    <div class="mt-2">
+                                        <p>Poster saat ini:</p>
+                                        <img src="{{ asset('storage/' . $kegiatanAcara->poster) }}" alt="Current Poster" style="max-width: 200px;">
+                                    </div>
+                                    @endif
+                                    
+                                    <span class="form-text text-muted ms-3">Preview poster baru:</span>
+                                    <img id="preview" src="#" alt="Preview Poster" style="max-width: 200px; display: none; margin-top: 10px;">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                                    <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3">{{ $kegiatanAcara->deskripsi }}</textarea>
+                                    <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3">{{ old('deskripsi', $kegiatanAcara->deskripsi) }}</textarea>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="link_pendaftaran" class="form-label">Link Pendaftaran</label>
-                                    <input type="text" name="link_pendaftaran" id="link_pendaftaran" class="form-control" value="{{ $kegiatanAcara->link_pendaftaran }}">
+                                    <input type="text" name="link_pendaftaran" id="link_pendaftaran" value="{{ old('link_pendaftaran', $kegiatanAcara->link_pendaftaran) }}" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="link_wa" class="form-label">Link WhatsApp</label>
-                                    <input type="text" name="link_wa" id="link_wa" class="form-control" value="{{ $kegiatanAcara->link_wa }}">
+                                    <input type="text" name="link_wa" id="link_wa" value="{{ old('link_wa', $kegiatanAcara->link_wa) }}" class="form-control">
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
 
@@ -152,31 +140,32 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="biaya" class="form-label">Biaya</label>
-                                    <input type="text" name="biaya" id="biaya" class="form-control" value="{{ $kegiatanAcara->biaya }}">
+                                    <input type="text" name="biaya" id="biaya" value="{{ old('biaya', $kegiatanAcara->biaya) }}" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="payment_method" class="form-label">Metode Pembayaran</label>
-                                    <input type="text" name="payment_method" id="payment_method" class="form-control" value="{{ $kegiatanAcara->payment_method }}">
+                                    <input type="text" name="payment_method" id="payment_method" value="{{ old('payment_method', $kegiatanAcara->payment_method) }}" class="form-control">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="payment_number" class="form-label">Nomor Pembayaran</label>
-                                    <input type="text" name="payment_number" id="payment_number" class="form-control" value="{{ $kegiatanAcara->payment_number }}">
+                                    <input type="text" name="payment_number" id="payment_number" value="{{ old('payment_number', $kegiatanAcara->payment_number) }}" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="payment_name" class="form-label">Nama Penerima</label>
-                                    <input type="text" name="payment_name" id="payment_name" class="form-control" value="{{ $kegiatanAcara->payment_name }}">
+                                    <input type="text" name="payment_name" id="payment_name" value="{{ old('payment_name', $kegiatanAcara->payment_name) }}" class="form-control">
                                 </div>
                             </div>
 
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-success mt-3">Update Acara</button>
+
                 </div>
-                <button type="submit" class="btn btn-success mt-3">Update Acara</button>
             </div>
         </div>
     </form>
@@ -185,4 +174,5 @@
 
 @section('scripts')
 <script src="{{ asset('home/dashboard/slug.js') }}"></script>
+<script src="{{ asset('home/dashboard/preview.js') }}"></script>
 @endsection

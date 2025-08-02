@@ -95,7 +95,7 @@ class AbsensiController extends Controller
         }
         // Tampilkan pesan sukses
         Alert::success('Berhasil', 'Data absensi berhasil diperbarui.');
-        return redirect()->route('absensi.edit', $id);
+        return redirect()->route('kelola-absensi.edit', $id);
     }
 
     /**

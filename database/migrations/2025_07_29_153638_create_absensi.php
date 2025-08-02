@@ -19,7 +19,7 @@ return new class extends Migration
 
             // Contoh data absensi
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // siapa yang hadir
-            $table->enum('status', ['hadir', 'tidak_hadir', 'izin'])->default('tidak_hadir'); // status kehadiran
+            $table->enum('status', ['hadir', 'tidak_hadir', 'izin'])->nullable(); // status kehadiran
             $table->text('keterangan')->nullable(); // keterangan tambahan jika ada
 
             $table->timestamps();

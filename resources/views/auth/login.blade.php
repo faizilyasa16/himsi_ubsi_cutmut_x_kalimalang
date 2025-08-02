@@ -25,13 +25,14 @@
                                     <h5 class="card-title mb-0 Spartan">HIMSI UBSI Kampus Cut Mutia x Kalimalang</h5>
                                 </div>
                                 @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <ul class="mb-0 list-unstyled">
                                             @foreach ($errors->all() as $error)
                                                 <li>{{ $error }}</li>
                                             @endforeach
                                         </ul>
-                                    </div>      
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div> 
                                 @elseif (session('error'))
                                     <div class="alert alert-danger">
                                         {{ session('error') }}
@@ -63,5 +64,6 @@
             </div>
     </div>
     <script src="{{ asset('home/js/login.js') }}"></script>
+    <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

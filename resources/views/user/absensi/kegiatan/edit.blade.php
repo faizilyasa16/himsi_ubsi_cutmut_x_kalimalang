@@ -7,7 +7,7 @@
 @section('content')
 <main class="mt-5 container-fluid Spartan">
     <h1>Edit Kegiatan Absensi</h1>
-
+    <small class="form-text text-muted my-5">*Slug akan otomatis dihasilkan dari nama acara.</small>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -24,14 +24,11 @@
 
         {{-- Nama & Slug --}}
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="nama" class="form-label">Nama Kegiatan</label>
                 <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama', $kegiatan->nama) }}" required>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="slug" class="form-label">Slug</label>
-                <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug', $kegiatan->slug) }}" readonly>
-            </div>
+            <input type="hidden" name="slug" id="slug" value="{{ old('slug', $kegiatan->slug) }}" class="form-control">
         </div>
 
         <div class="mb-3">

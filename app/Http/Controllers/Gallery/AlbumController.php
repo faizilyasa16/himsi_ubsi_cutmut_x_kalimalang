@@ -45,7 +45,16 @@ class AlbumController extends Controller
         ]);
 
         // Buat slug dari nama
-        $validated['slug'] = Str::slug($validated['nama']);
+        $baseSlug = Str::slug($validated['nama']);
+        
+        // Cek apakah slug sudah ada, jika ada tambahkan nomor di belakangnya
+        $count = 1;
+        $slug = $baseSlug;
+        while (Album::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $count++;
+        }
+        
+        $validated['slug'] = $slug;
 
         // Simpan ke database
         Album::create($validated);
@@ -89,7 +98,18 @@ class AlbumController extends Controller
         ]);
 
         // Update slug jika nama berubah
-        $validated['slug'] = Str::slug($validated['nama']);
+        if ($album->nama != $validated['nama']) {
+            $baseSlug = Str::slug($validated['nama']);
+            
+            // Cek apakah slug sudah ada, jika ada tambahkan nomor di belakangnya
+            $count = 1;
+            $slug = $baseSlug;
+            while (Album::where('slug', $slug)->where('id', '!=', $album->id)->exists()) {
+                $slug = $baseSlug . '-' . $count++;
+            }
+            
+            $validated['slug'] = $slug;
+        }
 
         // Update data
         $album->update($validated);

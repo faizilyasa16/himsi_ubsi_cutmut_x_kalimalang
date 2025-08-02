@@ -7,29 +7,27 @@
 <main class="mt-5 container-fluid Spartan">
     <h1>Edit Artikel</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+    @if (session('error_message'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Memperbarui',
+                html: '{{ session("error_message") }}',
+            });
+        </script>
     @endif
+
+
 
     <form action="{{ route('artikel.update', $artikel->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        {{-- Judul dan Slug --}}
+        {{-- Judul Artikel --}}
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="judul" class="form-label">Judul Artikel</label>
-                <input type="text" name="judul" id="nama" class="form-control" value="{{ old('judul', $artikel->judul) }}" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="slug" class="form-label">Slug</label>
-                <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug', $artikel->slug) }}" readonly>
+                <input type="text" name="judul" id="judul" class="form-control" value="{{ old('judul', $artikel->judul) }}" required>
             </div>
         </div>
 
@@ -80,5 +78,4 @@
 
 @section('scripts')
     <script src="{{ asset('home/dashboard/trix.js') }}"></script>
-    <script src="{{ asset('home/dashboard/slug.js') }}"></script>
 @endsection

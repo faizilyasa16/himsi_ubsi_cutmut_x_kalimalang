@@ -45,10 +45,20 @@ class PemilihanController extends Controller
             'deskripsi' => 'nullable|string',
         ]);
 
+        // Buat slug dari nama
+        $baseSlug = Str::slug($request->nama);
+        
+        // Cek apakah slug sudah ada, jika ada tambahkan nomor di belakangnya
+        $count = 1;
+        $slug = $baseSlug;
+        while (Pemilihan::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $count++;
+        }
+
         // Simpan ke database
         Pemilihan::create([
             'nama' => $request->nama,
-            'slug' => Str::slug($request->nama),
+            'slug' => $slug,
             'tgl_mulai' => $request->tgl_mulai,
             'tgl_selesai' => $request->tgl_selesai,
             'status' => $request->status,
@@ -80,7 +90,7 @@ class PemilihanController extends Controller
      */
     public function update(Request $request, Pemilihan $pemilihan)
     {
-        $validated =$request->validate([
+        $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'tgl_mulai' => 'required|date',
             'tgl_selesai' => 'required|date|after_or_equal:tgl_mulai',
@@ -88,7 +98,19 @@ class PemilihanController extends Controller
             'deskripsi' => 'nullable|string',
         ]);
 
-        $validated['slug'] = Str::slug($validated['nama']);
+        // Jika nama berubah, update slug
+        if ($pemilihan->nama != $validated['nama']) {
+            $baseSlug = Str::slug($validated['nama']);
+            
+            // Cek apakah slug sudah ada, jika ada tambahkan nomor di belakangnya
+            $count = 1;
+            $slug = $baseSlug;
+            while (Pemilihan::where('slug', $slug)->where('id', '!=', $pemilihan->id)->exists()) {
+                $slug = $baseSlug . '-' . $count++;
+            }
+            
+            $validated['slug'] = $slug;
+        }
 
         $pemilihan->update($validated);
         // Tampilkan pesan sukses

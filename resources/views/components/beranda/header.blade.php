@@ -14,10 +14,29 @@
                     </h3>
                 </div>
             </div>
-            <div>
-                <a href="{{ route('login') }}" class="btn btn-login mx-4 fs-5 Poppins">
-                    Login
-                </a>
+            <div class="d-flex align-items-center Poppins">
+                @if (Auth::check())
+                    <div class="dropdown">
+                        <div class="d-flex align-items-center dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+                            <span class="text-dark me-3">{{ Auth::user()->name }}</span>
+                            <i class="bi bi-person-circle fs-1"></i>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-login mx-4 fs-5 Poppins">
+                        Login
+                    </a>
+                @endif
             </div>
         </header>
         <nav class="navbar navbar-expand-lg mt-3 p-2 Poppins">

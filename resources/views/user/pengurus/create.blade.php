@@ -16,37 +16,37 @@
         @csrf
 
         <label for="nim" class="mt-2">NIM</label>
-        <input type="text" id="nim" name="nim" class="form-control" required>
+        <input type="text" id="nim" name="nim" class="form-control" value="{{ old('nim') }}" required>
 
         <label for="name" class="mt-2">Nama</label>
-        <input type="text" id="name" name="name" class="form-control" required>
+        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
 
         <label for="email" class="mt-2">Email</label>
-        <input type="email" id="email" name="email" class="form-control" required>
+        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
 
         <label for="password" class="mt-2">Password</label>
-        <input type="password" id="password" name="password" class="form-control" required>
+        <input type="password" id="password" name="password" class="form-control"  required>
 
         <label for="role" class="mt-2">Role</label>
         <select name="role" id="role" class="form-control" required>
             <option value="" disabled selected>-- Pilih Role --</option>
-            <option value="admin">Admin</option>
-            <option value="anggota">Anggota</option>
-            <option value="bph">BPH</option>
-            <option value="alumni">Alumni</option>
+            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+            <option value="anggota" {{ old('role') == 'anggota' ? 'selected' : '' }}>Anggota</option>
+            <option value="bph" {{ old('role') == 'bph' ? 'selected' : '' }}>BPH</option>
+            <option value="alumni" {{ old('role') == 'alumni' ? 'selected' : '' }}>Alumni</option>
         </select>
 
         <label for="divisi" class="mt-2">Divisi</label>
         <select name="divisi" id="divisi" class="form-control">
             <option value="" disabled selected>-- Pilih Divisi --</option>
-            <option value="ketua">Ketua</option>
-            <option value="wakil_ketua">Wakil Ketua</option>
-            <option value="sekretaris">Sekretaris</option>
-            <option value="bendahara">Bendahara</option>
-            <option value="pendidikan">Pendidikan</option>
-            <option value="rsdm">RSDM</option>
-            <option value="litbang">Litbang</option>
-            <option value="kominfo">Kominfo</option>
+            <option value="ketua" {{ old('divisi') == 'ketua' ? 'selected' : '' }}>Ketua</option>
+            <option value="wakil_ketua" {{ old('divisi') == 'wakil_ketua' ? 'selected' : '' }}>Wakil Ketua</option>
+            <option value="sekretaris" {{ old('divisi') == 'sekretaris' ? 'selected' : '' }}>Sekretaris</option>
+            <option value="bendahara" {{ old('divisi') == 'bendahara' ? 'selected' : '' }}>Bendahara</option>
+            <option value="pendidikan" {{ old('divisi') == 'pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+            <option value="rsdm" {{ old('divisi') == 'rsdm' ? 'selected' : '' }}>RSDM</option>
+            <option value="litbang" {{ old('divisi') == 'litbang' ? 'selected' : '' }}>Litbang</option>
+            <option value="kominfo" {{ old('divisi') == 'kominfo' ? 'selected' : '' }}>Kominfo</option>
         </select>
 
         <div class="mb-3 d-flex flex-column">

@@ -43,17 +43,12 @@ class KegiatanController extends Controller
             'waktu'     => 'required|date_format:Y-m-d\TH:i',
             'lokasi'    => 'required|string|max:255',
             'deskripsi' => 'nullable|string|max:500',
+            'slug'      => 'required|string|max:255|unique:kegiatan_absensi,slug',
             'status'    => 'required|in:draft,open,closed',
         ]);
 
-        // Buat slug unik
-        $slug = Str::slug($validated['nama']);
-        $originalSlug = $slug;
-        $counter = 1;
-        while (KegiatanAbsensi::where('slug', $slug)->exists()) {
-            $slug = $originalSlug . '-' . $counter++;
-        }
-        $validated['slug'] = $slug;
+        // Buat slug dari nama
+        $validated['slug'] = Str::slug($validated['nama']);
 
         // Simpan kegiatan
         $kegiatan = KegiatanAbsensi::create($validated);
@@ -67,6 +62,7 @@ class KegiatanController extends Controller
                 'kegiatan_id' => $kegiatan->id,
                 'user_id'     => $user->id,
                 'keterangan'  => null,
+                'status'      => null,
             ]);
         }
         // Tampilkan pesan sukses
@@ -92,7 +88,7 @@ class KegiatanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $slug)
+   public function update(Request $request, string $slug)
     {
         $kegiatan = KegiatanAbsensi::where('slug', $slug)->firstOrFail();
 
@@ -104,15 +100,43 @@ class KegiatanController extends Controller
             'status' => 'required|in:draft,open,closed',
         ]);
 
-        // Buat slug dari nama
         $validated['slug'] = Str::slug($validated['nama']);
 
-        // Update ke database
+        $statusSebelumnya = $kegiatan->status;
+
+        // Update kegiatan
         $kegiatan->update($validated);
-        // Tampilkan pesan sukses
+
+        if ($statusSebelumnya !== 'closed' && $validated['status'] === 'closed') {
+            $userIdsYangSudahAbsen = Absensi::where('kegiatan_id', $kegiatan->id)
+                                    ->whereNotNull('status')
+                                    ->where('status', '!=', '')
+                                    ->pluck('user_id')
+                                    ->toArray();
+
+            $userIdsSemua = User::whereIn('role', ['anggota', 'bph'])->pluck('id')->toArray();
+
+            $userIdsYangBelumAbsen = array_diff($userIdsSemua, $userIdsYangSudahAbsen);
+
+            foreach ($userIdsYangBelumAbsen as $userId) {
+                $absensi = Absensi::where('user_id', $userId)
+                        ->where('kegiatan_id', $kegiatan->id)
+                        ->first();
+                        
+                if ($absensi) {
+                    // Update record yang sudah ada
+                    $absensi->update([
+                        'status' => 'tidak_hadir',
+                        'updated_at' => now(),
+                    ]);
+                } 
+            }
+        }
+
         Alert::success('Berhasil', 'Kegiatan berhasil diperbarui.');
         return redirect()->route('kegiatan-absensi.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -20,11 +20,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="slug" class="form-label">Slug</label>
-            <input type="text" name="slug" id="slug" class="form-control" readonly>
-        </div>
-
-        <div class="mb-3">
             <label for="deskripsi" class="form-label">Deskripsi</label>
             <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3"></textarea>
         </div>
@@ -33,8 +28,4 @@
     </form>
 
 </main>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('home/dashboard/slug.js') }}"></script>
 @endsection

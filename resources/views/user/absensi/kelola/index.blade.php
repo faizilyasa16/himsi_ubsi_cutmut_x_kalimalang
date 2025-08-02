@@ -32,7 +32,7 @@
                                 <td>{{ $k->absensi->where('status', 'tidak_hadir')->count() }}</td>
                                 <td>{{ $k->absensi->where('status', 'izin')->count() }}</td>
                                 <td>
-                                    <a href="{{ route('absensi.edit', $k->id) }}" class="btn btn-warning btn-sm">
+                                    <a href="{{ route('kelola-absensi.edit', $k->id) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Kelola
                                     </a>
                                 </td>

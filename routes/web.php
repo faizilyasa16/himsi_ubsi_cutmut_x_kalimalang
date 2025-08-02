@@ -13,7 +13,9 @@ use App\Http\Controllers\PemilihanUmum\PemilihanController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\Absensi\AbsensiController;
 use App\Http\Controllers\Absensi\KegiatanController as AbsensiKegiatanController;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KesanPesanController;
+use App\Http\Controllers\Absensi\AbsenUserController;
 
 Route::get('/', function () {
     return view('home.beranda.home');
@@ -54,45 +56,41 @@ Route::get('/acara', function () {
 Route::get('/login',[LoginController::class,'show'])->name('login');
 Route::post('/login',[LoginController::class,'store'])->name('login');
 
-Route::middleware('isLoggedIn')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('user.dashboard.index');
-    })->name('dashboard');
+Route::prefix('dashboard')->middleware('isLoggedIn')->group(function () {
+    Route::middleware(['auth', 'isAdmin'])->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('pengurus-user', UserController::class); // kalau pakai resource
+        // pemilu routes
+        Route::resource('pemilihan', PemilihanController::class);
+        // pemilu kandidat routes
+        Route::resource('kandidat', KandidatController::class);
+    });
+    Route::middleware(['auth', 'isAnggota'])->group(function () {
+        // artikel routes
+        Route::resource('artikel', ArtikelController::class);
+        Route::resource('absensi', AbsenUserController::class);
+    });
+    Route::middleware(['auth', 'isRSDM'])->group(function () {
+        // absensi routes
+        Route::resource('kelola-absensi', AbsensiController::class);
+        Route::resource('kegiatan-absensi', AbsensiKegiatanController::class);
 
-    // profile routes
+    });
+    Route::middleware(['auth', 'isBPH'])->group(function () {
+        // admin routes
+        Route::resource('album-gallery', AlbumController::class);
+        Route::resource('konten-gallery', KontenController::class);
+            // kategori acara routes
+        Route::resource('kategori-acara', KategoriController::class);
+        // kegiatan acara routes
+        Route::resource('kegiatan-acara', KegiatanController::class);
+    });
+    // profile routes   
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/update-password', [ProfileController::class, 'update_password'])->name('profile.update_password');
-
-    // pengurus routes
-    Route::resource('pengurus-user', UserController::class); // kalau pakai resource
-
-    // kategori acara routes
-    Route::resource('kategori-acara', KategoriController::class);
-
-    // kegiatan acara routes
-    Route::resource('kegiatan-acara', KegiatanController::class);
-
-
-    // gallery kategori routes
-    Route::resource('album-gallery', AlbumController::class);
-
-    // gallery konten routes
-    Route::resource('konten-gallery', KontenController::class);
-
-    // pemilu routes
-    Route::resource('/pemilihan', PemilihanController::class);
-
-    // pemilu kandidat routes
-    Route::resource('/kandidat', KandidatController::class);
-
-    // artikel routes
-    Route::resource('artikel', ArtikelController::class);
-
-    // absensi routes
-    Route::resource('absensi', AbsensiController::class);
-    Route::resource('kegiatan-absensi', AbsensiKegiatanController::class);
-    
+    // kesan pesan routes
+    Route::resource('kesan-pesan', KesanPesanController::class);
     // logout route
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

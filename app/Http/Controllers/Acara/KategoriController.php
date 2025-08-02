@@ -40,9 +40,19 @@ class KategoriController extends Controller
             'deskripsi' => 'nullable|string',
         ]);
 
+        // Buat slug dari nama
+        $baseSlug = Str::slug($request->nama);
+        
+        // Cek apakah slug sudah ada, jika ada tambahkan nomor di belakangnya
+        $count = 1;
+        $slug = $baseSlug;
+        while (KategoriAcara::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $count++;
+        }
+
         KategoriAcara::create([
             'nama' => $request->nama,
-            'slug' => Str::slug($request->nama),
+            'slug' => $slug,
             'deskripsi' => $request->deskripsi,
         ]);
         // Redirect dengan pesan sukses
@@ -75,16 +85,34 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:kategori_acara,slug,' . $id,
             'deskripsi' => 'nullable|string',
         ]);
 
         $kategoriAcara = KategoriAcara::findOrFail($id);
-        $kategoriAcara->update([
-            'nama' => $request->nama,
-            'slug' => $request->slug,
-            'deskripsi' => $request->deskripsi,
-        ]);
+        
+        // Cek apakah nama berubah, jika ya update slug
+        if ($kategoriAcara->nama != $request->nama) {
+            $baseSlug = Str::slug($request->nama);
+            
+            // Cek apakah slug sudah ada, jika ada tambahkan nomor di belakangnya
+            $count = 1;
+            $slug = $baseSlug;
+            while (KategoriAcara::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+                $slug = $baseSlug . '-' . $count++;
+            }
+            
+            $kategoriAcara->update([
+                'nama' => $request->nama,
+                'slug' => $slug,
+                'deskripsi' => $request->deskripsi,
+            ]);
+        } else {
+            $kategoriAcara->update([
+                'nama' => $request->nama,
+                'deskripsi' => $request->deskripsi,
+            ]);
+        }
+        
         // Redirect dengan pesan sukses
         Alert::success('Berhasil', 'Kategori Acara berhasil diperbarui.');
         return redirect()->route('kategori-acara.index');

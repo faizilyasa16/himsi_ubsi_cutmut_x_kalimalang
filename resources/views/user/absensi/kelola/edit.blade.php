@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('absensi.update', $kegiatan->id) }}" method="POST">
+                <form action="{{ route('kelola-absensi.update', $kegiatan->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">

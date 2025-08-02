@@ -22,18 +22,6 @@ class Pemilihan extends Model
     ];
 
     // Auto generate slug dari nama
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            $model->slug = Str::slug($model->nama);
-        });
-
-        static::updating(function ($model) {
-            $model->slug = Str::slug($model->nama);
-        });
-    }
     public function getRouteKeyName()
     {
         return 'slug';

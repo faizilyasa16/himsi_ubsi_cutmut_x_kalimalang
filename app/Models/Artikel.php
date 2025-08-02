@@ -37,15 +37,5 @@ class Artikel extends Model
     {
         return 'slug';
     }
-    protected static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($model) {
-            $model->slug = Str::slug($model->judul);
-        });
-        static::updating(function ($model) {
-            $model->slug = Str::slug($model->judul);
-        });
-    }
 }

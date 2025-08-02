@@ -23,16 +23,10 @@ class LoginController extends Controller
         // Cek apakah user dengan NIM ada
         $user = User::where('nim', $request->nim)->first();
 
-        if (!$user) {
+        // Gabungkan validasi NIM dan password dengan pesan error yang sama
+        if (!$user || !Auth::attempt(['nim' => $request->nim, 'password' => $request->password])) {
             return back()->withErrors([
-                'nim' => 'NIM tidak terdaftar.'
-            ])->withInput();
-        }
-
-        // Coba login pakai Auth::attempt (pastikan config auth-nya pakai 'nim' juga)
-        if (!Auth::attempt(['nim' => $request->nim, 'password' => $request->password])) {
-            return back()->withErrors([
-                'password' => 'Password salah.'
+                'login_error' => 'NIM atau password salah.'
             ])->withInput();
         }
 

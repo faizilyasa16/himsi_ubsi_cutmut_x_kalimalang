@@ -9,11 +9,14 @@ use Illuminate\Support\Str;
 use App\Models\KategoriAcara;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Traits\SlugGenerator;
+
 class KegiatanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    use SlugGenerator;
     public function index()
     {
         // Ambil semua acara dengan relasi kategori
@@ -41,19 +44,17 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'slug'              => 'required|string|max:255|unique:acara,slug',
             'kategori_id'       => 'nullable|exists:kategori_acara,id',
             'nama'              => 'required|string|max:200',
-            'slug'              => 'nullable|string|max:200',
             'deskripsi'         => 'nullable|string|max:200',
             'lokasi'            => 'nullable|string|max:100',
             'contact_person'    => 'nullable|string|max:100',
             'poster'            => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'kuota'             => 'nullable|string|max:10',
             'status'            => 'required|in:draft,published,archived',
-            'tgl_mulai'         => 'required|date',
-            'tgl_selesai'       => 'nullable|date|after_or_equal:tgl_mulai',
-            'waktu_mulai'       => 'required',
-            'waktu_selesai'     => 'nullable',
+            'waktu_mulai'       => 'required|date_format:Y-m-d\TH:i',
+            'waktu_selesai'     => 'nullable|date_format:Y-m-d\TH:i|after:waktu_mulai',
             'link_pendaftaran'  => 'nullable|string|max:200',
             'link_wa'           => 'nullable|string|max:200',
             'biaya'             => 'nullable|string|max:100',
@@ -61,30 +62,19 @@ class KegiatanController extends Controller
             'payment_number'    => 'nullable|string|max:100',
             'payment_name'      => 'nullable|string|max:100',
         ]);
-        // Gabung waktu dengan tanggal
-        $validated['waktu_mulai'] = $request->tgl_mulai . ' ' . $request->waktu_mulai . ':00';
-
-        if ($request->tgl_selesai && $request->waktu_selesai) {
-            $validated['waktu_selesai'] = $request->tgl_selesai . ' ' . $request->waktu_selesai . ':00';
-        }
-        // Generate slug if not provided
-        if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($request->nama) . '-' . time();
-        }
 
         // Upload poster jika ada
         if ($request->hasFile('poster')) {
-            $posterPath = $request->file('poster')->store('posters', 'public');
-            $validated['poster'] = $posterPath;
+            $validated['poster'] = $request->file('poster')->store('posters', 'public');
         }
 
-        // Simpan data ke database
         Acara::create($validated);
-        // Tampilkan pesan sukses
-        // Menggunakan SweetAlert untuk notifikasi
+
         Alert::success('Berhasil', 'Acara berhasil ditambahkan.');
         return redirect()->route('kegiatan-acara.index');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -110,21 +100,18 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, Acara $kegiatanAcara)
     {
-        
         $validated = $request->validate([
+            'slug'              => 'required|string|max:255|regex:/^[a-z0-9-]+$/|unique:acara,slug,' . $kegiatanAcara->id,
             'kategori_id'       => 'nullable|exists:kategori_acara,id',
             'nama'              => 'required|string|max:200',
-            'slug'              => 'nullable|string|max:200',
             'deskripsi'         => 'nullable|string|max:200',
             'lokasi'            => 'nullable|string|max:100',
             'contact_person'    => 'nullable|string|max:100',
             'poster'            => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'kuota'             => 'nullable|string|max:10',
             'status'            => 'required|in:draft,published,archived',
-            'tgl_mulai'         => 'required|date',
-            'tgl_selesai'       => 'nullable|date|after_or_equal:tgl_mulai',
-            'waktu_mulai'       => 'required',
-            'waktu_selesai'     => 'nullable',
+            'waktu_mulai'       => 'required|date_format:Y-m-d\TH:i',
+            'waktu_selesai'     => 'nullable|date_format:Y-m-d\TH:i|after:waktu_mulai',
             'link_pendaftaran'  => 'nullable|string|max:200',
             'link_wa'           => 'nullable|string|max:200',
             'biaya'             => 'nullable|string|max:100',
@@ -139,18 +126,16 @@ class KegiatanController extends Controller
             if ($kegiatanAcara->poster) {
                 Storage::disk('public')->delete($kegiatanAcara->poster);
             }
-            
-            $posterPath = $request->file('poster')->store('posters', 'public');
-            $validated['poster'] = $posterPath;
+
+            $validated['poster'] = $request->file('poster')->store('posters', 'public');
         }
 
-        // Update data
         $kegiatanAcara->update($validated);
-        // tampilkan pesan sukses
-        // Menggunakan SweetAlert untuk notifikasi
+
         Alert::success('Berhasil', 'Acara berhasil diperbarui.');
         return redirect()->route('kegiatan-acara.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

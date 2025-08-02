@@ -22,6 +22,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('beranda') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('anggota.*') ? 'active text-white bg-primary' : 'text-light' }}">
+                    <i class="bi bi-house me-3"></i>
+                    <span class="flex-grow-1">Beranda</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('profile') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('profile') ? 'active text-white bg-primary' : 'text-light' }}">
                     <i class="bi bi-person me-3"></i>
                     <span class="flex-grow-1">Profile</span>
@@ -30,7 +36,7 @@
             <li class="nav-item">
                 <a href="{{ route('pengurus-user.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('pengurus-user.*') ? 'active text-white bg-primary' : 'text-light' }}">
                     <i class="bi bi-people me-3"></i>
-                    <span class="flex-grow-1">Pengurus</span>
+                    <span class="flex-grow-1">Pengguna</span>
                 </a>
             </li>
 
@@ -71,7 +77,10 @@
                             <a href="{{ route('kegiatan-absensi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('kegiatan-absensi.*') ? 'text-white' : 'text-light' }} py-2">Kegiatan</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('absensi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('absensi.*') ? 'text-white' : 'text-light' }} py-2">Kelola Absensi</a>
+                            <a href="{{ route('kelola-absensi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('absensi.*') ? 'text-white' : 'text-light' }} py-2">Kelola Absensi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('absensi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('absensi.*') ? 'text-white' : 'text-light' }} py-2">Absensi</a>
                         </li>
                     </ul>
                 </div>
@@ -114,7 +123,12 @@
                     </ul>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a href="{{ route('kesan-pesan.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('kesan-pesan.*') ? 'active text-white bg-primary' : 'text-light' }}">
+                    <i class="bi bi-chat-left-text me-3"></i>
+                    <span class="flex-grow-1">Kesan Pesan</span>
+                </a>
+            </li>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>

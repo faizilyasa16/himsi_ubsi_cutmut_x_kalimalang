@@ -24,11 +24,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="slug" class="form-label">Slug</label>
-            <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug', $kategoriAcara->slug) }}" readonly>
-        </div>
-
-        <div class="mb-3">
             <label for="deskripsi" class="form-label">Deskripsi</label>
             <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3">{{ old('deskripsi', $kategoriAcara->deskripsi) }}</textarea>
         </div>
@@ -36,8 +31,4 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </main>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('home/dashboard/slug.js') }}"></script>
 @endsection

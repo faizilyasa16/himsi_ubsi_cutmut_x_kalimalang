@@ -30,9 +30,12 @@ class KandidatController extends Controller
      */
     public function create()
     {
-        // Ambil data pemilihan dan pengurus untuk dropdown
-        $pemilihans =Pemilihan::all();
-        $pengurus = User::all();
+        // Ambil data pemilihan untuk dropdown
+        $pemilihans = Pemilihan::all();
+
+        // Ambil hanya user dengan role bph atau anggota
+        $pengurus = User::whereIn('role', ['bph', 'anggota'])->get();
+
         return view('user.pemilihan-umum.kandidat.create', compact('pemilihans', 'pengurus'));
     }
 
