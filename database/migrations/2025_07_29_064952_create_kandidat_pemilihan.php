@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // Relasi ke pengurus untuk ketua dan wakil
             $table->foreignId('kandidat_ketua_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('kandidat_wakil_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('kandidat_wakil_id')->nullable()->constrained('users')->onDelete('cascade');
             // Relasi ke pemilihan
             $table->foreignId('pemilihan_id')->constrained('pemilihan')->onDelete('cascade');
             $table->text('visi')->nullable();

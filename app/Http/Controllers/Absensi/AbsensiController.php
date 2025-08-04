@@ -74,7 +74,7 @@ class AbsensiController extends Controller
         // Validasi input (opsional)
         $request->validate([
             'absensi' => 'required|array',
-            'absensi.*.status' => 'in:hadir,tidak_hadir,izin',
+            'absensi.*.status' => 'nullable|in:hadir,tidak_hadir,izin',
             'absensi.*.keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -85,15 +85,20 @@ class AbsensiController extends Controller
             $absen = $kegiatan->absensi->firstWhere('user_id', $userId);
 
             if ($absen) {
-                // Update status dan keterangan
-                $absen->update([
-                    'status'     => $data['status'],
+                // Make sure status key exists before using it
+                // If status is not provided in the request, keep the current status
+                $status = isset($data['status']) ? $data['status'] : $absen->status;
+                
+                $updateData = [
+                    'status'     => $status,
                     'keterangan' => $data['keterangan'] ?? null,
-                ]);
+                ];
+                
+                // Update status dan keterangan
+                $absen->update($updateData);
             }
             // Kalau user belum ada, abaikan (tidak membuat entri baru)
         }
-        // Tampilkan pesan sukses
         Alert::success('Berhasil', 'Data absensi berhasil diperbarui.');
         return redirect()->route('kelola-absensi.edit', $id);
     }

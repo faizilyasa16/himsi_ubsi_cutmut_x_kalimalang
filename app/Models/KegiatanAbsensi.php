@@ -19,6 +19,7 @@ class KegiatanAbsensi extends Model
         'deskripsi',
         'status',
         'slug',
+        'code', // Tambahkan kolom kode jika diperlukan
     ];
 
     public function getRouteKeyName()

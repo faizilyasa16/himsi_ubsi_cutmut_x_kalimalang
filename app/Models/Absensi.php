@@ -13,6 +13,7 @@ class Absensi extends Model
         'kegiatan_id',
         'user_id',
         'status',
+        'kode', // Kode kehadiran, nullable
         'keterangan', // Keterangan tambahan jika ada
     ];
 

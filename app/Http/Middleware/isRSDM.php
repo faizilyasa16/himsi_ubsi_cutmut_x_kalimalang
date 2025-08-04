@@ -4,27 +4,24 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-class isRSDM
+use Symfony\Component\HttpFoundation\Response;
+
+class IsRsdm
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         if (
             Auth::check() &&
             (
-                in_array(Auth::user()->role, ['admin', 'bph']) ||
-                Auth::user()->divisi === 'rsdm'
+                Auth::user()->role === 'admin' ||
+                (Auth::user()->role === 'bph' && Auth::user()->divisi === 'rsdm')
             )
         ) {
             return $next($request);
         }
 
-        abort(403, 'Unauthorized: RSDM only.');
-        }
+        abort(403, 'Unauthorized: hanya admin atau bph dari divisi RSDM yang bisa mengakses.');
+    }
+
 }

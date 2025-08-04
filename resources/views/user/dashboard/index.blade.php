@@ -8,7 +8,7 @@
                     <i class="bi bi-people-fill display-5 mb-3"></i>
                     <h2 class="card-title mb-2">Anggota</h2>
                     <div class="card-text">
-                        <span class="fs-3">{{ $users->count() }}</span>
+                        <span class="fs-3">{{ $users }}</span>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <i class="bi bi-person-plus-fill display-5 mb-3"></i>
                     <h2 class="card-title mb-2">Bergabung</h2>
                     <div class="card-text">
-                        <span class="fs-3">{{ $anggotaBaruPerTahun->count() }}</span>
+                        <span class="fs-3">{{ $anggota }}</span>
                     </div>
                 </div>
             </div>

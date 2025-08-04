@@ -13,6 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'isLoggedIn' => \App\Http\Middleware\IsLoggedIn::class,
+            'isAdmin' => \App\Http\Middleware\IsAdmin::class,
+            'isBPH' => \App\Http\Middleware\IsBPH::class,
+            'isAnggota' => \App\Http\Middleware\IsAnggota::class,
+            'isRSDM' => \App\Http\Middleware\IsRSDM::class,
+            'isAnggotaBPH' => \App\Http\Middleware\IsAnggotaBPH::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

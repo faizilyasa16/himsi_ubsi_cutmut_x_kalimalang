@@ -42,14 +42,18 @@
                     <option value="artikel" {{ old('kategori', $artikel->kategori) == 'artikel' ? 'selected' : '' }}>Artikel</option>
                 </select>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="status" class="form-label">Status</label>
-                <select name="status" id="status" class="form-select" required>
-                    <option value="draft" {{ old('status', $artikel->status) == 'draft' ? 'selected' : '' }}>Draft</option>
-                    <option value="published" {{ old('status', $artikel->status) == 'published' ? 'selected' : '' }}>Published</option>
-                    <option value="archived" {{ old('status', $artikel->status) == 'archived' ? 'selected' : '' }}>Archived</option>
-                </select>
-            </div>
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'bph')
+                <div class="col-md-6 mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select name="status" id="status" class="form-select" required>
+                        <option value="draft" {{ old('status', $artikel->status) == 'draft' ? 'selected' : '' }}>Draft</option>
+                        <option value="published" {{ old('status', $artikel->status) == 'published' ? 'selected' : '' }}>Published</option>
+                        <option value="archived" {{ old('status', $artikel->status) == 'archived' ? 'selected' : '' }}>Archived</option>
+                    </select>
+                </div>
+            @else
+                <input type="hidden" name="status" value="{{ $artikel->status }}">
+            @endif
         </div>
 
         {{-- Konten (Foto) --}}

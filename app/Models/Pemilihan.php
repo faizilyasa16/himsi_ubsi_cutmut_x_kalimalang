@@ -20,6 +20,11 @@ class Pemilihan extends Model
         'status',
         'deskripsi',
     ];
+    // Di app/Models/Pemilihan.php
+    public function kandidat()
+    {
+        return $this->hasMany(Kandidat::class);
+    }
 
     // Auto generate slug dari nama
     public function getRouteKeyName()

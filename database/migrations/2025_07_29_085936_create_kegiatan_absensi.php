@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->enum('status', ['draft','open', 'closed'])->default('draft');
             $table->string('slug')->unique();
+            $table->string('code')->nullable(); // Tambahkan kolom kode jika diperlukan
             $table->timestamps();
         });
     }

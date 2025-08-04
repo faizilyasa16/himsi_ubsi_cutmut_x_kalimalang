@@ -23,6 +23,19 @@
                 <h1 class="m-0">Absensi HIMSI UBSI Cut Mutia x Kalimalang</h1>
             </div>
         </div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @elseif (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         @foreach ($absensi as $item)
             <div class="col-4">
             <div class="card border">
@@ -83,12 +96,24 @@
                                 <input type="hidden" name="kegiatan_id" value="{{ $item->kegiatan->id }}">
                                 <input type="hidden" name="status" value="hadir">
                                 <div class="mb-3">
+                                    <label for="kode-hadir-{{ $item->kegiatan->id }}" class="form-label">Kode Kehadiran</label>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        id="kode-hadir-{{ $item->kegiatan->id }}" 
+                                        name="kode" 
+                                        placeholder="Masukkan kode kehadiran" 
+                                        required>
+
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="keterangan-hadir-{{ $item->kegiatan->id }}" class="form-label">Keterangan Hadir</label>
                                     <textarea class="form-control" id="keterangan-hadir-{{ $item->kegiatan->id }}" name="keterangan" rows="3" placeholder="Masukkan keterangan kehadiran (opsional)"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-success btn-sm">Simpan Kehadiran</button>
                             </form>
                         </div>
+
                         <div class="keterangan-text mt-3" data-keterangan="izin">
                             <form id="form-izin-{{ $item->kegiatan->id }}" action="{{ route('absensi.store') }}" method="POST">
                                 @csrf

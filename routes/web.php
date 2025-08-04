@@ -16,7 +16,8 @@ use App\Http\Controllers\Absensi\KegiatanController as AbsensiKegiatanController
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KesanPesanController;
 use App\Http\Controllers\Absensi\AbsenUserController;
-
+use App\Http\Controllers\Acara\AcaraController;
+use App\Http\Controllers\PemilihanUmum\VotingController;
 Route::get('/', function () {
     return view('home.beranda.home');
 })->name('beranda');
@@ -41,18 +42,18 @@ Route::get('/gallery', function () {
     return view('home.gallery.gallery');
 })->name('gallery');
 
-Route::get('/voting', function () {
-    return view('home.layanan.voting');
-})->name('voting');
+// Pakai resource hanya untuk index dan store
+Route::resource('voting', VotingController::class)->only(['index', 'store']);
+
+// Show custom pakai slug pemilihan
+Route::get('voting/{slug}', [VotingController::class, 'show'])->name('voting.show');
 
 Route::get('/artikel', function () {
     return view('home.layanan.artikel');
 })->name('artikel');
 
-Route::get('/acara', function () {
-    return view('home.layanan.acara');
-})->name('acara');
-
+Route::resource('acara', AcaraController::class)->only(['index', 'show',]);
+Route::get('/acara/{slug}', [AcaraController::class, 'store'])->name('acara.store');
 Route::get('/login',[LoginController::class,'show'])->name('login');
 Route::post('/login',[LoginController::class,'store'])->name('login');
 
@@ -68,6 +69,8 @@ Route::prefix('dashboard')->middleware('isLoggedIn')->group(function () {
     Route::middleware(['auth', 'isAnggota'])->group(function () {
         // artikel routes
         Route::resource('artikel', ArtikelController::class);
+    });
+    Route::middleware(['auth', 'isAnggotaBPH'])->group(function () {
         Route::resource('absensi', AbsenUserController::class);
     });
     Route::middleware(['auth', 'isRSDM'])->group(function () {

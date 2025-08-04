@@ -45,6 +45,7 @@ class KegiatanController extends Controller
             'deskripsi' => 'nullable|string|max:500',
             'slug'      => 'required|string|max:255|unique:kegiatan_absensi,slug',
             'status'    => 'required|in:draft,open,closed',
+            'code'      => 'nullable|string|max:10', // Tambahkan validasi untuk kode
         ]);
 
         // Buat slug dari nama
@@ -63,6 +64,7 @@ class KegiatanController extends Controller
                 'user_id'     => $user->id,
                 'keterangan'  => null,
                 'status'      => null,
+                'kode'        => null, // Gunakan kode dari kegiatan jika ada
             ]);
         }
         // Tampilkan pesan sukses
@@ -98,6 +100,7 @@ class KegiatanController extends Controller
             'lokasi' => 'required|string|max:255',
             'deskripsi' => 'nullable|string|max:500',
             'status' => 'required|in:draft,open,closed',
+            'code' => 'nullable|string|max:10', // Tambahkan validasi untuk kode
         ]);
 
         $validated['slug'] = Str::slug($validated['nama']);

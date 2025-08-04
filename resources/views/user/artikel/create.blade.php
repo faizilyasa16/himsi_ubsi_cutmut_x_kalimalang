@@ -37,15 +37,17 @@
                     <option value="artikel" {{ old('kategori') == 'artikel' ? 'selected' : '' }}>Artikel</option>
                 </select>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="status" class="form-label">Status</label>
-                <select name="status" id="status" class="form-select" required>
-                    <option value="" disabled selected>Pilih Status</option>
-                    <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
-                    <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
-                    <option value="archived" {{ old('status') == 'archived' ? 'selected' : '' }}>Archived</option>
-                </select>
-            </div>
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'bph')
+                <div class="col-md-6 mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select name="status" id="status" class="form-select" required>
+                        <option value="" disabled selected>Pilih Status</option>
+                        <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
+                        <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
+                        <option value="archived" {{ old('status') == 'archived' ? 'selected' : '' }}>Archived</option>
+                    </select>
+                </div>
+            @endif
         </div>
 
         {{-- Konten (Foto) --}}

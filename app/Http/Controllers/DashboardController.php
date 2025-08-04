@@ -15,23 +15,19 @@ class DashboardController extends Controller
      */
     public function index(KegiatanAcaraTahunan $kegiatanChart, PenggunaPerTahun $penggunaChart)
     {
-        $users = User::all();
+        $users = User::where('role', ['anggota', 'bph'])->count();
 
         // === Grafik chart tetap ===
         $kegiatanChart = $kegiatanChart->build();
         $penggunaChart = $penggunaChart->build();
 
-        // === Anggota baru per tahun bergabung (created_at) ===
-        $anggotaBaruPerTahun = User::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as total'))
-                                ->groupBy('tahun')
-                                ->orderBy('tahun', 'desc')
-                                ->pluck('total', 'tahun'); // hasil: [2025 => 5, 2024 => 10, ...]
+        $anggota = User::where('role', ['anggota', 'bph','alumni'])->count();
 
         return view('user.dashboard.index', compact(
             'kegiatanChart',
             'users',
             'penggunaChart',
-            'anggotaBaruPerTahun'
+            'anggota'
         ));
     }
 }

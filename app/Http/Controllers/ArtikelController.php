@@ -18,12 +18,21 @@ class ArtikelController extends Controller
     use SlugGenerator;
     public function index()
     {
-        // Ambil semua artikel
-        $artikel = Artikel::all();
+        $user = Auth::user();
+
+        if (in_array($user->role, ['admin', 'bph'])) {
+            // Admin & BPH bisa lihat semua artikel
+            $artikel = Artikel::all();
+        } else {
+            // Anggota hanya bisa lihat artikel yang dia buat
+            $artikel = Artikel::where('user_id', $user->id)->get();
+        }
+
         // Konfirmasi hapus dengan SweetAlert
         $title = 'Konfirmasi Hapus Artikel';
         $text = "Apakah Anda yakin ingin menghapus artikel ini? Semua data terkait akan hilang.";
         confirmDelete($title, $text);
+
         return view('user.artikel.index', compact('artikel'));
     }
 
@@ -40,37 +49,44 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
-        $validated = $request->validate([
+        $user = Auth::user();
+
+        // Validasi dasar
+        $rules = [
             'judul'     => 'required|string|max:255',
             'kategori'  => 'required|in:pre-event,event,post-event,artikel',
-            'status'    => 'required|in:draft,published,archived',
             'deskripsi' => 'required|string',
             'konten'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        ];
 
-        // Buat slug unik
-        $slug = $this->generateUniqueSlug($validated['judul']);
-        // Simpan file gambar jika ada
-        $filename = null;
-        if ($request->hasFile('konten')) {
-            $filename = $request->file('konten')->store('artikel/foto', 'public');
+        // Tambahkan validasi status kalau admin atau bph
+        if (in_array($user->role, ['admin', 'bph'])) {
+            $rules['status'] = 'required|in:draft,published,archived';
         }
-        // Simpan data ke database
-        Artikel::create([
-            'judul'     => $validated['judul'],
-            'slug'      => $slug,
-            'kategori'  => $validated['kategori'],
-            'status'    => $validated['status'],
-            'deskripsi' => $validated['deskripsi'],
-            'konten'    => $filename,
-            'user_id'   => Auth::id(), // pastikan user login
-        ]);
 
-        // Notifikasi sukses
+        $validated = $request->validate($rules);
+
+        // Buat slug
+        $validated['slug'] = Str::slug($validated['judul']);
+        $validated['user_id'] = $user->id;
+
+        // Set status ke 'draft' jika anggota
+        if ($user->role === 'anggota') {
+            $validated['status'] = 'draft';
+        }
+
+        // Simpan file jika ada
+        if ($request->hasFile('konten')) {
+            $validated['konten'] = $request->file('konten')->store('artikel/foto', 'public');
+        }
+
+        // Simpan ke database
+        Artikel::create($validated);
+
         Alert::success('Berhasil', 'Artikel berhasil disimpan.');
         return redirect()->route('artikel.index');
     }
+
 
     /**
      * Display the specified resource.

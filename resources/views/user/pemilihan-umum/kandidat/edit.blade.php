@@ -34,7 +34,7 @@
 
             <div class="col-md-6 mb-3">
                 <label for="kandidat_wakil_id" class="form-label">Kandidat Wakil</label>
-                <select name="kandidat_wakil_id" id="kandidat_wakil_id" class="form-select" required>
+                <select name="kandidat_wakil_id" id="kandidat_wakil_id" class="form-select">
                     <option value="" disabled>Pilih Wakil</option>
                     @foreach ($pengurus as $user)
                         <option value="{{ $user->id }}" {{ $kandidat->kandidat_wakil_id == $user->id ? 'selected' : '' }}>

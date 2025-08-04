@@ -30,9 +30,15 @@
             <input type="hidden" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
         </div>
 
-        <div class="mb-3">
-            <label for="waktu" class="form-label">Tanggal</label>
-            <input type="datetime-local" name="waktu" id="waktu" class="form-control" value="{{ old('waktu') }}" required>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="waktu" class="form-label">Tanggal</label>
+                <input type="datetime-local" name="waktu" id="waktu" class="form-control" value="{{ old('waktu') }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="code" class="form-label">Kode Kegiatan (Opsional)</label>
+                <input type="text" name="code" id="code" class="form-control" value="{{ old('code') }}" maxlength="10">
+            </div>
         </div>
 
         {{-- Lokasi & Status --}}

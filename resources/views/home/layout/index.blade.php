@@ -25,6 +25,7 @@
     @include('components.animation.upbutton')
 
     @yield('scripts')
+    @include('sweetalert::alert')
 
 </body>
 </html>

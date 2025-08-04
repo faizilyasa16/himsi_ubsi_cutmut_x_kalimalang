@@ -46,7 +46,7 @@ class KandidatController extends Controller
     {
         $validated = $request->validate([
             'kandidat_ketua_id' => 'required|exists:users,id',
-            'kandidat_wakil_id' => 'required|exists:users,id|different:kandidat_ketua_id',
+            'kandidat_wakil_id' => 'nullable|exists:users,id|different:kandidat_ketua_id',
             'pemilihan_id'      => 'required|exists:pemilihan,id',
             'no_urut'           => 'required|integer',
             'visi'              => 'required|string',
@@ -100,7 +100,7 @@ class KandidatController extends Controller
         // Validasi input
         $validated = $request->validate([
             'kandidat_ketua_id' => 'required|exists:users,id',
-            'kandidat_wakil_id' => 'required|exists:users,id',
+            'kandidat_wakil_id' => 'nullable|exists:users,id',
             'pemilihan_id' => 'required|exists:pemilihan,id',
             'visi' => 'required|string',
             'misi' => 'required|string',

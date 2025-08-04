@@ -69,9 +69,9 @@
                                 Layanan <i class="bi bi-caret-down-fill dropdown-arrow"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-responsive" aria-labelledby="navbarLayanan">
-                                <li><a class="dropdown-item mb-2" href="{{ route('acara') }}">Acara</a></li>
+                                <li><a class="dropdown-item mb-2" href="{{ route('acara.index') }}">Acara</a></li>
                                 <li><a class="dropdown-item mb-2" href="{{ route('artikel') }}">Artikel</a></li>
-                                <li><a class="dropdown-item" href="{{ route('voting') }}">Voting</a></li>
+                                <li><a class="dropdown-item" href="{{ route('voting.index') }}">Voting</a></li>
                             </ul>
                         </li>
 

@@ -15,7 +15,7 @@
                         mahasiswa di bidang sistem informasi.
                     </p>
                     <div class="d-flex align-items-center gap-2 gap-md-3 justify-content-center justify-content-lg-start Poppins">
-                        <a href="#tentang-kami" class="btn btn-cari btn-lg " aria-label="Cari tahu tentang HIMSI">Cari Tahu</a>
+                        <a href="{{ route('about') }}" class="btn btn-cari btn-lg " aria-label="Cari tahu tentang HIMSI">Cari Tahu</a>
                         <a href="#formulir-pendaftaran" class="btn btn-lg btn-join" aria-label="Gabung dengan HIMSI">Gabung</a>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
         <section class="col-12 mb-5" style="margin-top: 200px; margin-bottom: 100px;" aria-labelledby="heading-himsi-aksi">
             <div class="d-flex justify-content-between align-items-center mb-5 px-3 Spartan">
                 <h3 id="heading-himsi-aksi" class="mb-1 fw-bold">HIMSI DALAM AKSI</h3>
-                <a href="{{ route('acara') }}" class="text-decoration-none">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                <a href="{{ route('acara.index') }}" class="text-decoration-none">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="d-flex flex-wrap justify-content-center">
                 <div class="col-12 col-md-4 mb-4 px-2">
