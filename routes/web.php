@@ -18,9 +18,9 @@ use App\Http\Controllers\KesanPesanController;
 use App\Http\Controllers\Absensi\AbsenUserController;
 use App\Http\Controllers\Acara\AcaraController;
 use App\Http\Controllers\PemilihanUmum\VotingController;
-Route::get('/', function () {
-    return view('home.beranda.home');
-})->name('beranda');
+use App\Http\Controllers\Gallery\GalleryController;
+use App\Http\Controllers\BerandaController;
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 
 Route::get('/pengurus', function () {
     return view('home.profile.pengurus');
@@ -38,9 +38,8 @@ Route::get('/struktur-organisasi', function () {
     return view('home.profile.struktur');
 })->name('struktur');
 
-Route::get('/gallery', function () {
-    return view('home.gallery.gallery');
-})->name('gallery');
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/galeri/{album}', [GalleryController::class, 'show'])->name('gallery.show');
 
 // Pakai resource hanya untuk index dan store
 Route::resource('voting', VotingController::class)->only(['index', 'store']);

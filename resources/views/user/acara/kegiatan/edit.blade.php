@@ -18,7 +18,7 @@
         @csrf
         @method('PUT')
         
-        <div class="card mb-4">
+<div class="card mb-4">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs" id="formTabs" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -31,6 +31,7 @@
             </div>
             <div class="card-body">
                 <div class="tab-content" id="formTabsContent">
+                    <small id="slugHelp" class="form-text text-muted my-5">*Slug akan otomatis dihasilkan dari nama acara.</small>
                     <!-- Tab Detail Acara -->
                     <div class="tab-pane fade show active" id="details-content" role="tabpanel" aria-labelledby="details-tab">
                         <div class="row">
@@ -60,7 +61,10 @@
                                     <label for="contact_person" class="form-label">Contact Person</label>
                                     <input type="text" name="contact_person" id="contact_person" value="{{ old('contact_person', $kegiatanAcara->contact_person) }}" class="form-control">
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="biaya" class="form-label">Biaya</label>
+                                    <input type="text" name="biaya" id="biaya" value="{{ old('biaya') }}" class="form-control">
+                                </div>
                             </div>
 
                             <div class="col-md-6">
@@ -73,8 +77,8 @@
                                     <select name="status" id="status" class="form-control">
                                         <option value="" disabled>Pilih status</option>
                                         <option value="draft" {{ old('status', $kegiatanAcara->status) == 'draft' ? 'selected' : '' }}>Draft</option>
-                                        <option value="published" {{ old('status', $kegiatanAcara->status) == 'published' ? 'selected' : '' }}>Published</option>
-                                        <option value="archived" {{ old('status', $kegiatanAcara->status) == 'archived' ? 'selected' : '' }}>Archived</option>
+                                        <option value="open" {{ old('status', $kegiatanAcara->status) == 'open' ? 'selected' : '' }}>Open</option>
+                                        <option value="closed" {{ old('status', $kegiatanAcara->status) == 'closed' ? 'selected' : '' }}>Closed</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -131,18 +135,12 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
 
                     <!-- Tab Informasi Pembayaran -->
                     <div class="tab-pane fade" id="payment-content" role="tabpanel" aria-labelledby="payment-tab">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="biaya" class="form-label">Biaya</label>
-                                    <input type="text" name="biaya" id="biaya" value="{{ old('biaya', $kegiatanAcara->biaya) }}" class="form-control">
-                                </div>
-
                                 <div class="mb-3">
                                     <label for="payment_method" class="form-label">Metode Pembayaran</label>
                                     <input type="text" name="payment_method" id="payment_method" value="{{ old('payment_method', $kegiatanAcara->payment_method) }}" class="form-control">
@@ -154,19 +152,18 @@
                                     <label for="payment_number" class="form-label">Nomor Pembayaran</label>
                                     <input type="text" name="payment_number" id="payment_number" value="{{ old('payment_number', $kegiatanAcara->payment_number) }}" class="form-control">
                                 </div>
-
                                 <div class="mb-3">
                                     <label for="payment_name" class="form-label">Nama Penerima</label>
                                     <input type="text" name="payment_name" id="payment_name" value="{{ old('payment_name', $kegiatanAcara->payment_name) }}" class="form-control">
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success mt-3">Update Acara</button>
-
+                    <button type="submit" class="btn btn-success">Update Acara</button>
                 </div>
             </div>
+            
+
         </div>
     </form>
 </main>

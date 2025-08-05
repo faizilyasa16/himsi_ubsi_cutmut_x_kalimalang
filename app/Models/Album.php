@@ -18,9 +18,13 @@ class Album extends Model
         'slug',
         'deskripsi',
     ];
-
+    public function konten()
+    {
+        return $this->hasMany(KontenAlbum::class, 'album_id');
+    }
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
 }

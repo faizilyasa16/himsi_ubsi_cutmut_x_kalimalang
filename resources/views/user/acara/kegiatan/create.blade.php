@@ -74,8 +74,8 @@
                                     <select name="status" id="status" class="form-control" required>
                                         <option value="" disabled {{ old('status') ? '' : 'selected' }}>Pilih status</option>
                                         <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
-                                        <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
-                                        <option value="archived" {{ old('status') == 'archived' ? 'selected' : '' }}>Archived</option>
+                                        <option value="open" {{ old('status') == 'open' ? 'selected' : '' }}>Open</option>
+                                        <option value="closed" {{ old('status') == 'closed' ? 'selected' : '' }}>Closed</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">

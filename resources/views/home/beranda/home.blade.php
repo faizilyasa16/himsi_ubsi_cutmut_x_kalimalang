@@ -59,39 +59,24 @@
                 <a href="{{ route('acara.index') }}" class="text-decoration-none">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="d-flex flex-wrap justify-content-center">
-                <div class="col-12 col-md-4 mb-4 px-2">
-                    <a href="#kegiatan-study-club" class="action-card-link" aria-labelledby="study-club-title" aria-describedby="study-club-desc">
-                        <div class="card action-card">
-                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="kegiatan-img-top" alt="Mahasiswa belajar bersama dalam kegiatan Study Club" width="400" height="267">
-                            <div class="card-body Poppins">
-                                <h3 id="study-club-title" class="card-title Spartan">Kegiatan Study Club</h3>
-                                <p id="study-club-desc" class="card-text">Kegiatan Study Club HIMSI untuk meningkatkan kemampuan mahasiswa dalam bidang sistem informasi.</p>
+                @forelse ($acara as $item)
+                    <div class="col-12 col-md-4 mb-4 px-2">
+                        <a href="{{ route('acara.show', $item) }}" class="action-card-link" aria-labelledby="acara-title-{{ $item->id }}" aria-describedby="acara-desc-{{ $item->id }}">
+                            <div class="card action-card">
+                                <img src="{{ asset('storage/' . $item->poster) }}" class="kegiatan-img-top" alt="{{ $item->nama }}" width="400" height="267">
+                                <div class="card-body Poppins">
+                                    <h3 class="card-title Spartan">{{ $item->nama }}</h3>
+                                    <p class="card-text">{{ $item->deskripsi }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-4 px-2">
-                    <a href="#kegiatan-study-trip" class="action-card-link" aria-labelledby="study-trip-title" aria-describedby="study-trip-desc">
-                        <div class="card action-card">
-                            <img src="{{ asset('asset/kegiatan/santunan.jpg') }}" class="kegiatan-img-top" alt="Mahasiswa melakukan kunjungan di study trip" width="400" height="267">
-                            <div class="card-body Poppins">
-                                <h3 id="study-trip-title" class="card-title Spartan">Kegiatan Santunan</h3>
-                                <p id="study-trip-desc" class="card-text">Kegiatan Santunan HIMSI untuk membantu mahasiswa dalam bidang sistem informasi.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-4 px-2">
-                    <a href="#kegiatan-study-trip" class="action-card-link" aria-labelledby="study-trip-title" aria-describedby="study-trip-desc">
-                        <div class="card action-card">
-                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="kegiatan-img-top" alt="Mahasiswa melakukan kunjungan di study trip" width="400" height="267">
-                            <div class="card-body Poppins">
-                                <h3 id="study-trip-title" class="card-title Spartan">Kegiatan Study Trip</h3>
-                                <p id="study-trip-desc" class="card-text">Kegiatan Study Trip HIMSI untuk meningkatkan keterampilan mahasiswa dalam bidang sistem informasi.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @empty
+                    <div class="col-12 text-center py-5">
+                        <p class="fs-5 text-muted">Belum ada acara yang tersedia.</p>
+                    </div>
+                @endforelse
+
             </div>
         </section>
         
@@ -107,7 +92,7 @@
                         <i class="bi bi-people-fill display-5 mb-3" aria-hidden="true"></i>
                         <div class="card-body">
                             <h3 class="card-title fw-semibold Spartan">Anggota Aktif</h3>
-                            <p class="card-text fs-4">20</p>
+                            <p class="card-text fs-4">{{ $anggota }}</p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +110,7 @@
                         <i class="bi bi-person-plus-fill display-5 mb-3" aria-hidden="true"></i>
                         <div class="card-body">
                             <h3 class="card-title fw-semibold Spartan">Anggota yang Bergabung</h3>
-                            <p class="card-text fs-4">150</p>
+                            <p class="card-text fs-4">{{ $users }}</p>
                         </div>
                     </div>
                 </div>
@@ -227,82 +212,53 @@
     </section>
     
     <!-- Artikel Terbaru Section -->
-    <section class="container-1500" aria-labelledby="heading-artikel">
-        <div class="col-12 mb-5" style="margin-bottom: 100px;">
+    <section class="container-1500 " aria-labelledby="heading-artikel" style="margin-bottom: 100px;">
+        <div class="col-12 mb-5" >
             <div class="d-flex justify-content-between align-items-center mb-5 px-3 Spartan">
                 <h3 id="heading-artikel" class="mb-1">Artikel Terbaru</h3>
                 <a href="{{ route('artikel') }}" class="text-decoration-none ">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="d-flex flex-wrap Poppins">
-                <div class="col-12 col-lg-6 mb-4 px-2">
-                    <a href="#artikel-teknologi" class="action-card-link" aria-labelledby="teknologi-title" aria-describedby="teknologi-desc">
-                        <div class="card action-card h-100">
-                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="kegiatan-img-top" style="height: 250px;" alt="Ilustrasi artikel teknologi terbaru" width="600" height="250">
-                            <div class="card-body">
-                                <h3 id="teknologi-title" class="card-title Spartan">Tren Teknologi Terkini</h3>
-                                <p id="teknologi-desc" class="card-text">Update terbaru tentang perkembangan teknologi dan sistem informasi.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-lg-6 mb-4 px-2">
-                    <div class="d-flex flex-column h-100">
-                        <div class="col-12 mb-3">
-                            <a href="#artikel-study-club" class="action-card-link" aria-labelledby="tips-study-club-title" aria-describedby="tips-study-club-desc">
-                                <div class="card action-card">
-                                    <div class="d-flex">
-                                        <div class="col-4">
-                                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="img-fluid rounded-start" alt="Foto kegiatan study club" width="150" height="100">
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="card-body">
-                                                <h3 id="tips-study-club-title" class="card-title Spartan">Tips Sukses Study Club</h3>
-                                                <p id="tips-study-club-desc" class="card-text">Panduan lengkap untuk memaksimalkan manfaat dari kegiatan study club HIMSI.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 mb-3">
-                                <a href="#artikel-praktikum" class="action-card-link" aria-labelledby="tips-praktikum-title" aria-describedby="tips-praktikum-desc">
-                                    <div class="card action-card">
-                                        <div class="d-flex">
-                                            <div class="col-4">
-                                                <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="img-fluid rounded-start" alt="Foto kegiatan praktikum" width="150" height="100">
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="card-body">
-                                                    <h3 id="tips-praktikum-title" class="card-title Spartan">Panduan Praktikum SI</h3>
-                                                    <p id="tips-praktikum-desc" class="card-text">Tips menghadapi praktikum sistem informasi dengan lebih efektif dan efisien.</p>
-                                                </div>
-                                            </div>
+                @foreach($artikels as $index => $artikel)
+                        @if($index == 0)
+                            {{-- Artikel besar (kolom kiri) --}}
+                            <div class="col-12 col-lg-6 mb-4 px-2">
+                                <a href="#artikel-{{ $artikel->slug }}" class="action-card-link" aria-labelledby="artikel-title-{{ $artikel->id }}" aria-describedby="artikel-desc-{{ $artikel->id }}">
+                                    <div class="card action-card h-100">
+                                        <img src="{{ asset('storage/' . $artikel->konten) }}" class="kegiatan-img-top" style="height: 250px;" alt="{{ $artikel->judul }}" width="600" height="250">
+                                        <div class="card-body">
+                                            <h3  class="card-title Spartan">{{ $artikel->judul }}</h3>
+                                            <p  class="card-text">{{ Str::limit(strip_tags($artikel->deskripsi), 150) }}</p>
                                         </div>
                                     </div>
                                 </a>
-                        </div>
-                        <div class="col-12">
-                            <a href="#artikel-karir" class="action-card-link" aria-labelledby="karir-title" aria-describedby="karir-desc">
-                                <div class="card action-card">
-                                    <div class="d-flex">
-                                        <div class="col-4">
-                                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="img-fluid rounded-start" alt="Ilustrasi karir di bidang IT" width="150" height="100">
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="card-body">
-                                                <h3 id="karir-title" class="card-title Spartan">Karir di Bidang IT</h3>
-                                                <p id="karir-desc" class="card-text">Peluang karir menarik untuk lulusan sistem informasi di era digital.</p>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4 px-2">
+                                <div class="d-flex flex-column h-100">
+                        @else
+                            {{-- Artikel kecil (di kolom kanan) --}}
+                                    <div class="col-12 mb-3">
+                                        <a href="#artikel-{{ $artikel->slug }}" class="action-card-link" aria-labelledby="artikel-title-{{ $artikel->id }}" aria-describedby="artikel-desc-{{ $artikel->id }}">
+                                            <div class="card action-card">
+                                                <div class="d-flex">
+                                                    <div class="col-4">
+                                                        <img src="{{ asset('storage/' . $artikel->konten) }}" class="img-fluid rounded-start" alt="{{ $artikel->judul }}" width="150" height="100">
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title Spartan">{{ $artikel->judul }}</h3>
+                                                            <p  class="card-text">{{ Str::limit(strip_tags($artikel->deskripsi), 50) }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                        @endif
+                    @endforeach
             </div>
         </div>
-        <div class="col-12" style="margin-bottom: 100px;">
+        <div class="col-12" style="margin-bottom: 100px; ">
             <div class="d-flex justify-content-start justify-content-center justify-content-md-start align-items-center mb-4">
                 <h2 class="mb-1 Spartan text-center text-md-start">Tim Pengembang Website</h2>
             </div>

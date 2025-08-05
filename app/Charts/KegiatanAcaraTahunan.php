@@ -33,7 +33,7 @@ class KegiatanAcaraTahunan
         for ($bulan = 1; $bulan <= 12; $bulan++) {
             $jumlahKegiatan = Acara::whereYear('waktu_mulai', $currentYear)
                                    ->whereMonth('waktu_mulai', $bulan)
-                                   ->where('status', 'published')
+                                   ->whereIn('status', ['open', 'closed']) // Hanya ambil yang statusnya open atau closed
                                    ->count();
             
             $kegiatanPerBulan[] = $jumlahKegiatan;

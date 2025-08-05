@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('contact_person', 100)->nullable();
             $table->string('poster', 100)->nullable(); // boleh kosong
             $table->string('kuota', 10)->nullable();
-            $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
+            $table->enum('status', ['draft', 'open', 'closed'])->default('draft');
             $table->string('slug', 200)->unique();
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai')->nullable();

@@ -93,22 +93,22 @@
                     </div>
                     
                     <!-- Contact Person dan Link -->
-                    @if($acara->contact_person || $acara->link_wa || $acara->link_pendaftaran)
+                    @if($waUrl || $acara->link_pendaftaran)
                         <div class="border-top pt-4 text-center">
                             <h4 class="Spartan mb-3">Informasi Kontak</h4>
                             <div class="row d-flex justify-content-center align-items-center p-0">
-                                @if($acara->link_wa)
-                                <div class="col-md-4 mb-3">
+                                @if($waUrl)
+                                <div class="col-md-6 mb-3">
                                     <div class="text-center">
-                                        <a href="{{ $acara->link_wa }}" target="_blank" class="btn btn-success btn-lg">
-                                            <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                                        <a href="{{ $waUrl }}" target="_blank" class="btn btn-success btn-lg">
+                                            <i class="bi bi-whatsapp me-2"></i>Tanya Detail Acara
                                         </a>
                                     </div>
                                 </div>
                                 @endif
                                 
                                 @if($acara->link_pendaftaran)
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <div class="text-center">
                                         <a href="{{ $acara->link_pendaftaran }}" target="_blank" class="btn btn-primary btn-lg">
                                             <i class="bi bi-person-plus-fill me-2"></i>Daftar Sekarang
