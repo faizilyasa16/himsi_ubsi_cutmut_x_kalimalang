@@ -15,7 +15,7 @@
                             
                             <div class="d-flex flex-wrap align-items-center text-muted mb-2">
                                 <div class="d-flex align-items-center me-4 mb-2">
-                                    <i class="bi bi-person-circle fs-5 me-2 artikel-meta-icon"></i>
+                                    <img src="{{ $artikel->user->photo ? asset('storage/' . $artikel->user->photo) : asset('asset/logo/himsi.png') }}" class="rounded-circle me-2 artikel-meta-icon" alt="{{ $artikel->user->name }}" style="width: 40px; height: 40px; object-fit: cover;">
                                     <span class="fw-semibold">{{ $artikel->user->name }}</span>
                                 </div>
                                 
