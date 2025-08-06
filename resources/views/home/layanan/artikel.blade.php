@@ -23,45 +23,46 @@
 
     <div class="artikel-card-container mb-5">
         <div class="row g-4">
-            @for ($i = 0; $i < 8; $i++)
-            <div class="col-12 col-md-6 col-lg-4">
-                <a href="#" class="text-decoration-none">
-                    <div class="card artikel-card h-100 border-0">
-                        <div class="overflow-hidden">
-                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" class="card-img-top" alt="Study Club HIMSI">
-                        </div>
-                        <div class="card-body Poppins">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="badge">
-                                    {{ $i % 4 == 0 ? 'Teknologi' : ($i % 4 == 1 ? 'Tutorial' : ($i % 4 == 2 ? 'Berita' : 'Event')) }}
-                                </span>
-                                <span class="artikel-date">
-                                    {{ ['18 Oct 2025', '15 Oct 2025', '12 Oct 2025', '10 Oct 2025'][$i % 4] }}
-                                </span>
+            @forelse ($artikel as $item)
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="{{ route('artikel.show', $item->slug) }}" class="text-decoration-none">
+                        <div class="card artikel-card h-100 border-0">
+                            <div class="overflow-hidden">
+                                <img src="{{ asset('storage/' . $item->konten) }}" class="card-img-top" alt="{{ $item->judul }}">
                             </div>
-                            <h5 class="card-title fw-bold Spartan">
-                                {{ $i % 4 == 0 ? 'Perkembangan AI dalam Sistem Informasi' : 
-                                   ($i % 4 == 1 ? 'Tutorial Laravel untuk Pemula' : 
-                                   ($i % 4 == 2 ? 'HIMSI Raih Prestasi Gemilang' : 'Workshop Coding Bootcamp')) }}
-                            </h5>
-                            <p class="card-text ">
-                                {{ $i % 4 == 0 ? 'Bagaimana teknologi AI mengubah landscape sistem informasi modern dan dampaknya terhadap mahasiswa SI.' : 
-                                   ($i % 4 == 1 ? 'Panduan lengkap belajar Laravel dari dasar hingga mahir untuk mahasiswa sistem informasi.' : 
-                                   ($i % 4 == 2 ? 'Tim HIMSI berhasil meraih juara dalam kompetisi teknologi tingkat nasional.' : 'Join workshop intensive coding bootcamp untuk meningkatkan skill programming Anda.')) }}
-                            </p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="author-info d-flex align-items-center">
-                                <img src="{{ asset('asset/logo/himsi.png') }}" alt="Author" class="rounded-circle me-3">
-                                <div>
-                                    <small class="text-muted d-block">Oleh: <strong>HIMSI UBSI</strong></small>
+                            <div class="card-body Poppins">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge">
+                                        {{ $item->kategori ?? 'Umum' }}
+                                    </span>
+                                    <span class="artikel-date">
+                                        {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+                                    </span>
+                                </div>
+                                <h5 class="card-title fw-bold Spartan">
+                                    {{ $item->judul }}
+                                </h5>
+                                <p class="card-text">
+                                    {{ Str::limit(strip_tags($item->deskripsi), 100) }}
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="author-info d-flex align-items-center">
+                                    <img src="{{ asset('asset/logo/himsi.png') }}" alt="Author" class="rounded-circle me-3">
+                                    <div>
+                                        <small class="text-muted d-block">Oleh: <strong>{{ $item->penulis ?? 'HIMSI UBSI' }}</strong></small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            @endfor
+                    </a>
+                </div>
+            @empty
+                <div class="col-12 text-center">
+                    <p class="text-muted Poppins">Belum ada artikel yang tersedia.</p>
+                </div>
+            @endforelse
+
         </div>
     </div>
 </main>

@@ -16,11 +16,17 @@
 
                 <div class="card-body p-4 p-md-5">
                     <!-- Nama/Judul Acara -->
-                    <h1 class="display-5 fw-bold Spartan mb-4 text-primary text-center">
+                    <h1 class="display-5 fw-bold Spartan text-primary text-center">
                         {{ $acara->nama }}
                     </h1>
-                    
-                    
+                    <div class="my-3 text-center">
+                        <span class="badge 
+                            {{ $acara->status === 'open' ? 'bg-success' : 'bg-danger' }}  p-3 rounded-3 Poppins">
+                            {{ ucfirst($acara->status) }}
+                        </span>
+                    </div>
+
+
                     <!-- Informasi Waktu dan Detail -->
                     <div class="row mb-5">
                         <div class="col-md-6 mb-3">
@@ -93,10 +99,19 @@
                     </div>
                     
                     <!-- Contact Person dan Link -->
-                    @if($waUrl || $acara->link_pendaftaran)
+                    @if($waUrl || $acara->link_pendaftaran || $acara->link_wa)
                         <div class="border-top pt-4 text-center">
                             <h4 class="Spartan mb-3">Informasi Kontak</h4>
                             <div class="row d-flex justify-content-center align-items-center p-0">
+                                @if ($acara->link_wa)
+                                <div class="col-md-6 mb-3">
+                                    <div class="text-center">
+                                        <a href="{{ $acara->link_wa }}" target="_blank" class="btn btn-success btn-lg">
+                                            <i class="bi bi-whatsapp me-2"></i>Daftar Sekarang
+                                        </a>
+                                    </div>
+                                </div>
+                                @endif
                                 @if($waUrl)
                                 <div class="col-md-6 mb-3">
                                     <div class="text-center">

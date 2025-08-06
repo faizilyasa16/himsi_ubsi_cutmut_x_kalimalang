@@ -91,9 +91,15 @@ class ArtikelController extends Controller
     /**
      * Display the specified resource.
      */
+    public function home()
+    {
+        $artikel = Artikel::where('status', 'published')->get();
+        return view('home.layanan.artikel', compact('artikel'));
+    }
     public function show(string $slug)
     {
-        //
+        $artikel = Artikel::where('slug', $slug)->firstOrFail();
+        return view('home.layanan.isi.artikel', compact('artikel'));
     }
 
     /**

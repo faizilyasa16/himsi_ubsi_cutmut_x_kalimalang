@@ -25,109 +25,39 @@
 
 <section class="container py-5">
     <div class="row g-4">
-        <!-- Ketua -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Ketua</p>
+        @forelse ($pengurus as $user)
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
+                    <div class="position-relative">
+                        <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('asset/logo/himsi.png') }}" class="card-img-top" alt="{{ $user->name }}" style="height: 400px; object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
+                            <h4 class="card-title mb-1 fw-bold">{{ $user->name }}</h4>
+                            <p class="card-text mb-0">
+                                @if ($user->role === 'bph')
+                                    <div class="d-flex flex-column">
+                                        <span class="">{{ ucfirst($user->divisi) }}</span>
+                                        @if ($user->divisi === 'litbang' || $user->divisi === 'kominfo' || $user->divisi === 'pendidikan' || $user->divisi === 'rsdm')
+                                            <span>{{ ucfirst($user->role) }}</span>
+                                        @endif
+                                    </div>
+                                @else
+                                    <div class="d-flex flex-column">
+                                        <span class="">{{ ucfirst($user->divisi) }}</span>
+                                        <span>{{ ucfirst($user->role) }}</span>
+                                    </div>
+
+                                @endif
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Wakil Ketua -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Wakil Ketua</p>
-                    </div>
-                </div>
+        @empty
+            <div class="col-12 text-center">
+                <p class="text-muted Poppins">Tidak ada pengurus yang tersedia.</p>
             </div>
-        </div>
-        
-        <!-- Sekretaris -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Sekretaris</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bendahara -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Bendahara</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Koordinator Divisi 1 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Koordinator Humas</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Koordinator Divisi 2 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Koordinator Acara</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Koordinator Divisi 3 -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Koordinator Media</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Anggota -->
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
-                <div class="position-relative">
-                    <img src="{{ asset('asset/logo/himsi.png') }}" class="card-img-top" alt="Wakil Ketua HIMSI" style="height: 400px; object-fit: cover;">
-                    <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
-                        <h5 class="card-title mb-1 fw-bold">Fulan</h5>
-                        <p class="card-text mb-0">Anggota</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforelse
+
     </div>
 </section>
 @endsection

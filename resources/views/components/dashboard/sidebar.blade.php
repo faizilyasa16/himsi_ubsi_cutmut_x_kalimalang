@@ -46,7 +46,13 @@
                         <span class="flex-grow-1">Pengguna</span>
                     </a>
                 </li>
-
+                <!-- Struktur Organisasi -->
+                <li class="nav-item">
+                    <a href="{{ route('struktur.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('struktur.*') ? 'active text-white bg-primary' : 'text-light' }}">
+                        <i class="bi bi-diagram-3 me-3"></i>
+                        <span class="flex-grow-1">Struktur Organisasi</span>
+                    </a>
+                </li>
                 <!-- Pemilu admin menu -->
                 <li class="nav-item">
                     <a href="#" class="nav-link d-flex align-items-center {{ request()->routeIs('pemilihan.*') || request()->routeIs('kandidat.*') ? 'active text-white bg-primary' : 'text-light' }} collapsed" data-bs-toggle="collapse" data-bs-target="#pemiluMenu" role="button">

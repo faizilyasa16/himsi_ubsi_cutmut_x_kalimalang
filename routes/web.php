@@ -19,24 +19,19 @@ use App\Http\Controllers\Absensi\AbsenUserController;
 use App\Http\Controllers\Acara\AcaraController;
 use App\Http\Controllers\PemilihanUmum\VotingController;
 use App\Http\Controllers\Gallery\GalleryController;
+use App\Http\Controllers\ProfileHimsiController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\StrukturController;
+
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
-
-Route::get('/pengurus', function () {
-    return view('home.profile.pengurus');
-})->name('pengurus');
-
+Route::get('/pengurus',[ProfileHimsiController::class, 'pengurus'])->name('pengurus');
 Route::get('/tentang-kami', function () {
     return view('home.profile.about');
 })->name('about');
 
-Route::get('/program-kerja', function () {
-    return view('home.profile.program');
-})->name('program');
+Route::get('/program-kerja', [ProfileHimsiController::class, 'index'])->name('program');
 
-Route::get('/struktur-organisasi', function () {
-    return view('home.profile.struktur');
-})->name('struktur');
+Route::get('/struktur-organisasi', [ProfileHimsiController::class, 'struktur'])->name('struktur');
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/galeri/{album}', [GalleryController::class, 'show'])->name('gallery.show');
@@ -47,9 +42,8 @@ Route::resource('voting', VotingController::class)->only(['index', 'store']);
 // Show custom pakai slug pemilihan
 Route::get('voting/{slug}', [VotingController::class, 'show'])->name('voting.show');
 
-Route::get('/artikel', function () {
-    return view('home.layanan.artikel');
-})->name('artikel');
+Route::get('/artikel', ArtikelController::class . '@home')->name('artikel');
+Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show');
 
 Route::resource('acara', AcaraController::class)->only(['index', 'show',]);
 Route::get('/acara/{slug}', [AcaraController::class, 'store'])->name('acara.store');
@@ -64,10 +58,11 @@ Route::prefix('dashboard')->middleware('isLoggedIn')->group(function () {
         Route::resource('pemilihan', PemilihanController::class);
         // pemilu kandidat routes
         Route::resource('kandidat', KandidatController::class);
+        Route::resource('struktur', StrukturController::class);
     });
     Route::middleware(['auth', 'isAnggota'])->group(function () {
         // artikel routes
-        Route::resource('artikel', ArtikelController::class);
+        Route::resource('artikel', ArtikelController::class)->except(['show']);
     });
     Route::middleware(['auth', 'isAnggotaBPH'])->group(function () {
         Route::resource('absensi', AbsenUserController::class);

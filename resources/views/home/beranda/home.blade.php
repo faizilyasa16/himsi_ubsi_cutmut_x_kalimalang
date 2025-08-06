@@ -219,7 +219,7 @@
                 <a href="{{ route('artikel') }}" class="text-decoration-none ">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="d-flex flex-wrap Poppins">
-                @foreach($artikels as $index => $artikel)
+                @forelse($artikels as $index => $artikel)
                         @if($index == 0)
                             {{-- Artikel besar (kolom kiri) --}}
                             <div class="col-12 col-lg-6 mb-4 px-2">
@@ -255,7 +255,11 @@
                                         </a>
                                     </div>
                         @endif
-                    @endforeach
+                    @empty
+                        <div class="col-12 text-center py-5">
+                            <p class="fs-5 text-muted">Belum ada artikel yang tersedia.</p>
+                        </div>
+                    @endforelse
             </div>
         </div>
         <div class="col-12" style="margin-bottom: 100px; ">
