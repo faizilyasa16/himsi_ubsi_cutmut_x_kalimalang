@@ -154,3 +154,69 @@ class ResponsiveCarousel {
 
 // Initialize carousel
 const carousel = new ResponsiveCarousel();
+// Counter Animation Script
+document.addEventListener('DOMContentLoaded', function() {
+    // Fungsi untuk animasi counter
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16); // 60 FPS
+        
+        element.classList.add('counter-animating');
+        
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+                element.classList.remove('counter-animating');
+            } else {
+                element.textContent = Math.floor(start);
+            }
+        }, 16);
+    }
+
+    // Intersection Observer untuk trigger animasi saat scroll
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counterElements = entry.target.querySelectorAll('.counter-number');
+                
+                counterElements.forEach((counter, index) => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    
+                    // Delay untuk setiap counter agar tidak bersamaan
+                    setTimeout(() => {
+                        animateCounter(counter, target);
+                    }, index * 300);
+                });
+                
+                // Unobserve setelah animasi berjalan
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe section anggota kepengurusan
+    const counterSection = document.querySelector('section[aria-labelledby="heading-anggota"]');
+    if (counterSection) {
+        observer.observe(counterSection);
+    }
+
+    // Fallback jika Intersection Observer tidak didukung
+    if (!window.IntersectionObserver) {
+        setTimeout(() => {
+            const counters = document.querySelectorAll('.counter-number');
+            counters.forEach((counter, index) => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                setTimeout(() => {
+                    animateCounter(counter, target);
+                }, index * 300);
+            });
+        }, 1000);
+    }
+});

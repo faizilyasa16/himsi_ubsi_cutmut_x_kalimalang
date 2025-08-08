@@ -4,6 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                
                 <!-- Poster Acara -->
                 @if($acara->poster)
                 <div class="text-center bg-light p-4">
@@ -16,22 +17,17 @@
 
                 <div class="card-body p-4 p-md-5">
                     <!-- Nama/Judul Acara -->
-                    <h1 class="display-5 fw-bold Spartan text-primary text-center">
+                    <h1 class="display-5 fw-bold Spartan text-center" style="color: #00008B;">
                         {{ $acara->nama }}
                     </h1>
-                    <div class="my-3 text-center">
-                        <span class="badge 
-                            {{ $acara->status === 'open' ? 'bg-success' : 'bg-danger' }}  p-3 rounded-3 Poppins">
-                            {{ ucfirst($acara->status) }}
-                        </span>
-                    </div>
+
 
 
                     <!-- Informasi Waktu dan Detail -->
                     <div class="row mb-5">
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center p-3 bg-light rounded-3">
-                                <i class="bi bi-calendar3 fs-3 me-3 text-primary"></i>
+                                <i class="bi bi-calendar3 fs-3 me-3" style="color: #00008B;"></i>
                                 <div>
                                     <h6 class="mb-1 text-muted fw-semibold">Tanggal & Waktu</h6>
                                     <p class="mb-0 fw-bold">
@@ -49,7 +45,7 @@
                         
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center p-3 bg-light rounded-3">
-                                <i class="bi bi-geo-alt fs-3 me-3 text-primary"></i>
+                                <i class="bi bi-geo-alt fs-3 me-3" style="color: #00008B;"></i>
                                 <div>
                                     <h6 class="mb-1 text-muted fw-semibold">Lokasi</h6>
                                     <p class="mb-0 fw-bold">{{ $acara->lokasi }}</p>
@@ -60,7 +56,7 @@
                         @if($acara->kuota)
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center p-3 bg-light rounded-3">
-                                <i class="bi bi-people fs-3 me-3 text-primary"></i>
+                                <i class="bi bi-people fs-3 me-3" style="color: #00008B;"></i>
                                 <div>
                                     <h6 class="mb-1 text-muted fw-semibold">Kuota Peserta</h6>
                                     <p class="mb-0 fw-bold">{{ $acara->kuota }} Orang</p>
@@ -72,12 +68,14 @@
                         @if($acara->biaya)
                         <div class="col-md-6 mb-3">
                             <div class="d-flex align-items-center p-3 bg-light rounded-3">
-                                <i class="bi bi-cash-coin fs-3 me-3 text-primary"></i>
+                                <i class="bi bi-cash-coin fs-3 me-3 " style="color: #00008B;"></i>
                                 <div>
                                     <h6 class="mb-1 text-muted fw-semibold">Biaya</h6>
                                     <p class="mb-0 fw-bold">
                                         @if($acara->biaya == '0' || strtolower($acara->biaya) == 'gratis')
                                             <span class="text-success">GRATIS</span>
+                                        @elseif ($acara->biaya == 'donasi sukarela' || strtolower($acara->biaya) == 'donasi')
+                                            <span class="text-primary">Donasi Sukarela</span> 
                                         @else
                                             <span class="text-danger">Rp{{ number_format((int) preg_replace('/\D/', '', $acara->biaya), 0, ',', '.') }}</span>
                                         @endif
@@ -86,12 +84,21 @@
                             </div>
                         </div>
                         @endif
+                        <!-- Add to the first row of information -->
+                        <div class="col-md-12 mb-3">
+                            <div class="d-flex align-items-center p-3 bg-light rounded-3">
+                                <i class="bi bi-circle-fill fs-3 me-3" style="color: {{ $acara->status === 'open' ? '#28a745' : '#dc3545' }};"></i>
+                                <div>
+                                    <h6 class="mb-1 text-muted fw-semibold">Status Pendaftaran</h6>
+                                    <p class="mb-0 fw-bold">{{ ucfirst($acara->status) }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Deskripsi Acara -->
                     <div class="mb-5">
                         <h3 class="Spartan mb-3 border-bottom border-primary pb-2">
-                            <i class="bi bi-info-circle me-2"></i>Deskripsi Acara
+                            Deskripsi Acara
                         </h3>
                         <div class="Poppins fs-5 lh-lg text-dark">
                             {!! nl2br(e($acara->deskripsi)) !!}
@@ -107,7 +114,7 @@
                                 <div class="col-md-6 mb-3">
                                     <div class="text-center">
                                         <a href="{{ $acara->link_wa }}" target="_blank" class="btn btn-success btn-lg">
-                                            <i class="bi bi-whatsapp me-2"></i>Daftar Sekarang
+                                            <i class="bi bi-whatsapp me-2"></i>Join WhatsApp Group
                                         </a>
                                     </div>
                                 </div>
@@ -125,7 +132,7 @@
                                 @if($acara->link_pendaftaran)
                                 <div class="col-md-6 mb-3">
                                     <div class="text-center">
-                                        <a href="{{ $acara->link_pendaftaran }}" target="_blank" class="btn btn-primary btn-lg">
+                                        <a href="{{ $acara->link_pendaftaran }}" target="_blank" class="btn btn-cari">
                                             <i class="bi bi-person-plus-fill me-2"></i>Daftar Sekarang
                                         </a>
                                     </div>

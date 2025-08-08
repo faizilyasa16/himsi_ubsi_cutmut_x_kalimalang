@@ -30,23 +30,23 @@
                 <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
                     <div class="position-relative">
                         <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('asset/logo/himsi.png') }}" class="card-img-top" alt="{{ $user->name }}" style="height: 400px; object-fit: cover;">
-                        <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-3 Poppins">
+                        <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-25 text-white p-3 Poppins">
                             <h4 class="card-title mb-1 fw-bold">{{ $user->name }}</h4>
                             <p class="card-text mb-0">
-                                @if ($user->role === 'bph')
-                                    <div class="d-flex flex-column">
-                                        <span class="">{{ ucfirst($user->divisi) }}</span>
-                                        @if ($user->divisi === 'litbang' || $user->divisi === 'kominfo' || $user->divisi === 'pendidikan' || $user->divisi === 'rsdm')
-                                            <span>{{ ucfirst($user->role) }}</span>
-                                        @endif
-                                    </div>
-                                @else
-                                    <div class="d-flex flex-column">
-                                        <span class="">{{ ucfirst($user->divisi) }}</span>
+                            @if ($user->role === 'bph')
+                                <div class="d-flex flex-column">
+                                    <span>{{ ucwords(str_replace('_', ' ', $user->divisi)) }}</span>
+                                    @if (in_array($user->divisi, ['litbang', 'kominfo', 'pendidikan', 'rsdm']))
                                         <span>{{ ucfirst($user->role) }}</span>
-                                    </div>
+                                    @endif
+                                </div>
+                            @else
+                                <div class="d-flex flex-column">
+                                    <span>{{ ucwords(str_replace('_', ' ', $user->divisi)) }}</span>
+                                    <span>{{ ucfirst($user->role) }}</span>
+                                </div>
+                            @endif
 
-                                @endif
                             </p>
                         </div>
                     </div>

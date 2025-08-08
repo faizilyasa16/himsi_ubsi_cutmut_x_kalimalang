@@ -12,8 +12,7 @@ class KesanPesan extends Model
     protected $table = 'kesan-pesan';
     protected $fillable = [
         'user_id',
-        'kesan',
-        'pesan',
+        'kesan_pesan', // Ganti dengan kesan_pesan untuk konsistensi
         'status', // Tambahkan kolom status
     ];
     /**

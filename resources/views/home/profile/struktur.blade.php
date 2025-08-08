@@ -23,7 +23,9 @@
 </main>
 <section class="container-1500 my-5">
     <div class="my-5 text-center">
-        <img src="{{ asset('storage/'.$struktur->konten) }}" alt="" class="img-fluid rounded-3 shadow-sm mx-auto d-block" style="max-width: 100%; height: 1000px; object-fit: cover;">
+        @if ($struktur != null)
+            <img src="{{ asset('storage/'.$struktur->konten) }}" alt="" class="img-fluid rounded-3 shadow-sm mx-auto d-block" style="max-width: 100%; height: 1000px; object-fit: cover;">
+        @endif
     </div>
 
     <div class="row text-center Poppins mt-4">

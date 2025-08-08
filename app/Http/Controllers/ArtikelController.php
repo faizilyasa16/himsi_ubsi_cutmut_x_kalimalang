@@ -91,11 +91,22 @@ class ArtikelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function home()
-    {
-        $artikel = Artikel::where('status', 'published')->get();
-        return view('home.layanan.artikel', compact('artikel'));
+public function home(Request $request)
+{
+    $query = Artikel::where('status', 'published');
+
+    if ($request->has('search') && $request->search != '') {
+        $search = $request->search;
+        $query->where(function($q) use ($search) {
+            $q->where('judul', 'like', "%$search%")
+              ->orWhere('deskripsi', 'like', "%$search%");
+        });
     }
+
+    $artikel = $query->get();
+    return view('home.layanan.artikel', compact('artikel'));
+}
+
     public function show(string $slug)
     {
         $artikel = Artikel::where('slug', $slug)->firstOrFail();

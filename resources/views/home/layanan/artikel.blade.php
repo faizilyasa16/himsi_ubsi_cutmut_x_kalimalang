@@ -12,10 +12,13 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <form class="d-flex mb-4" role="search">
-                    <input class="form-control form-control-lg me-3" type="search" placeholder="Cari artikel berdasarkan judul atau konten..." aria-label="Cari artikel">
-                    <button class="btn btn-primary px-4" type="submit">
-                        <i class="bi bi-search me-2"></i>Cari
-                    </button>
+                    <form action="{{ route('artikel') }}" method="GET">
+                        @csrf
+                        <input class="form-control form-control-lg me-3" type="search" name="search" placeholder="Cari artikel berdasarkan judul atau konten..." aria-label="Cari artikel">
+                        <button class="btn btn-primary px-4" type="submit">
+                            <i class="bi bi-search me-2"></i>Cari
+                        </button>
+                    </form>
                 </form>
             </div>
         </div>

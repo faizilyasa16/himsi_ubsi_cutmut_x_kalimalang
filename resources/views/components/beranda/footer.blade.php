@@ -28,15 +28,15 @@
                     <div class="row Poppins">
                         <div class="col-6">
                             <ul class="list-unstyled mb-0">
-                                <li class="mb-2"><a href="#" class="text-white text-decoration-none">Beranda</a></li>
-                                <li class="mb-2"><a href="#" class="text-white text-decoration-none">Kegiatan</a></li>
-                                <li class="mb-2"><a href="#" class="text-white text-decoration-none">Artikel</a></li>
+                                <li class="mb-2"><a href="{{ route('beranda') }}" class="text-white text-decoration-none">Beranda</a></li>
+                                <li class="mb-2"><a href="{{ route('acara.index') }}" class="text-white text-decoration-none">Kegiatan</a></li>
+                                <li class="mb-2"><a href="{{ route('artikel') }}" class="text-white text-decoration-none">Artikel</a></li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="list-unstyled mb-0">
-                                <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tentang Kami</a></li>
-                                <li class="mb-2"><a href="#" class="text-white text-decoration-none">Kontak</a></li>
+                                <li class="mb-2"><a href="{{ route('about') }}" class="text-white text-decoration-none">Tentang Kami</a></li>
+                                <li class="mb-2"><a href="{{ route('gallery') }}" class="text-white text-decoration-none">Galeri</a></li>
                             </ul>
                         </div>
                     </div>

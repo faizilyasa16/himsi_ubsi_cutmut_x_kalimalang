@@ -16,8 +16,7 @@
             <div class="col-4 mb-3">
                 <div class="border p-3 bg-light rounded">
                     <h5>{{ $kesanPesan->user->name }}</h5>
-                    <p><strong>Kesan:</strong> {{ $kesanPesan->kesan }}</p>
-                    <p><strong>Pesan:</strong> {{ $kesanPesan->pesan }}</p>
+                    <p><strong>Kesan dan Pesan:</strong> {{ $kesanPesan->kesan_pesan }}</p>
                     <small class="text-muted">Dibuat pada {{ $kesanPesan->created_at->format('d M Y H:i') }}</small>
                     <div class="d-flex justify-content-end mt-2">
                     <a href="{{ route('kesan-pesan.edit', $kesanPesan->id) }}" class="btn btn-sm btn-secondary me-2">Kelola</a>

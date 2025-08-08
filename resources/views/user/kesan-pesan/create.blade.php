@@ -15,12 +15,8 @@
     <form action="{{ route('kesan-pesan.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="kesan" class="form-label">Kesan</label>
-            <textarea name="kesan" id="kesan" class="form-control" rows="3" required>{{ old('kesan') }}</textarea>
-        </div>
-        <div class="mb-3">
-            <label for="pesan" class="form-label">Pesan</label>
-            <textarea name="pesan" id="pesan" class="form-control" rows="3" required>{{ old('pesan') }}</textarea>
+            <label for="kesan_pesan" class="form-label">Kesan dan Pesan</label>
+            <textarea name="kesan_pesan" id="kesan_pesan" class="form-control" rows="3" required>{{ old('kesan_pesan') }}</textarea>
         </div>
         
         <button type="submit" class="btn btn-primary">Simpan</button>

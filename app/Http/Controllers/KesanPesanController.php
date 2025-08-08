@@ -32,15 +32,13 @@ class KesanPesanController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'kesan' => 'required|string|max:255',
-            'pesan' => 'required|string|max:255',
+            'kesan_pesan' => 'required|string|max:255',
             'status' => 'nullable|in:active,inactive', // status boleh kosong
         ]);
 
         $kesanPesan = new KesanPesan();
-        $kesanPesan->kesan = $validated['kesan'];
-        $kesanPesan->pesan = $validated['pesan'];
-        $kesanPesan->status = $validated['status'] ?? 'inactive';  // default inactive kalau gak ada input
+        $kesanPesan->kesan_pesan = $validated['kesan_pesan'];
+        $kesanPesan->status = $validated['status'] ?? 'inactive'; //
         $kesanPesan->user_id = Auth::id(); 
         $kesanPesan->save();
 
@@ -71,14 +69,12 @@ class KesanPesanController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'kesan' => 'required|string|max:255',
-            'pesan' => 'required|string|max:255',
+            'kesan_pesan' => 'required|string|max:255',
             'status' => 'nullable|in:active,inactive', // Validasi status
         ]);
 
         $kesanPesan = KesanPesan::findOrFail($id);
-        $kesanPesan->kesan = $validated['kesan'];
-        $kesanPesan->pesan = $validated['pesan'];
+        $kesanPesan->kesan_pesan = $validated['kesan_pesan'];
         $kesanPesan->status = $validated['status'] ?? 'inactive'; // default inactive kalau gak ada input
         $kesanPesan->user_id = Auth::id(); // Update user_id jika
         $kesanPesan->save();

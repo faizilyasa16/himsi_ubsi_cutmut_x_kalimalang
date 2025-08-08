@@ -40,7 +40,7 @@ class KontenController extends Controller
         // Validasi input
         $validated = $request->validate([
             'album_id' => 'required|exists:album,id',
-            'nama' => 'required|string|max:255',
+            'nama' => 'nullable|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -84,7 +84,7 @@ class KontenController extends Controller
         // Validasi input
         $validated = $request->validate([
             'album_id' => 'required|exists:album,id', // pastikan id album valid
-            'nama' => 'required|string|max:255',
+            'nama' => 'nullable|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // max 2MB
         ]);
 

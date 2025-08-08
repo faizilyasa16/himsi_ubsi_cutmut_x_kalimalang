@@ -11,8 +11,8 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $gallery = KontenAlbum::with('album')
-            ->whereHas('album')
+        $gallery = Album::with('konten')
+            ->whereHas('konten') // Hanya tampilkan album yang memiliki konten
             ->latest()
             ->paginate(12);
         return view('home.gallery.gallery', compact('gallery'));

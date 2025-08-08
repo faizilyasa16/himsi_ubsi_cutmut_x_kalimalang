@@ -57,27 +57,29 @@
                         <tbody class="border-0 text-start">
                             <tr class="border-0">
                                 <td class="border-0">
-                                    1. Meningkatkan kualitas sumber daya manusia di bidang sistem informasi melalui pendidikan, pelatihan, dan pengembangan keterampilan.
+                                    1. Meningkatkan kontribusi Himsi di lingkungan kampus serta masyarakat.
                                 </td>
                             </tr>
                             <tr class="border-0">
                                 <td class="border-0">
-                                    2. Mengembangkan sistem informasi yang inovatif dan berdaya saing untuk memenuhi kebutuhan industri dan masyarakat.
+                                    2. Menciptakan prestasi yang kreatif dan inovatif baik dari akademik atau non akademik.
                                 </td>
                             </tr>
                             <tr class="border-0">
                                 <td class="border-0">
-                                    3. Membangun jaringan kerjasama dengan berbagai pihak, termasuk industri, akademisi, dan komunitas, untuk mendukung pengembangan sistem informasi.
+                                    3. Menanamkan jiwa disiplin dan tanggung jawab kepada setiap anggota.
                                 </td>
                             </tr>
                             <tr class="border-0">
                                 <td class="border-0">
-                                    4. Mendorong partisipasi aktif anggota dalam kegiatan organisasi, penelitian, dan pengabdian masyarakat di bidang sistem informasi.
+                                    4. Menciptakan ikatan yang kuat dan rasa memiliki terhadap solidaritas sesama.
                                 </td>
                             </tr>
                             <tr class="border-0">
                                 <td class="border-0">
-                                    5. Menciptakan lingkungan organisasi yang inklusif, transparan, dan berorientasi pada keberlanjutan.
+                                    5. Menjalin hubungan baik dengan sesama 
+                                        organisasi lain serta menjaga nama baik 
+                                        himpunan dan almamater UBSI.
                                 </td>
                             </tr>
                         </tbody>
@@ -99,17 +101,30 @@
                     <div class="mb-4">
                         <h4 class="Spartan">Bentuk</h4>
                         <ul class="Poppins">
-                            <li>Bentuk tiga gunung paling atas adalah Tri Darma Perguruan Tinggi</li>
-                            <li>Bentuk segitiga adalah simbol dari sistem informasi</li>
-                            <li>Bentuk segi enam adalah simbol dari sistem informasi</li>
+                            <li>Bentuk tiga gunung paling atas melambangkan Tri 
+                            Darma Perguruan Tinggi, anggota HIMSI harus siap
+                            mengabdikan ilmunya dimanapun itu.</li>
+                            <li>Background yang transparan, menggambarkan himsi 
+                            dapat menyesuaikan dan mampu beradaptasi 
+                            terhadap perkembangan Ilmu Pengetahuan dan 
+                            Teknologi.</li>
+                            <li>Tulisan “HIMSI dan TEKNIK INFORMATIKA” pada area
+                            putih terdalam menggambarkan bahwa HIMSI berasal 
+                            dari Fakultas Teknik Informatika.</li>
                         </ul>
                     </div>
                     <div class="mb-4">
                         <h4 class="Spartan">Warna</h4>
                         <ul class="Poppins">
-                            <li>Warna biru melambangkan kepercayaan, loyalitas, dan profesionalisme</li>
-                            <li>Warna kuning melambangkan optimisme, kreativitas, dan inovasi</li>
-                            <li>Warna putih melambangkan kesucian, kebersihan, dan integritas</li>
+                            <li>Warna Biru Tua pada garis luar menggambarkan rasa
+                            kekeluargaan yang tinggi dari pengurus HIMSI.</li>
+                            <li>Tiga warna biru muda dan tulisan “Prodi Sistem 
+                            Informasi Universitas Bina Sarana Informatika pada
+                            lingkaran dalam, menggambarkan satu kesatuan 
+                            manusia produktif yaitu mahasiswa prodi Sistem 
+                            Informasi dibawah naungan Universitas Bina Sarana 
+                            Informatika</li>
+                            
                         </ul>
                     </div>
                 </div>

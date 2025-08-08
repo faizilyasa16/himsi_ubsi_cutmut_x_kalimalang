@@ -66,7 +66,7 @@
                                 <img src="{{ asset('storage/' . $item->poster) }}" class="kegiatan-img-top" alt="{{ $item->nama }}" width="400" height="267">
                                 <div class="card-body Poppins">
                                     <h3 class="card-title Spartan">{{ $item->nama }}</h3>
-                                    <p class="card-text">{{ $item->deskripsi }}</p>
+                                    <p class="card-text">{{ Str::limit($item->deskripsi, 150) }}</p>
                                 </div>
                             </div>
                         </a>
@@ -88,29 +88,29 @@
             
             <div class="d-flex flex-wrap justify-content-center Poppins">
                 <div class="col-12 col-md-4 mb-5 px-2">
-                    <div class="card shadow rounded-4 text-center border-0 p-4">
-                        <i class="bi bi-people-fill display-5 mb-3" aria-hidden="true"></i>
+                    <div class="card counter-card shadow rounded-4 text-center border-0 p-4">
+                        <i class="bi bi-people-fill counter-icon display-5 mb-3" aria-hidden="true"></i>
                         <div class="card-body">
                             <h3 class="card-title fw-semibold Spartan">Anggota Aktif</h3>
-                            <p class="card-text fs-4">{{ $anggota }}</p>
+                            <p class="card-text counter-number fs-4" data-count="{{ $anggota }}">0</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-5 px-2">
-                    <div class="card shadow rounded-4 text-center border-0 p-4">
-                        <i class="bi bi-diagram-3-fill display-5 mb-3" aria-hidden="true"></i>
+                    <div class="card counter-card shadow rounded-4 text-center border-0 p-4">
+                        <i class="bi bi-diagram-3-fill counter-icon display-5 mb-3" aria-hidden="true"></i>
                         <div class="card-body">
                             <h3 class="card-title fw-semibold Spartan">Divisi</h3>
-                            <p class="card-text fs-4">6</p>
+                            <p class="card-text counter-number fs-4" data-count="6">0</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-5 px-2">
-                    <div class="card shadow rounded-4 text-center border-0 p-4">
-                        <i class="bi bi-person-plus-fill display-5 mb-3" aria-hidden="true"></i>
+                    <div class="card counter-card shadow rounded-4 text-center border-0 p-4">
+                        <i class="bi bi-person-plus-fill counter-icon display-5 mb-3" aria-hidden="true"></i>
                         <div class="card-body">
                             <h3 class="card-title fw-semibold Spartan">Anggota yang Bergabung</h3>
-                            <p class="card-text fs-4">{{ $users }}</p>
+                            <p class="card-text counter-number fs-4" data-count="{{ $users }}">0</p>
                         </div>
                     </div>
                 </div>
@@ -318,4 +318,5 @@
     <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('home/home/layout.js') }}"></script>
     <script src="{{ asset('home/home/home.js') }}"></script>
+    <script src="{{ asset('home/js/counter.js') }}"></script>
 @endsection

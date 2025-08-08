@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('kesan-pesan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('kesan');
-            $table->text('pesan');
+            $table->text('kesan_pesan');
             $table->enum('status', ['active', 'inactive'])->default('inactive'); // Tambahkan kolom status
             $table->timestamps();
         });

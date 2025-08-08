@@ -6,7 +6,7 @@
     </main>
     <section class="container-1500 mt-5 mb-5">
         <div class="row">
-            @foreach ($pemilihan as $item)
+            @forelse ($pemilihan as $item)
                 <div class="col-12">
                     <div class="card mb-3 rounded-4">
                         <div class="row g-0 align-items-center">
@@ -39,7 +39,13 @@
                 </div>
                 
                 </div>
-            @endforeach
+            @empty
+                <div class="col-10 d-block mx-auto">
+                    <div class="alert alert-info Poppins" role="alert">
+                        Tidak ada pemilihan yang tersedia saat ini.
+                    </div>
+                </div>
+            @endforelse
         </div>
     </section>
 @endsection

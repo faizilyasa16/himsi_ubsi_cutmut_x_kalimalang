@@ -49,7 +49,11 @@ class AcaraController extends Controller
         if($acara->biaya) {
             if($acara->biaya == '0' || strtolower($acara->biaya) == 'gratis') {
                 $waMessage .= "💰 Biaya: GRATIS\n";
-            } else {
+            } 
+            elseif(strtolower($acara->biaya) == 'donasi sukarela' || strtolower($acara->biaya) == 'donasi') {
+                $waMessage .= "💰 Biaya: Donasi Sukarela\n";
+            }
+            else {
                 $waMessage .= "💰 Biaya: Rp " . number_format((int) preg_replace('/\D/', '', $acara->biaya), 0, ',', '.') . "\n";
             }
         }

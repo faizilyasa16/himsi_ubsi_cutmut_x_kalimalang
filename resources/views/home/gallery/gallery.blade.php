@@ -10,9 +10,9 @@
                 $tahunSebelumnya = null;
             @endphp
 
-            @foreach ($gallery as $item)
+            @forelse ($gallery as $item)
                 @php
-                    $tahun = $item->album->tahun ?? 'Tidak diketahui';
+                    $tahun = $item->tahun ?? 'Tidak diketahui';
                 @endphp
 
                 @if ($tahun !== $tahunSebelumnya)
@@ -25,10 +25,14 @@
                 @endif
 
                 <div class="col-12 col-md-4 mb-4">
-                    <a href="{{ route('gallery.show', $item->album) }}" class="text-decoration-none">
+                    <a href="{{ route('gallery.show', $item) }}" class="text-decoration-none">
                         <div class="card artikel-card h-100 border-0">
                             <div class="overflow-hidden">
-                                <img src="{{ asset('storage/' . $item->foto) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 250px; object-fit: cover;">
+                                @if($item->konten->first())
+                                    <img src="{{ asset('storage/' . $item->konten->first()->foto) }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 250px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('home/asset/img/default-album.jpg') }}" class="card-img-top" alt="{{ $item->nama }}" style="height: 250px; object-fit: cover;">
+                                @endif
                             </div>
                             <div class="card-body Poppins">
                                 <div class="d-flex justify-content-start align-items-center mb-3">
@@ -36,13 +40,19 @@
                                 </div>
                                 <h5 class="card-title fw-bold Spartan">{{ $item->nama }}</h5>
                                 <p class="card-text">
-                                    {{ $item->album->deskripsi ?? 'Tidak ada deskripsi album.' }}
+                                    {{ $item->deskripsi ?? 'Tidak ada deskripsi album.' }}
                                 </p>
+                            </div>
                         </div>
                     </a>
-
                 </div>
-            @endforeach
+            @empty
+                <div class="col-10 d-block mx-auto">
+                    <div class="alert alert-info Poppins" role="alert">
+                        Tidak ada galeri yang tersedia saat ini.
+                    </div>
+                </div>
+            @endforelse
 
             {{-- Tampilkan pagination --}}
             <div class="col-12">

@@ -1,10 +1,11 @@
 @extends('home.layout.index')
     @section('content')
-        <main class="mt-5 Spartan">
-            <h1 class="text-center " style="color: #00008B">{{ $album->nama }}</h1>
-            <p class="text-center Poppins">{{ $album->deskripsi }}</p>
-        </main>
-        <section class="mt-5 mb-5 container-1500">
+
+        <section class="my-5 container-1500">
+            <main class="my-5 Spartan">
+                <h1 class="text-center " style="color: #00008B">{{ $album->nama }}</h1>
+                <p class="text-center Poppins">{{ $album->deskripsi }}</p>
+            </main>
             <div class="row Spartan">
                 @foreach ($album->konten as $item)
                     <div class="col-12 col-md-4 mb-4">

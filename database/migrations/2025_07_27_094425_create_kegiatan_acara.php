@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kategori_id')->nullable()->constrained('kategori_acara')->onDelete('cascade');
             $table->string('nama', 200);
-            $table->string('deskripsi', 200)->nullable();
+            $table->text('deskripsi')->nullable();
             $table->string('lokasi', 100);
             $table->string('contact_person', 100)->nullable();
             $table->string('poster', 100)->nullable(); // boleh kosong

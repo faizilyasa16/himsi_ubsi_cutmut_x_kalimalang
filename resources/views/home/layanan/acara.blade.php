@@ -18,9 +18,10 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <i class="bi bi-calendar-event-fill text-primary me-2"></i>
-                                        {{ date('d F Y', strtotime($item->waktu_mulai)) }}
-                                        @if ($item->waktu_selesai)
-                                            - {{ date('d F Y', strtotime($item->waktu_selesai)) }}
+                                        @if ($item->waktu_selesai && date('Y-m-d', strtotime($item->waktu_mulai)) != date('Y-m-d', strtotime($item->waktu_selesai)))
+                                            {{ date('d F Y', strtotime($item->waktu_mulai)) }} - {{ date('d F Y', strtotime($item->waktu_selesai)) }}
+                                        @else
+                                            {{ date('d F Y', strtotime($item->waktu_mulai)) }}
                                         @endif
                                     </li>
                                     <li>
