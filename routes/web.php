@@ -48,7 +48,7 @@ Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel
 Route::resource('acara', AcaraController::class)->only(['index', 'show',]);
 Route::get('/acara/{slug}', [AcaraController::class, 'store'])->name('acara.store');
 Route::get('/login',[LoginController::class,'show'])->name('login');
-Route::post('/login',[LoginController::class,'store'])->name('login');
+Route::post('/login',[LoginController::class,'store'])->name('login.store');
 
 Route::prefix('dashboard')->middleware('isLoggedIn')->group(function () {
     Route::middleware(['auth', 'isAdmin'])->group(function () {
