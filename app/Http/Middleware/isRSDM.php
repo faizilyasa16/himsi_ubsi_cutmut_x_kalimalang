@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsRSDM
+class IsRsdm
 {
     public function handle(Request $request, Closure $next): Response
     {
