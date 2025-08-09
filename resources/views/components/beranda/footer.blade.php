@@ -48,7 +48,7 @@
                 <div class="text-start">
                     <h5 class="mb-3 Spartan">Ikuti Kami</h5>
                     <div class="d-flex gap-3 mb-3">
-                        <a href="#" aria-label="Instagram" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.instagram.com/himsi_cutmutiah?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
                         <a href="https://www.linkedin.com/company/himsi-universitas-bsi/" aria-label="Linkedin" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
                     </div>
                     <p class="mb-0 Poppins">Kampus UBSI Cut Mutia<br>

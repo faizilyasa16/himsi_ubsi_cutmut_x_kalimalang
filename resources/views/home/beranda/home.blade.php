@@ -33,20 +33,12 @@
                     
                     <!-- Carousel Items -->
                     <div class="carousel-inner">
-                        <!-- Image 1 -->
-                        <div class="carousel-item active">
-                            <img src="{{ asset('asset/kegiatan/studyclub.jpg')}}" alt="Kegiatan Study Club HIMSI" class="carousel-image" width="800" height="450">
-                        </div>
-                        
-                        <!-- Image 2 -->
-                        <div class="carousel-item">
-                            <img src="{{ asset('asset/kegiatan/studyclub.jpg') }}" alt="Kegiatan Study Club kedua" class="carousel-image" width="800" height="450">
-                        </div>
-                        
-                        <!-- Image 3 -->
-                        <div class="carousel-item">
-                            <img src="{{ asset('asset/kegiatan/santunan.jpg') }}" alt="Kegiatan Santunan HIMSI" class=" carousel-image" width="800" height="450">
-                        </div>
+                        @foreach ($galeri as $key => $item)
+                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul ?? 'Galeri Kegiatan' }}" class="carousel-image" width="800" height="450">
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
@@ -126,76 +118,72 @@
         <div class="col-12" style="padding: 20px;">
             <div id="testimoniCarousel" class="carousel slide carousel-overflow-fix" data-bs-ride="carousel" data-bs-interval="5000" aria-label="Testimonial alumni dan anggota HIMSI">
                 <!-- Carousel Indicators -->
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#testimoniCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Testimonial Ahmad Rizki"></button>
-                    <button type="button" data-bs-target="#testimoniCarousel" data-bs-slide-to="1" aria-label="Testimonial Siti Nurhaliza"></button>
-                    <button type="button" data-bs-target="#testimoniCarousel" data-bs-slide-to="2" aria-label="Testimonial Budi Santoso"></button>
+                <div class="carousel-indicators d-md-none">
+                    @foreach ($kesanPesan as $index => $kesan)
+                        <button type="button" data-bs-target="#testimoniCarousel" data-bs-slide-to="{{ $index }}" 
+                                @if($index === 0) class="active" aria-current="true" @endif 
+                                aria-label="Testimonial {{ $kesan->user->name }}"></button>
+                    @endforeach
                 </div>
 
                 <!-- Carousel Content -->
                 <div class="carousel-inner">
-                    <!-- Testimonial 1 -->
-                    <div class="carousel-item active">
-                        <div class="col-md-8 mx-auto">
-                            <div class="card testimonial-card border-0 shadow-lg" style="background: rgba(255, 255, 255, 0.95); border-radius: 15px;">
-                                <div class="card-body text-center p-5">
-                                    <i class="fas fa-quote-left fa-3x text-primary mb-4" aria-hidden="true"></i>
-                                    <blockquote class="card-text fs-5 mb-4 Poppins" style="color: #333;">
-                                        <p>"HIMSI telah memberikan saya pengalaman luar biasa dalam mengembangkan skill di bidang sistem informasi. Study club dan kegiatan-kegiatannya sangat membantu karir saya."</p>
-                                        <footer class="d-flex align-items-center justify-content-center">
-                                            <img src="{{ asset('asset/logo/himsi.png') }}" alt="" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
-                                            <div class="text-start">
-                                                <cite class="mb-0 fw-bold">Ahmad Rizki</cite>
-                                                <small class="text-muted d-block">Alumni 2022 - Software Engineer</small>
-                                            </div>
-                                        </footer>
-                                    </blockquote>
+                    @forelse ($kesanPesan as $index => $kesan)
+                        <div class="carousel-item @if($index === 0) active @endif">
+                            <div class="col-md-8 mx-auto">
+                                <div class="card testimonial-card border-0 shadow-lg" style="background: rgba(255, 255, 255, 0.95); border-radius: 15px;">
+                                    <div class="card-body text-center p-5">
+                                        <i class="fas fa-quote-left fa-3x text-primary mb-4" aria-hidden="true"></i>
+                                        <blockquote class="card-text fs-5 mb-4 Poppins" style="color: #333;">
+                                            <p>"{{ $kesan->kesan_pesan }}"</p>
+                                            <footer class="d-flex align-items-center justify-content-center">
+                                                @if($kesan->user->photo)
+                                                    <img src="{{ asset('storage/' . $kesan->user->photo) }}" alt="{{ $kesan->user->name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                @else
+                                                    <img src="{{ asset('asset/logo/himsi.png') }}" alt="{{ $kesan->user->name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                @endif
+                                                <div class="text-start">
+                                                    <cite class="mb-0 fw-bold">{{ $kesan->user->name }}</cite>
+                                                    <small class="text-muted d-block">
+                                                        @if($kesan->user->role === 'bph')
+                                                            Pengurus - {{ ucfirst(str_replace('_', ' ', $kesan->user->divisi)) }}
+                                                        @elseif($kesan->user->role === 'anggota')
+                                                            Anggota - {{ ucfirst($kesan->user->divisi) }}
+                                                        @elseif($kesan->user->role === 'alumni')
+                                                            Alumni HIMSI
+                                                        @else
+                                                            Mahasiswa HIMSI
+                                                        @endif
+                                                    </small>
+                                                </div>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="carousel-item">
-                        <div class="col-md-8 mx-auto">
-                            <div class="card testimonial-card border-0">
-                                <div class="card-body text-center p-5">
-                                    <i class="fas fa-quote-left fa-3x text-primary mb-4" aria-hidden="true"></i>
-                                    <blockquote class="card-text fs-5 mb-4 Poppins">
-                                        <p>"Bergabung dengan HIMSI adalah keputusan terbaik selama kuliah. Saya belajar banyak tentang leadership, teamwork, dan teknologi terkini melalui berbagai program mereka."</p>
-                                        <footer class="d-flex align-items-center justify-content-center">
-                                            <img src="{{ asset('asset/logo/himsi.png') }}" alt="" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
-                                            <div class="text-start">
-                                                <cite class="mb-0 fw-bold">Siti Nurhaliza</cite>
-                                                <small class="text-muted d-block">Alumni 2023 - Data Analyst</small>
-                                            </div>
-                                        </footer>
-                                    </blockquote>
+                    @empty
+                        <!-- Fallback jika tidak ada kesan pesan -->
+                        <div class="carousel-item active">
+                            <div class="col-md-8 mx-auto">
+                                <div class="card testimonial-card border-0 shadow-lg" style="background: rgba(255, 255, 255, 0.95); border-radius: 15px;">
+                                    <div class="card-body text-center p-5">
+                                        <i class="fas fa-quote-left fa-3x text-primary mb-4" aria-hidden="true"></i>
+                                        <blockquote class="card-text fs-5 mb-4 Poppins" style="color: #333;">
+                                            <p>"Belum ada testimoni yang tersedia. Jadilah yang pertama untuk berbagi pengalaman Anda bersama HIMSI!"</p>
+                                            <footer class="d-flex align-items-center justify-content-center">
+                                                <img src="{{ asset('asset/logo/himsi.png') }}" alt="HIMSI" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                <div class="text-start">
+                                                    <cite class="mb-0 fw-bold">HIMSI UBSI</cite>
+                                                    <small class="text-muted d-block">Himpunan Mahasiswa Sistem Informasi</small>
+                                                </div>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="carousel-item">
-                        <div class="col-md-8 mx-auto">
-                            <div class="card testimonial-card border-0">
-                                <div class="card-body text-center p-5">
-                                    <i class="fas fa-quote-left fa-3x text-primary mb-4" aria-hidden="true"></i>
-                                    <blockquote class="card-text fs-5 mb-4 Poppins">
-                                        <p>"HIMSI bukan hanya organisasi, tapi keluarga besar yang selalu mendukung. Networking yang dibangun di sini sangat berharga untuk masa depan karir."</p>
-                                        <footer class="d-flex align-items-center justify-content-center">
-                                            <img src="{{ asset('asset/logo/himsi.png') }}" alt="" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
-                                            <div class="text-start">
-                                                <cite class="mb-0 fw-bold">Budi Santoso</cite>
-                                                <small class="text-muted d-block">Mahasiswa Aktif - Ketua Divisi IT</small>
-                                            </div>
-                                        </footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
 
                 <!-- Carousel Navigation -->
