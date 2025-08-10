@@ -13,6 +13,7 @@ use Database\Seeders\AlbumSeeder;
 use Database\Seeders\KontenAlbumSeeder;
 use Database\Seeders\KategoriAcaraSeeder;
 use Database\Seeders\StrukturSeeder;
+use Database\Seeders\KesanPesanSeeder;
 use Database\Seeders\AcaraSeeder;
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
             AcaraSeeder::class,
             AlbumSeeder::class,
             KontenAlbumSeeder::class,    // Run this after AlbumSeeder
+            KesanPesanSeeder::class,
         ]);
 
     }
