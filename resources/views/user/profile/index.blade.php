@@ -43,53 +43,6 @@
     @endif
 
     <div class="row">
-        {{-- Card Informasi Pemutihan untuk SP 3 --}}
-        @if ($user->peringatan >= 3)
-            <div class="col-12 mb-4">
-                <div class="card border-danger">
-                    <div class="card-header bg-danger text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-heart me-2"></i>Informasi Pemutihan
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h6 class="text-danger">Selamat! Anda Berhak Mendapat Pemutihan!</h6>
-                                <p class="mb-3">Karena Anda telah mendapat SP {{ $user->peringatan }}, Anda berhak untuk:</p>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled">
-                                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Mengajukan pemutihan status</li>
-                                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Memperbaiki rekam jejak</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <ul class="list-unstyled">
-                                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Kesempatan kedua</li>
-                                            <li class="mb-1"><i class="fas fa-check text-success me-2"></i>Berkontribusi kembali</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="bg-light rounded p-4">
-                                    <i class="fas fa-undo-alt fa-3x text-primary mb-3"></i>
-                                    <div class="badge bg-success fs-6">Pemutihan Tersedia</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="alert alert-info mt-3 mb-0">
-                            <small>
-                                <i class="fas fa-info-circle me-1"></i>
-                                Hubungi pengurus untuk informasi lebih lanjut tentang proses pemutihan.
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-
         <div class="col-12">
         {{-- Form Update Profil --}}
         <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
