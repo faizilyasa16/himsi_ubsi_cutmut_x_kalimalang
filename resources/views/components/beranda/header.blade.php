@@ -53,9 +53,9 @@
                             <a class="nav-link active text-white" href="{{ route('beranda') }}">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-white" href="#" id="navbarProfile">
+                            <button class="nav-link text-white bg-transparent border-0" type="button" id="navbarProfile" data-bs-toggle="dropdown" aria-expanded="false">
                                 Profile <i class="bi bi-caret-down-fill dropdown-arrow"></i>
-                            </a>
+                            </button>
                             <ul class="dropdown-menu dropdown-menu-responsive" aria-labelledby="navbarProfile">
                                 <li><a class="dropdown-item mb-2" href="{{ route('about') }}">Tentang Kami</a></li>
                                 <li><a class="dropdown-item mb-2" href="{{ route('struktur') }}">Struktur Organisasi</a></li>
@@ -65,9 +65,9 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-white" href="#" id="navbarLayanan">
+                            <button class="nav-link text-white bg-transparent border-0" type="button" id="navbarLayanan" data-bs-toggle="dropdown" aria-expanded="false">
                                 Layanan <i class="bi bi-caret-down-fill dropdown-arrow"></i>
-                            </a>
+                            </button>
                             <ul class="dropdown-menu dropdown-menu-responsive" aria-labelledby="navbarLayanan">
                                 <li><a class="dropdown-item mb-2" href="{{ route('acara.index') }}">Acara</a></li>
                                 <li><a class="dropdown-item mb-2" href="{{ route('artikel') }}">Artikel</a></li>

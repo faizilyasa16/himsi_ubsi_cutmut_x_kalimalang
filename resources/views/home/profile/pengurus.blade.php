@@ -26,7 +26,7 @@
 <section class="container py-5">
     <div class="row g-4">
         @forelse ($pengurus as $user)
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
                     <div class="position-relative">
                         <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('asset/logo/himsi.png') }}" class="card-img-top" alt="{{ $user->name }}" style="height: 400px; object-fit: cover;">
@@ -58,6 +58,10 @@
             </div>
         @endforelse
 
+    </div>
+
+    <div class="my-4">
+        {{ $pengurus->links() }}
     </div>
 </section>
 @endsection

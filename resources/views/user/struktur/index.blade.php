@@ -1,7 +1,7 @@
 @extends('user.layout.index')
 @section('content')
     <main class="mt-5 container-fluid Spartan">
-        <h1>Struktur Organisasi</h1>
+        <h1 style="font-size: 2rem;">Struktur Organisasi</h1>
         <form action="{{ route('struktur.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if($struktur)

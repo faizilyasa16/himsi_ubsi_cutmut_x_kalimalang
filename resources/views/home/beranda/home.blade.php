@@ -7,7 +7,7 @@
             <!-- Static Text Content -->
             <div class="col-12 col-lg-6 order-2 order-lg-1">
                 <div class="carousel-content mt-4">
-                    <h1 class="carousel-title Spartan mb-3">Selamat Datang di HIMSI UBSI</h1>
+                    <h1 class="carousel-title Spartan mb-3" style="font-size: 2.5rem;">Selamat Datang di HIMSI UBSI</h1>
                     <h2 id="typing-subtitle" class="carousel-subtitle Poppins fw-bold"></h2>
                     <p class="carousel-description Poppins">
                         HIMSI (Himpunan Mahasiswa Sistem Informasi) UBSI Cut Mutia x Kalimalang adalah organisasi mahasiswa yang berfokus pada pengembangan

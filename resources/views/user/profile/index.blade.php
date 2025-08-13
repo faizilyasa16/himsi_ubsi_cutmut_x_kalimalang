@@ -2,7 +2,7 @@
 
 @section('content')
 <main class="mt-5 container-fluid Spartan">
-    <h1>Profile User</h1>
+    <h1 style="font-size: 2rem;">Profile User</h1>
     
     {{-- Alert untuk SP 3 --}}
     @if ($user->peringatan == 'sp_3')

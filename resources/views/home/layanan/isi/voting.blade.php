@@ -47,26 +47,34 @@
                     </div>
                 </div>
             @endforeach
-            <!-- Modal -->
-            <div class="modal fade" id="visiMisiModal-{{ $item->id }}" tabindex="-1" aria-labelledby="visiMisiModalLabel-{{ $item->id }}" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content rounded-3 shadow">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="visiMisiModalLabel-{{ $item->id }}">Visi dan Misi Kandidat</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            
+            <!-- Modal untuk setiap kandidat - dipindah keluar dari loop -->
+            @foreach ($pemilihan->kandidat as $item)
+                <div class="modal fade" id="visiMisiModal-{{ $item->id }}" tabindex="-1" aria-labelledby="visiMisiModalLabel-{{ $item->id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content rounded-3 shadow">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="visiMisiModalLabel-{{ $item->id }}">Visi dan Misi Kandidat</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+                            <div class="modal-body text-start">
+                                <div class="text-center mb-4">
+                                    <img src="{{ asset('storage/' . $item->poster) }}" alt="Poster Kandidat" 
+                                         class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
+                                    <h6 class="fw-bold mt-2">Kandidat No. {{ $item->no_urut }}</h6>
+                                </div>
+                                <h6 class="fw-bold">Visi:</h6>
+                                <p class="mb-3">{{ $item->visi ?? 'Belum diisi.' }}</p>
+                                <h6 class="fw-bold mt-3">Misi:</h6>
+                                <p class="mb-0">{{ $item->misi ?? 'Belum diisi.' }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body text-start">
-                    <h6 class="fw-bold">Visi:</h6>
-                    <p>{{ $item->visi ?? 'Belum diisi.' }}</p>
-                    <h6 class="fw-bold mt-3">Misi:</h6>
-                    <p>{{ $item->misi ?? 'Belum diisi.' }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                </div>
-                </div>
-            </div>
-            </div>
+            @endforeach
 
             <div class="col-12 mt-5">
                 <button class="btn btn-primary w-25 d-block mx-auto fs-5" data-bs-toggle="modal" data-bs-target="#votingChartModal">

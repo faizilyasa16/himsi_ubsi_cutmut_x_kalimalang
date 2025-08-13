@@ -26,19 +26,21 @@
     <div class="row mt-4">
         @foreach ($acara as $item)
             <div class="col-md-4 mb-4">
-                <div class="card h-100 rounded-top-5 himsi-program-card">
+                <div class="card h-100 rounded-top-5 himsi-program-card d-flex flex-column">
                     {{-- Bagian Status Dinamis --}}
                     <div class="w-100 rounded-5 himsi-card-status
                         {{ $item->status === 'open' ? 'bg-danger himsi-status-pending' : 'bg-success himsi-status-complete' }}">
-                        <h1 class="text-center text-white p-3 fw-bold Spartan">
+                        <h5 class="text-center text-white p-3 fw-bold Spartan mb-0">
                             {{ $item->status === 'open' ? 'Belum Dimulai' : 'Selesai' }}
-                        </h1>
+                        </h5>
                     </div>
 
-                    {{-- Bagian Konten --}}
-                    <div class="card-body Poppins himsi-card-body">
+                    {{-- Bagian Konten dengan flex-grow --}}
+                    <div class="card-body Poppins himsi-card-body d-flex flex-column flex-grow-1">
                         <h3 class="card-title Spartan fw-bold himsi-card-title">{{ $item->nama }}</h3>
-                        <div class="mt-3">
+                        
+                        {{-- Konten utama dengan flex-grow --}}
+                        <div class="mt-3 flex-grow-1">
                             <p class="card-text mb-2">
                                 <i class="bi bi-geo-alt-fill text-danger me-2"></i>
                                 <strong>Lokasi:</strong> <span class="text-muted">{{ $item->lokasi }}</span>
@@ -56,9 +58,13 @@
                                 <span class="text-muted">{{ Str::limit(strip_tags($item->deskripsi), 100) }}</span>
                             </p>
                         </div>
-                        <a href="{{ route('acara.show', $item->slug) }}" class="btn btn-primary mt-3 himsi-btn-detail w-100 fw-bold">
-                            <i class="bi bi-eye-fill me-2"></i>Detail Program
-                        </a>
+                        
+                        {{-- Tombol selalu di bawah --}}
+                        <div class="mt-auto">
+                            <a href="{{ route('acara.show', $item->slug) }}" class="btn btn-primary himsi-btn-detail w-100 fw-bold">
+                                <i class="bi bi-eye-fill me-2"></i>Detail Program
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

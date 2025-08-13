@@ -24,12 +24,12 @@
 <section class="container-1500 my-5">
     <div class="my-5 text-center">
         @if ($struktur != null)
-            <img src="{{ asset('storage/'.$struktur->konten) }}" alt="" class="img-fluid rounded-3 shadow-sm mx-auto d-block" style="max-width: 100%; height: 1000px; object-fit: cover;">
+            <img src="{{ asset('storage/'.$struktur->konten) }}" alt="" class="img-fluid rounded-3 shadow-sm mx-auto d-block" style="max-width: 100%; height: auto; object-fit: cover;">
         @endif
     </div>
 
     <div class="row text-center Poppins mt-4">
-        <h1 class="fw-bold mb-5">Divisi HIMSI UBSI</h1>
+        <h1 class="fw-bold mb-5" style="font-size: 2.25rem;">Divisi HIMSI UBSI</h1>
         <div class="col-md-3 border-end">
             <i class="bi bi-people fs-1"></i>
             <h5 class="fw-bold">RSDM</h5>
