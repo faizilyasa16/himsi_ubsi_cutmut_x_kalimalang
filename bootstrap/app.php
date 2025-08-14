@@ -23,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'isAnggota' => IsAnggota::class,
             'isRSDM' => IsRSDM::class,
             'isAnggotaBPH' => IsAnggotaBPH::class,
+            'loginThrottle' => \App\Http\Middleware\LoginThrottle::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

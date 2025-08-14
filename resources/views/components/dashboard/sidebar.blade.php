@@ -53,6 +53,12 @@
                         <span class="flex-grow-1">Struktur Organisasi</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('join-himsi.index') }}" class="nav-link d-flex align-items-center {{ request()->routeIs('join-himsi.*') ? 'active text-white bg-primary' : 'text-light' }}">
+                        <i class="bi bi-person-plus me-3"></i>
+                        <span class="flex-grow-1">Join Himsi</span>
+                    </a>
+                </li>
                 <!-- Pemilu admin menu -->
                 <li class="nav-item">
                     <a href="#" class="nav-link d-flex align-items-center {{ request()->routeIs('pemilihan.*') || request()->routeIs('kandidat.*') ? 'active text-white bg-primary' : 'text-light' }} collapsed" data-bs-toggle="collapse" data-bs-target="#pemiluMenu" role="button">

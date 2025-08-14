@@ -67,7 +67,7 @@ class ArtikelController extends Controller
         $validated = $request->validate($rules);
 
         // Buat slug
-        $validated['slug'] = Str::slug($validated['judul']);
+        $validated['slug'] = $this->generateUniqueSlug($validated['judul']);
         $validated['user_id'] = $user->id;
 
         // Set status ke 'draft' jika anggota
@@ -91,21 +91,21 @@ class ArtikelController extends Controller
     /**
      * Display the specified resource.
      */
-public function home(Request $request)
-{
-    $query = Artikel::where('status', 'published');
+    public function home(Request $request)
+    {
+        $query = Artikel::where('status', 'published');
 
-    if ($request->has('search') && $request->search != '') {
-        $search = $request->search;
-        $query->where(function($q) use ($search) {
-            $q->where('judul', 'like', "%$search%")
-              ->orWhere('deskripsi', 'like', "%$search%");
-        });
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('judul', 'like', "%$search%")
+                ->orWhere('deskripsi', 'like', "%$search%");
+            });
+        }
+
+        $artikel = $query->latest()->paginate(6);
+        return view('home.layanan.artikel', compact('artikel'));
     }
-
-    $artikel = $query->get();
-    return view('home.layanan.artikel', compact('artikel'));
-}
 
     public function show(string $slug)
     {

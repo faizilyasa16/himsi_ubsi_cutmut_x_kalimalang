@@ -62,13 +62,77 @@
                 </div>
             @empty
                 <div class="col-12 text-center">
-                    <p class="text-muted Poppins">Belum ada artikel yang tersedia.</p>
+                    @if(request()->get('search'))
+                        <div class="py-5">
+                            <i class="bi bi-search fs-1 text-muted mb-3"></i>
+                            <h4 class="text-muted Spartan">Artikel tidak ditemukan</h4>
+                        </div>
+                    @else
+                        <div class="py-5">
+                            <i class="bi bi-journal-text fs-1 text-muted mb-3"></i>
+                            <h4 class="text-muted Spartan">Belum ada artikel</h4>
+                            <p class="text-muted Poppins">Belum ada artikel yang tersedia saat ini.</p>
+                        </div>
+                    @endif
                 </div>
             @endforelse
-
+        </div>
+            <div class="my-4">
+                {{ $artikel->links() }}
+            </div>
         </div>
     </div>
 </main>
+
+<style>
+    /* Empty state styling */
+    .col-12.text-center .py-5 {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 15px;
+        margin: 2rem 0;
+        border: 1px solid #dee2e6;
+    }
+    
+    .col-12.text-center .py-5 i {
+        color: #6c757d !important;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    
+    .col-12.text-center .py-5 h4 {
+        color: #495057 !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .col-12.text-center .py-5 p {
+        color: #6c757d !important;
+        font-size: 1.1rem;
+    }
+    
+    .col-12.text-center .py-5 strong {
+        color: #00008B;
+        background-color: rgba(0, 0, 139, 0.1);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+    
+    .col-12.text-center .btn-primary {
+        background-color: #00008B;
+        border-color: #00008B;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .col-12.text-center .btn-primary:hover {
+        background-color: #4169E1;
+        border-color: #4169E1;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 139, 0.3);
+    }
+</style>
+
 @endsection
 @section('scripts')
     <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>

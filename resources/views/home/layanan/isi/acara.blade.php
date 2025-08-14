@@ -113,7 +113,7 @@
                                 @if ($acara->link_wa)
                                 <div class="col-md-6 mb-3">
                                     <div class="text-center">
-                                        <a href="{{ $acara->link_wa }}" target="_blank" class="btn btn-success btn-lg">
+                                        <a href="{{ $acara->link_wa }}" target="_blank" class="btn btn-success-cari">
                                             <i class="bi bi-whatsapp me-2"></i>Join WhatsApp Group
                                         </a>
                                     </div>
@@ -122,7 +122,7 @@
                                 @if($waUrl)
                                 <div class="col-md-6 mb-3">
                                     <div class="text-center">
-                                        <a href="{{ $waUrl }}" target="_blank" class="btn btn-success btn-lg">
+                                        <a href="{{ $waUrl }}" target="_blank" class="btn btn-success-cari">
                                             <i class="bi bi-whatsapp me-2"></i>Tanya Detail Acara
                                         </a>
                                     </div>

@@ -8,7 +8,7 @@
                     <i class="bi bi-people-fill display-5 mb-3"></i>
                     <h2 class="card-title mb-2">Anggota</h2>
                     <div class="card-text">
-                        <span class="fs-3">{{ $users }}</span>
+                        <span class="fs-3 fw-bold">{{ $users }}</span>
                     </div>
                 </div>
             </div>
@@ -17,9 +17,9 @@
             <div class="card shadow-sm border-start border-5 border-secondary text-center">
                 <div class="card-body">
                     <i class="bi bi-diagram-3-fill display-5 mb-3"></i>
-                    <h2 class="card-title mb-2">Divisi</h2>
+                    <h2 class="card-title mb-2 ">Divisi</h2>
                     <div class="card-text">
-                        <span class="fs-3">
+                        <span class="fs-3 fw-bold">
                             6
                         </span>
                     </div>
@@ -32,7 +32,7 @@
                     <i class="bi bi-person-plus-fill display-5 mb-3"></i>
                     <h2 class="card-title mb-2">Bergabung</h2>
                     <div class="card-text">
-                        <span class="fs-3">{{ $anggota }}</span>
+                        <span class="fs-3 fw-bold">{{ $anggota }}</span>
                     </div>
                 </div>
             </div>

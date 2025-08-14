@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('home/css/trix.css') }}">
 @endsection
 @section('content')
-<main class="mt-5 container-fluid Spartan">
+<main class="mt-5 container-fluid ">
     <h1>Tambah Artikel</h1>
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -19,7 +19,7 @@
 
         {{-- Judul Artikel --}}
         <div class="row">
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12 mb-3 Spartan">
                 <label for="judul" class="form-label">Judul Artikel</label>
                 <input type="text" name="judul" id="judul" class="form-control" value="{{ old('judul') }}" required>
             </div>
@@ -27,7 +27,7 @@
 
         {{-- Kategori dan Status --}}
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 Spartan">
                 <label for="kategori" class="form-label">Kategori</label>
                 <select name="kategori" id="kategori" class="form-select" required>
                     <option value="" disabled selected>Pilih Kategori</option>
@@ -38,7 +38,7 @@
                 </select>
             </div>
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'bph')
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3 Spartan">
                     <label for="status" class="form-label">Status</label>
                     <select name="status" id="status" class="form-select" required>
                         <option value="" disabled selected>Pilih Status</option>
@@ -51,7 +51,7 @@
         </div>
 
         {{-- Konten (Foto) --}}
-        <div class="mb-3">
+        <div class="mb-3 Spartan">
             <small class="form-text text-muted">Format: JPG, PNG, maksimal 2MB.</small>
             <label for="konten" class="form-label">Konten (Foto)</label>
             <input type="file" name="konten" id="konten" class="form-control">
@@ -61,7 +61,7 @@
 
         {{-- Deskripsi --}}
         <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <label for="deskripsi" class="form-label Spartan">Deskripsi</label>
             <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi') }}">
             <trix-editor input="deskripsi"></trix-editor>
         </div>

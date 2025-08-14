@@ -34,25 +34,47 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div> 
                                 @elseif (session('error'))
-                                    <div class="alert alert-danger">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         {{ session('error') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                @endif
+                                
+                                <!-- Rate limit warning -->
+                                @if ($errors->has('throttle'))
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-shield-exclamation me-2"></i>
+                                        <strong>Peringatan Keamanan:</strong> {{ $errors->first('throttle') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 @endif
                                 <form action="{{ route('login.store') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="nim" class="form-label">NIM</label>
-                                        <input type="text" class="form-control" id="nim" name="nim" placeholder="Enter your NIM" required>
+                                        <input type="text" class="form-control" id="nim" name="nim" 
+                                               placeholder="Enter your NIM" value="{{ old('nim') }}" 
+                                               maxlength="20" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group">
-                                            <input type="password" class="form-control password-field" id="password" name="password" placeholder="Enter your password" required>
+                                            <input type="password" class="form-control password-field" 
+                                                   id="password" name="password" 
+                                                   placeholder="Enter your password" 
+                                                   maxlength="50" required>
                                             <span class="input-group-text">
                                                 <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
                                             </span>
                                         </div>
                                     </div>
+                                    
+                                    <!-- Honeypot field untuk deteksi bot -->
+                                    <div style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;">
+                                        <label for="website">Website</label>
+                                        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                                    </div>
+                                    
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-login">Login</button>
                                     </div>

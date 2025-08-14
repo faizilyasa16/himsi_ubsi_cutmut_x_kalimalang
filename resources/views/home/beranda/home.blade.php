@@ -16,7 +16,7 @@
                     </p>
                     <div class="d-flex align-items-center gap-2 gap-md-3 justify-content-center justify-content-lg-start Poppins">
                         <a href="{{ route('about') }}" class="btn btn-cari btn-lg " aria-label="Cari tahu tentang HIMSI">Cari Tahu</a>
-                        <a href="#formulir-pendaftaran" class="btn btn-lg btn-join" aria-label="Gabung dengan HIMSI">Gabung</a>
+                        <a href="{{ $join->link }}" class="btn btn-lg btn-join" aria-label="Gabung dengan HIMSI">Gabung</a>
                     </div>
                 </div>
             </div>

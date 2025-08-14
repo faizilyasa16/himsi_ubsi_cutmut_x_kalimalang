@@ -15,13 +15,13 @@ class DashboardController extends Controller
      */
     public function index(KegiatanAcaraTahunan $kegiatanChart, PenggunaPerTahun $penggunaChart)
     {
-        $users = User::where('role', ['anggota', 'bph'])->count();
+        $users = User::whereIn('role', ['anggota', 'bph'])->count();
 
         // === Grafik chart tetap ===
         $kegiatanChart = $kegiatanChart->build();
         $penggunaChart = $penggunaChart->build();
 
-        $anggota = User::where('role', ['anggota', 'bph','alumni'])->count();
+        $anggota = User::whereIn('role', ['anggota', 'bph','alumni'])->count();
 
         return view('user.dashboard.index', compact(
             'kegiatanChart',

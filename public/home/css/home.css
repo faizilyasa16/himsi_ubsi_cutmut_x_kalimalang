@@ -211,6 +211,25 @@ section h1 {
 }
 
 /* Buttons */
+.btn-success-cari {
+    background: #28a745; /* hijau success */
+    border-color: #28a745;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-success-cari:hover {
+    background: #218838; /* hijau lebih gelap saat hover */
+    border-color: #218838;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
 .btn-cari {
     background: #00008B;
     border-color: #00008B;

@@ -22,6 +22,7 @@ use App\Http\Controllers\Gallery\GalleryController;
 use App\Http\Controllers\ProfileHimsiController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\StrukturController;
+use App\Http\Controllers\JoinHimsiController;
 
 Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 Route::get('/pengurus',[ProfileHimsiController::class, 'pengurus'])->name('pengurus');
@@ -48,7 +49,7 @@ Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel
 Route::resource('acara', AcaraController::class)->only(['index', 'show',]);
 Route::get('/acara/{slug}', [AcaraController::class, 'store'])->name('acara.store');
 Route::get('/login',[LoginController::class,'show'])->name('login');
-Route::post('/login',[LoginController::class,'store'])->name('login.store');
+Route::post('/login',[LoginController::class,'store'])->middleware('loginThrottle')->name('login.store');
 
 Route::prefix('dashboard')->middleware('isLoggedIn')->group(function () {
     Route::middleware(['auth', 'isAdmin'])->group(function () {
@@ -59,6 +60,7 @@ Route::prefix('dashboard')->middleware('isLoggedIn')->group(function () {
         // pemilu kandidat routes
         Route::resource('kandidat', KandidatController::class);
         Route::resource('struktur', StrukturController::class);
+        Route::resource('join-himsi', JoinHimsiController::class); 
     });
     Route::middleware(['auth', 'isAnggota'])->group(function () {
         // artikel routes

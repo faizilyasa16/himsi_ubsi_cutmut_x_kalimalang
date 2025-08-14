@@ -9,12 +9,14 @@ use App\Models\Artikel;
 use App\Models\Album;
 use App\Models\KesanPesan;
 use App\Models\KontenAlbum;
+use App\Models\JoinHimsi;
 
 class BerandaController extends Controller
 {
 
     public function index()
     {
+        $join = JoinHimsi::first();
         $galeri = KontenAlbum::inRandomOrder()->take(3)->get();
         $acara = Acara::latest()->take(3)->get();
         $anggota = User::whereIn('role', ['anggota', 'bph', 'alumni'])->count();
@@ -23,7 +25,7 @@ class BerandaController extends Controller
         // Ambil artikel yang statusnya open
         $artikels = Artikel::whereIn('status', ['open','closed'])->latest()->take(4)->get();
         $kesanPesan = KesanPesan::inRandomOrder()->whereIn('status', ['active'])->take(6)->get();
-        return view('home.beranda.home', compact('acara', 'anggota', 'users', 'artikels', 'galeri', 'kesanPesan'));
+        return view('home.beranda.home', compact('acara', 'anggota', 'users', 'artikels', 'galeri', 'kesanPesan', 'join'));
     }
 
 }

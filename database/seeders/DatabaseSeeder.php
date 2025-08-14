@@ -15,6 +15,7 @@ use Database\Seeders\KategoriAcaraSeeder;
 use Database\Seeders\StrukturSeeder;
 use Database\Seeders\KesanPesanSeeder;
 use Database\Seeders\AcaraSeeder;
+use Database\Seeders\JoinHimsiSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             AlbumSeeder::class,
             KontenAlbumSeeder::class,    // Run this after AlbumSeeder
             KesanPesanSeeder::class,
+            JoinHimsiSeeder::class, // Ensure this is called last
         ]);
 
     }

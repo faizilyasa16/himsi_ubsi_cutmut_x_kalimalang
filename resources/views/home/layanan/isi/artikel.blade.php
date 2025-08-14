@@ -50,7 +50,7 @@
                 <!-- Article Content -->
                 <div class="p-4 p-md-5">
                     <div class="fs-5 lh-lg text-dark Poppins">
-                        {!! strip_tags($artikel->deskripsi) !!}
+                        {!! $artikel->deskripsi !!}
                     </div>
                 </div>
                 

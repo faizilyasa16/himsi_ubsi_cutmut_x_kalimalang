@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<main class="mt-5 container-fluid Spartan">
+<main class="mt-5 container-fluid ">
     <h1>Edit Artikel</h1>
 
     @if (session('error_message'))
@@ -25,7 +25,7 @@
 
         {{-- Judul Artikel --}}
         <div class="row">
-            <div class="col-md-12 mb-3">
+            <div class="col-md-12 mb-3 Spartan">
                 <label for="judul" class="form-label">Judul Artikel</label>
                 <input type="text" name="judul" id="judul" class="form-control" value="{{ old('judul', $artikel->judul) }}" required>
             </div>
@@ -33,7 +33,7 @@
 
         {{-- Kategori dan Status --}}
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 Spartan">
                 <label for="kategori" class="form-label">Kategori</label>
                 <select name="kategori" id="kategori" class="form-select" required>
                     <option value="pre-event" {{ old('kategori', $artikel->kategori) == 'pre-event' ? 'selected' : '' }}>Pre-Event</option>
@@ -43,7 +43,7 @@
                 </select>
             </div>
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'bph')
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-3 Spartan">
                     <label for="status" class="form-label">Status</label>
                     <select name="status" id="status" class="form-select" required>
                         <option value="draft" {{ old('status', $artikel->status) == 'draft' ? 'selected' : '' }}>Draft</option>
@@ -58,11 +58,11 @@
 
         {{-- Konten (Foto) --}}
         <div class="mb-3">
-            <label for="konten" class="form-label">Konten (Foto)</label>
+            <label for="konten" class="form-label Spartan">Konten (Foto)</label>
             <input type="file" name="konten" id="konten" class="form-control" accept="image/*">
             
             @if ($artikel->konten)
-                <small class="text-muted d-block">Foto saat ini:</small>
+                <small class="text-muted d-block Spartan">Foto saat ini:</small>
                 <img src="{{ asset('storage/' . $artikel->konten) }}" alt="Foto Artikel" class="img-thumbnail" style="max-width: 200px;">
             @endif
         </div>
@@ -70,7 +70,7 @@
 
         {{-- Deskripsi --}}
         <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi</label>
+            <label for="deskripsi" class="form-label Spartan">Deskripsi</label>
             <input id="deskripsi" type="hidden" name="deskripsi" value="{{ old('deskripsi', $artikel->deskripsi) }}">
             <trix-editor input="deskripsi"></trix-editor>
         </div>

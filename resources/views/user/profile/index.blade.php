@@ -54,51 +54,6 @@
                 <input type="email" id="email" name="email" class="form-control" value="{{ $user->email }}" required>
             </div>
             
-            {{-- Status Peringatan --}}
-            <div class="mt-3">
-                <label for="peringatan" class="form-label">Status Peringatan</label>
-                <div class="input-group">
-                    <input type="text" id="peringatan" class="form-control 
-                        @if($user->peringatan >= 3) border-danger text-danger fw-bold 
-                        @elseif($user->peringatan >= 2) border-warning text-warning fw-bold
-                        @else border-success text-success @endif" 
-                        value="SP {{ $user->peringatan }}" readonly>
-                    <span class="input-group-text 
-                        @if($user->peringatan >= 3) bg-danger text-white 
-                        @elseif($user->peringatan >= 2) bg-warning text-dark
-                        @else bg-success text-white @endif">
-                        @if($user->peringatan >= 3)
-                            <i class="fas fa-exclamation-triangle"></i>
-                        @elseif($user->peringatan >= 2)
-                            <i class="fas fa-exclamation-circle"></i>
-                        @else
-                            <i class="fas fa-check-circle"></i>
-                        @endif
-                    </span>
-                </div>
-                @if($user->peringatan >= 3)
-                    <div class="alert alert-danger mt-2 py-2">
-                        <small class="mb-0">
-                            <i class="fas fa-info-circle me-1"></i>
-                            <strong>Anda berhak mengajukan pemutihan untuk memperbaiki status keanggotaan.</strong>
-                        </small>
-                    </div>
-                @elseif($user->peringatan >= 2)
-                    <div class="alert alert-warning mt-2 py-2">
-                        <small class="mb-0">
-                            <i class="fas fa-exclamation-triangle me-1"></i>
-                            Hati-hati, satu peringatan lagi akan mencapai SP 3.
-                        </small>
-                    </div>
-                @else
-                    <div class="alert alert-success mt-2 py-2">
-                        <small class="mb-0">
-                            <i class="fas fa-check me-1"></i>
-                            Status keanggotaan Anda baik.
-                        </small>
-                    </div>
-                @endif
-            </div>
             
             <div class="mb-3 mt-3">
                 <label for="photo" class="form-label">Photo</label>
