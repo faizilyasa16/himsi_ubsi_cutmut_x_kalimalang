@@ -245,14 +245,18 @@
                         @endif
                     @empty
                         <div class="col-12 text-center py-5">
-                            <p class="fs-5 text-muted">Belum ada artikel yang tersedia.</p>
+                            <div class="py-5">
+                                <i class="bi bi-journal-text fs-1 text-muted mb-3"></i>
+                                <h4 class="text-muted Spartan">Belum ada artikel</h4>
+                                <p class="text-muted Poppins">Belum ada artikel yang tersedia saat ini.</p>
+                            </div>
                         </div>
                     @endforelse
             </div>
         </div>
         <div class="col-12" style="margin-bottom: 100px; ">
-            <div class="d-flex justify-content-start justify-content-center justify-content-md-start align-items-center mb-4">
-                <h2 class="mb-1 Spartan text-center text-md-start">Tim Pengembang Website</h2>
+            <div class="d-flex justify-content-start justify-content-center justify-content-md-start align-items-center mb-4 px-3">
+                <h3 class="mb-1 Spartan text-center text-md-start">Tim Pengembang Website</h3>
             </div>
             <div class="carousel-wrapper">
                 <button class="carousel-btn" id="prevBtn" aria-label="Previous slide">

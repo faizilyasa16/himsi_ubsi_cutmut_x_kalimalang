@@ -40,13 +40,9 @@
                                     <a href="{{ route('konten-gallery.edit', $konten->id) }}" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </a>
-                                    <form action="{{ route('konten-gallery.destroy', $konten->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus album ini?')">
-                                            <i class="bi bi-trash"></i> Hapus
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('konten-gallery.destroy', $konten->id) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">
+                                        <i class="bi bi-trash"></i> Hapus
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

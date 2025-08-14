@@ -18,19 +18,28 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <i class="bi bi-calendar-event-fill text-primary me-2"></i>
-                                        @if ($item->waktu_selesai && date('Y-m-d', strtotime($item->waktu_mulai)) != date('Y-m-d', strtotime($item->waktu_selesai)))
-                                            {{ date('d F Y', strtotime($item->waktu_mulai)) }} - {{ date('d F Y', strtotime($item->waktu_selesai)) }}
+                                        @if ($item->tanggal_selesai && $item->tanggal_mulai != $item->tanggal_selesai)
+                                            {{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d F Y') }} - {{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('d F Y') }}
                                         @else
-                                            {{ date('d F Y', strtotime($item->waktu_mulai)) }}
+                                            {{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('d F Y') }}
                                         @endif
                                     </li>
-                                    <li>
-                                        <i class="bi bi-clock text-primary me-2"></i>
-                                        {{ \Carbon\Carbon::parse($item->waktu_mulai)->format('H:i') }} - 
-                                        {{ \Carbon\Carbon::parse($item->waktu_selesai)->format('H:i') }} WIB
-                                    </li>
+                                    @if ($item->waktu_mulai || $item->waktu_selesai)
+                                        <li>
+                                            <i class="bi bi-clock text-primary me-2"></i>
+                                            @if ($item->waktu_mulai && $item->waktu_selesai)
+                                                {{ $item->waktu_mulai }} - {{ $item->waktu_selesai }} WIB
+                                            @elseif ($item->waktu_mulai)
+                                                {{ $item->waktu_mulai }} WIB
+                                            @elseif ($item->waktu_selesai)
+                                                Sampai {{ $item->waktu_selesai }} WIB
+                                            @endif
+                                        </li>
+                                    @endif
                                     <li><i class="bi bi-geo-alt-fill text-primary me-2"></i>{{ $item->lokasi }}</li>
-                                    <li><i class="bi bi-people-fill text-primary me-2"></i>{{ $item->kuota }} Peserta</li>
+                                    @if($item->kuota)
+                                        <li><i class="bi bi-people-fill text-primary me-2"></i>{{ $item->kuota }} Peserta</li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>

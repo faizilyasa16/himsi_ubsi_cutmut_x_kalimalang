@@ -45,8 +45,10 @@ Wajib untuk diikuti untuk teman-teman yang mau eksplor hal baru!, khususnya faku
             'kuota' => 100,
             'status' => 'closed',
             'slug' => 'campus-meetup-himsi-study-club-2025-x-allstars-academy-indonesia',
-            'waktu_mulai' => '2025-06-28 13:00:00',
-            'waktu_selesai' => '2025-06-28 16:00:00',
+            'tanggal_mulai' => '2025-06-28',
+            'waktu_mulai' => '13:00:00',
+            'tanggal_selesai' => '2025-06-28',
+            'waktu_selesai' => '16:00:00',
             'link_pendaftaran' => 'https://lu.ma/e7bwnown',
             'biaya' => 'gratis',
             'payment_method' => null,
@@ -84,8 +86,10 @@ Mari bersama-sama menebar kebaikan dan keberkahan di bulan yang penuh rahmat ini
             'kuota' => null, // Open donation, no participant limit
             'status' => 'closed',
             'slug' => 'berbagi-kasih-peduli-ramadhan-2025',
-            'waktu_mulai' => '2025-03-08 00:00:00', // Periode donasi dimulai
-            'waktu_selesai' => '2025-03-20 23:59:59', // Sampai acara selesai
+            'tanggal_mulai' => '2025-03-08',
+            'waktu_mulai' => null, // Donasi bisa kapan saja
+            'tanggal_selesai' => '2025-03-20',
+            'waktu_selesai' => null, // Sampai akhir hari
             'link_pendaftaran' => null, // No registration needed for donation
             'link_wa' => null,
             'biaya' => 'donasi sukarela',

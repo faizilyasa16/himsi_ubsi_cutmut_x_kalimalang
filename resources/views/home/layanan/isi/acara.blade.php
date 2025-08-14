@@ -31,14 +31,24 @@
                                 <div>
                                     <h6 class="mb-1 text-muted fw-semibold">Tanggal & Waktu</h6>
                                     <p class="mb-0 fw-bold">
-                                        {{ \Carbon\Carbon::parse($acara->waktu_mulai)->isoFormat('dddd, D MMMM Y') }}
-                                    </p>
-                                    <p class="mb-0 text-muted">
-                                        {{ \Carbon\Carbon::parse($acara->waktu_mulai)->format('H:i') }} WIB
-                                        @if($acara->waktu_selesai)
-                                            - {{ \Carbon\Carbon::parse($acara->waktu_selesai)->format('H:i') }} WIB
+                                        @if ($acara->tanggal_selesai && $acara->tanggal_mulai != $acara->tanggal_selesai)
+                                            {{ \Carbon\Carbon::parse($acara->tanggal_mulai)->isoFormat('D MMMM Y') }} - 
+                                            {{ \Carbon\Carbon::parse($acara->tanggal_selesai)->isoFormat('D MMMM Y') }}
+                                        @else
+                                            {{ \Carbon\Carbon::parse($acara->tanggal_mulai)->isoFormat('dddd, D MMMM Y') }}
                                         @endif
                                     </p>
+                                    @if ($acara->waktu_mulai || $acara->waktu_selesai)
+                                        <p class="mb-0 text-muted">
+                                            @if ($acara->waktu_mulai && $acara->waktu_selesai)
+                                                {{ $acara->waktu_mulai }} - {{ $acara->waktu_selesai }} WIB
+                                            @elseif ($acara->waktu_mulai)
+                                                {{ $acara->waktu_mulai }} WIB
+                                            @elseif ($acara->waktu_selesai)
+                                                Sampai {{ $acara->waktu_selesai }} WIB
+                                            @endif
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

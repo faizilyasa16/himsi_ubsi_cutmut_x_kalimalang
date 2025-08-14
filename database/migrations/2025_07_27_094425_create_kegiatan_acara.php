@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('kuota', 10)->nullable();
             $table->enum('status', ['draft', 'open', 'closed'])->default('draft');
             $table->string('slug', 200)->unique();
-            $table->dateTime('waktu_mulai');
-            $table->dateTime('waktu_selesai')->nullable();
+            $table->date('tanggal_mulai');
+            $table->time('waktu_mulai')->nullable();
+            $table->date('tanggal_selesai')->nullable();
+            $table->time('waktu_selesai')->nullable();
             $table->string('link_pendaftaran', 200)->nullable();
             $table->string('link_wa', 200)->nullable();
             $table->string('biaya', 100)->nullable();

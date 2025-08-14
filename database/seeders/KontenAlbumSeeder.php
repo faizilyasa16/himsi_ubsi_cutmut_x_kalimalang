@@ -136,13 +136,7 @@ class KontenAlbumSeeder extends Seeder
                     KontenAlbum::create([
                         'album_id' => $album->id,
                         'foto' => 'foto/sertijab5.jpeg',
-                    ]);
-                    
-                    KontenAlbum::create([
-                        'album_id' => $album->id,
-                        'foto' => 'foto/sertijab6.jpeg',
-                    ]);
-                    
+                    ]);                
                     KontenAlbum::create([
                         'album_id' => $album->id,
                         'foto' => 'foto/sertijab7.jpeg',

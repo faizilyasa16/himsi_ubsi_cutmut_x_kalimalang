@@ -22,8 +22,7 @@
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Lokasi</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Waktu Mulai</th>
+                            <th>Tanggal & Waktu</th>
                             <th>Status</th>
                             <th>Kuota</th>
                             <th>Poster</th>
@@ -37,8 +36,12 @@
                                 <td>{{ $acara->nama }}</td>
                                 <td>{{ $acara->kategori->nama ?? 'Tidak ada kategori' }}</td>
                                 <td>{{ $acara->lokasi }}</td>
-                                <td>{{ \Carbon\Carbon::parse($acara->tgl_mulai)->format('d-m-Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($acara->waktu_mulai)->format('H:i') }}</td>
+                                <td>
+                                    {{ $acara->tanggal_mulai ? \Carbon\Carbon::parse($acara->tanggal_mulai)->format('d-m-Y') : '-' }}
+                                    @if($acara->waktu_mulai)
+                                        <br><small class="text-muted">{{ $acara->waktu_mulai }}</small>
+                                    @endif
+                                </td>
                                 <td>{{ $acara->status }}</td>
                                 <td>{{ $acara->kuota }}</td>
                                 <td>

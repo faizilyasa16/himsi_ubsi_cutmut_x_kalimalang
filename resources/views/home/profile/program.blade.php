@@ -30,9 +30,9 @@
                     {{-- Bagian Status Dinamis --}}
                     <div class="w-100 rounded-5 himsi-card-status
                         {{ $item->status === 'open' ? 'bg-danger himsi-status-pending' : 'bg-success himsi-status-complete' }}">
-                        <h5 class="text-center text-white p-3 fw-bold Spartan mb-0">
+                        <h1 class="text-center text-white p-3 fw-bold Spartan mb-0">
                             {{ $item->status === 'open' ? 'Belum Dimulai' : 'Selesai' }}
-                        </h5>
+                        </h1>
                     </div>
 
                     {{-- Bagian Konten dengan flex-grow --}}

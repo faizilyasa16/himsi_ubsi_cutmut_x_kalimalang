@@ -61,7 +61,13 @@
                                     <label for="contact_person" class="form-label">Contact Person</label>
                                     <input type="text" name="contact_person" id="contact_person" value="{{ old('contact_person') }}" class="form-control">
                                 </div>
-
+                                <div class="mb-3 d-flex flex-column">
+                                    <label for="biaya" class="form-label">Biaya</label>
+                                    <small class="form-text text-muted">
+                                        *Masukkan angka (contoh: 50000) atau ketik "Gratis" / "Donasi Sukarela"
+                                    </small>
+                                    <input type="text" name="biaya" id="biaya" value="{{ old('biaya', $acara->biaya ?? '') }}" class="form-control">
+                                </div>
                             </div>
 
                             <div class="col-md-6">
@@ -78,14 +84,34 @@
                                         <option value="closed" {{ old('status') == 'closed' ? 'selected' : '' }}>Closed</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
-                                    <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" value="{{ old('waktu_mulai') }}" class="form-control" required>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" value="{{ old('tanggal_mulai') }}" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
+                                            <input type="time" name="waktu_mulai" id="waktu_mulai" value="{{ old('waktu_mulai') }}" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="waktu_selesai" class="form-label">Waktu Selesai</label>
-                                    <input type="datetime-local" name="waktu_selesai" id="waktu_selesai" value="{{ old('waktu_selesai') }}" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="tanggal_selesai" class="form-label">Tanggal Selesai</label>
+                                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" value="{{ old('tanggal_selesai') }}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="waktu_selesai" class="form-label">Waktu Selesai</label>
+                                            <input type="time" name="waktu_selesai" id="waktu_selesai" value="{{ old('waktu_selesai') }}" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
@@ -95,6 +121,7 @@
                                     <span class="form-text text-muted">Poster Preview:</span>
                                     <img id="preview" src="#" alt="Preview Poster" style="max-width: 200px; display: none; margin-top: 10px;">
                                 </div>
+
                             </div>
 
                             <div class="col-12">
@@ -125,11 +152,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="biaya" class="form-label">Biaya</label>
-                                    <input type="text" name="biaya" id="biaya" value="{{ old('biaya') }}" class="form-control">
-                                </div>
-
-                                <div class="mb-3">
                                     <label for="payment_method" class="form-label">Metode Pembayaran</label>
                                     <input type="text" name="payment_method" id="payment_method" value="{{ old('payment_method') }}" class="form-control">
                                 </div>
@@ -141,12 +163,14 @@
                                     <input type="text" name="payment_number" id="payment_number" value="{{ old('payment_number') }}" class="form-control">
                                 </div>
 
+
+                            </div>
+                            <div class="col-12">
                                 <div class="mb-3">
                                     <label for="payment_name" class="form-label">Nama Penerima</label>
                                     <input type="text" name="payment_name" id="payment_name" value="{{ old('payment_name') }}" class="form-control">
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

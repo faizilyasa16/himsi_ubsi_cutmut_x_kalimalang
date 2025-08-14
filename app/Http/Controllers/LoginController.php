@@ -37,30 +37,30 @@ class LoginController extends Controller
             'password' => 'required|string|max:50'
         ]);
 
-        // Rate limiting per IP - lebih ketat untuk mencegah brute force dengan NIM berbeda
+        // Rate limiting per IP - 3x salah = block 1 menit
         $ipKey = 'login_ip:' . $request->ip();
-        if (RateLimiter::tooManyAttempts($ipKey, 3)) { // Hanya 3 attempts per 10 minutes
-            $minutes = ceil(RateLimiter::availableIn($ipKey) / 60);
+        if (RateLimiter::tooManyAttempts($ipKey, 3)) { // 3 attempts per 1 minute
+            $seconds = RateLimiter::availableIn($ipKey);
             return back()->withErrors([
-                'throttle' => "Terlalu banyak percobaan login dari IP ini. Coba lagi dalam {$minutes} menit."
+                'throttle' => "Terlalu banyak percobaan login dari IP ini. Coba lagi dalam {$seconds} detik."
             ]);
         }
 
-        // Rate limiting per NIM - tetap ada untuk melindungi akun spesifik
+        // Rate limiting per NIM - 3x salah = block 1 menit
         $nimKey = 'login_nim:' . $request->nim;
-        if (RateLimiter::tooManyAttempts($nimKey, 2)) { // 2 attempts per 30 minutes per NIM
-            $minutes = ceil(RateLimiter::availableIn($nimKey) / 60);
+        if (RateLimiter::tooManyAttempts($nimKey, 3)) { // 3 attempts per 1 minute per NIM
+            $seconds = RateLimiter::availableIn($nimKey);
             return back()->withErrors([
-                'throttle' => "NIM ini telah mencoba login terlalu banyak. Coba lagi dalam {$minutes} menit."
+                'throttle' => "NIM ini telah mencoba login terlalu banyak. Coba lagi dalam {$seconds} detik."
             ]);
         }
 
         $user = User::where('nim', $request->nim)->first();
 
         if (!$user || !Auth::attempt(['nim' => $request->nim, 'password' => $request->password])) {
-            // Hit rate limiters dengan waktu yang lebih lama
-            RateLimiter::hit($ipKey, 600); // 10 minutes
-            RateLimiter::hit($nimKey, 1800); // 30 minutes
+            // Hit rate limiters - 1 menit block
+            RateLimiter::hit($ipKey, 60); // 1 minute
+            RateLimiter::hit($nimKey, 60); // 1 minute
             
             // Log failed attempt
             Log::warning('Failed login attempt', [
@@ -107,6 +107,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
