@@ -130,7 +130,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="link_wa" class="form-label">Link WhatsApp</label>
+                                    <label for="link_wa" class="form-label">Link Grup WhatsApp</label>
                                     <input type="text" name="link_wa" id="link_wa" value="{{ old('link_wa', $kegiatanAcara->link_wa) }}" class="form-control">
                                 </div>
                             </div>
