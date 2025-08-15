@@ -22,11 +22,13 @@ class ProfileHimsiController extends Controller
     public function pengurus()
     {
         $pengurus = User::whereIn('role', ['bph', 'anggota'])
+            ->where('peringatan', '!=', 'sp_3') // Tidak menampilkan yang kena SP 3
             ->orderByRaw("FIELD(role, 'bph', 'anggota')")
             ->orderByRaw("FIELD(divisi, 'ketua', 'wakil_ketua', 'sekretaris', 'bendahara', 'pendidikan', 'rsdm', 'litbang', 'kominfo')")
             ->paginate(12); // 12 pengurus per halaman
 
         return view('home.profile.pengurus', compact('pengurus'));
     }
+
 
 }
