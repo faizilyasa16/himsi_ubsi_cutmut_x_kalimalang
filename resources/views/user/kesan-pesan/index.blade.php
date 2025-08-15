@@ -13,7 +13,7 @@
     @else
     <section class="row">
         @foreach ($kesanPesans as $kesanPesan)
-            <div class="col-4 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="border p-3 bg-light rounded">
                     <h5>{{ $kesanPesan->user->name }}</h5>
                     <p><strong>Kesan dan Pesan:</strong> {{ $kesanPesan->kesan_pesan }}</p>
@@ -30,7 +30,9 @@
             </div>
         @endforeach
     </section>
-
+    <div class="d-flex justify-content-center mt-4">
+        {{ $kesanPesans->links() }}
+    </div>
     @endif
 </main>
 @endsection

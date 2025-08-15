@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 13, 2025 at 07:18 AM
+-- Generation Time: Aug 14, 2025 at 05:27 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.28
 
@@ -55,8 +55,10 @@ CREATE TABLE `acara` (
   `kuota` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('draft','open','closed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'draft',
   `slug` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `waktu_mulai` datetime NOT NULL,
-  `waktu_selesai` datetime DEFAULT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `waktu_mulai` time DEFAULT NULL,
+  `tanggal_selesai` date DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
   `link_pendaftaran` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link_wa` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `biaya` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -71,9 +73,9 @@ CREATE TABLE `acara` (
 -- Dumping data for table `acara`
 --
 
-INSERT INTO `acara` (`id`, `kategori_id`, `nama`, `deskripsi`, `lokasi`, `contact_person`, `poster`, `kuota`, `status`, `slug`, `waktu_mulai`, `waktu_selesai`, `link_pendaftaran`, `link_wa`, `biaya`, `payment_method`, `payment_number`, `payment_name`, `created_at`, `updated_at`) VALUES
-(1, 1, 'CAMPUS MEETUP HIMSI Study Club 2025 X AllStars Academy Indonesia', 'Kegiatan CAMPUS MEETUP HIMSI Study Club 2025 X AllStars Academy Indonesia dengan tema \"Exploring Blockchain & Web3 Technology\" - Educate, Empower, Elevate through Decentralized Innovation.\n\nDalam kegiatan ini, peserta akan mendapatkan benefit:\n✅ Kenalan langsung dengan konsep Blockchain & Web3\n✅ Dapat wawasan karier di industri Web3  \n✅ Ikut workshop mini bikin dApp tanpa perlu modal\n✅ Ngobrol bareng komunitas Allstars Academy Indonesia\n✅ e-certificate\n✅ Ada doorprize menarik\n\nPembicara utama: Laura Stephanie Phang (Country Manager – Allstars Academy Indonesia)\n\nWajib untuk diikuti untuk teman-teman yang mau eksplor hal baru!, khususnya fakultas teknik dan Informatika, dan juga terbuka umum untuk seluruh mahasiswa UBSI lain yang tertarik!', 'Hotel 88 Bekasi', '085710430631', 'posters/campus-meetup-himsi-2025.png', '100', 'closed', 'campus-meetup-himsi-study-club-2025-x-allstars-academy-indonesia', '2025-06-28 13:00:00', '2025-06-28 16:00:00', 'https://lu.ma/e7bwnown', NULL, 'gratis', NULL, NULL, NULL, '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(2, 3, 'BERBAGI KASIH & PEDULI', '✨ BERBAGI KASIH & PEDULI ✨\n\nIndahnya berbagi di bulan Ramadhan! 🌙✨\n\nHimpunan Mahasiswa Sistem Informasi (HIMSI) Cutmutiah & Kalimalang X OJT Kalimalang mengajak kawan-kawan bagian dari kebaikan! ✨ \nBantu adik-adik yatim & piatu dengan donasi terbaikmu. Sekecil apa pun bantuanmu, berarti besar buat mereka.\n\n💰 Cara Berdonasi:\n✅ Seabank: 901261951189 (Anisa Fitri)\n✅ Dana/Gopay: 082114396332 (Laurensia Stevanic)\n✅ Bank BCA: 7411101499 (Muhamad Fachri)\n\nMari bersama-sama menebar kebaikan dan keberkahan di bulan yang penuh rahmat ini! 🌟\n\n\"Sedekah yang paling utama adalah sedekah di bulan Ramadhan.\" (HR. At-Tirmidzi)\n\n#HIMSIBerbagi #RamadhanBerkah #BerbagiItuIndah #HIMSICUTMUTIAHXOJTKALIMALANG', 'Kampus UBSI Kalimalang', '082114396332', 'posters/berbagi-kasih-peduli-2025.png', NULL, 'closed', 'berbagi-kasih-peduli-ramadhan-2025', '2025-03-08 00:00:00', '2025-03-20 23:59:59', NULL, NULL, 'donasi sukarela', 'Seabank/Dana/Gopay/BCA', '901261951189 (Seabank) | 082114396332 (Dana/Gopay) | 7411101499 (BCA)', 'Anisa Fitri (Seabank) | Laurensia Stevanic (Dana/Gopay) | Muhamad Fachri (BCA)', '2025-08-08 04:14:42', '2025-08-08 04:14:42');
+INSERT INTO `acara` (`id`, `kategori_id`, `nama`, `deskripsi`, `lokasi`, `contact_person`, `poster`, `kuota`, `status`, `slug`, `tanggal_mulai`, `waktu_mulai`, `tanggal_selesai`, `waktu_selesai`, `link_pendaftaran`, `link_wa`, `biaya`, `payment_method`, `payment_number`, `payment_name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CAMPUS MEETUP HIMSI Study Club 2025 X AllStars Academy Indonesia', 'Kegiatan CAMPUS MEETUP HIMSI Study Club 2025 X AllStars Academy Indonesia dengan tema \"Exploring Blockchain & Web3 Technology\" - Educate, Empower, Elevate through Decentralized Innovation.\n\nDalam kegiatan ini, peserta akan mendapatkan benefit:\n✅ Kenalan langsung dengan konsep Blockchain & Web3\n✅ Dapat wawasan karier di industri Web3  \n✅ Ikut workshop mini bikin dApp tanpa perlu modal\n✅ Ngobrol bareng komunitas Allstars Academy Indonesia\n✅ e-certificate\n✅ Ada doorprize menarik\n\nPembicara utama: Laura Stephanie Phang (Country Manager – Allstars Academy Indonesia)\n\nWajib untuk diikuti untuk teman-teman yang mau eksplor hal baru!, khususnya fakultas teknik dan Informatika, dan juga terbuka umum untuk seluruh mahasiswa UBSI lain yang tertarik!', 'Hotel 88 Bekasi', '085710430631', 'posters/campus-meetup-himsi-2025.png', '100', 'closed', 'campus-meetup-himsi-study-club-2025-x-allstars-academy-indonesia', '2025-06-28', '13:00:00', '2025-06-28', '16:00:00', 'https://lu.ma/e7bwnown', NULL, 'gratis', NULL, NULL, NULL, '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(2, 3, 'BERBAGI KASIH & PEDULI', '✨ BERBAGI KASIH & PEDULI ✨\n\nIndahnya berbagi di bulan Ramadhan! 🌙✨\n\nHimpunan Mahasiswa Sistem Informasi (HIMSI) Cutmutiah & Kalimalang X OJT Kalimalang mengajak kawan-kawan bagian dari kebaikan! ✨ \nBantu adik-adik yatim & piatu dengan donasi terbaikmu. Sekecil apa pun bantuanmu, berarti besar buat mereka.\n\n💰 Cara Berdonasi:\n✅ Seabank: 901261951189 (Anisa Fitri)\n✅ Dana/Gopay: 082114396332 (Laurensia Stevanic)\n✅ Bank BCA: 7411101499 (Muhamad Fachri)\n\nMari bersama-sama menebar kebaikan dan keberkahan di bulan yang penuh rahmat ini! 🌟\n\n\"Sedekah yang paling utama adalah sedekah di bulan Ramadhan.\" (HR. At-Tirmidzi)\n\n#HIMSIBerbagi #RamadhanBerkah #BerbagiItuIndah #HIMSICUTMUTIAHXOJTKALIMALANG', 'Kampus UBSI Kalimalang', '082114396332', 'posters/berbagi-kasih-peduli-2025.png', NULL, 'closed', 'berbagi-kasih-peduli-ramadhan-2025', '2025-03-08', NULL, '2025-03-20', NULL, NULL, NULL, 'donasi sukarela', 'Seabank/Dana/Gopay/BCA', '901261951189 (Seabank) | 082114396332 (Dana/Gopay) | 7411101499 (BCA)', 'Anisa Fitri (Seabank) | Laurensia Stevanic (Dana/Gopay) | Muhamad Fachri (BCA)', '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -96,10 +98,10 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`id`, `nama`, `tahun`, `slug`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 'HIMSI Sehat', 2025, 'himsi-sehat', 'Dokumentasi rangkaian kegiatan olahraga yang diselenggarakan oleh HIMSI UBSI. Program ini bertujuan untuk menjaga kesehatan fisik dan mental mahasiswa serta mempererat tali silaturahmi antar mahasiswa sistem informasi.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(2, 'Campus Meetup Allstars x UBSI (HIMSI Study Club)', 2025, 'campus-meetup-allstars-x-ubsi-himsi-study-club', 'Dokumentasi acara Campus Meetup Allstars x UBSI yang diselenggarakan oleh HIMSI Study Club. Kegiatan ini merupakan kolaborasi dengan komunitas teknologi untuk sharing knowledge, networking, dan pengembangan skill mahasiswa sistem informasi dalam bidang teknologi terkini.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(3, 'Sertijab Pengurus HIMSI 2025', 2025, 'sertijab-pengurus-himsi-2025', 'Dokumentasi acara serah terima jabatan dari pengurus HIMSI periode 2024 kepada pengurus baru periode 2025. Acara ini menandai pergantian kepemimpinan dan regenerasi organisasi.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(4, 'HIMSI Berbagi Ramadan', 2025, 'himsi-berbagi-ramadan', 'Dokumentasi kegiatan HIMSI Berbagi selama bulan Ramadan berupa buka puasa bersama, pembagian takjil, santunan anak yatim, dan kegiatan sosial lainnya. Program ini merupakan bentuk kepedulian dan berbagi kebahagiaan dengan sesama di bulan yang penuh berkah.', '2025-08-08 04:14:42', '2025-08-08 04:14:42');
+(1, 'HIMSI Sehat', 2025, 'himsi-sehat', 'Dokumentasi rangkaian kegiatan olahraga yang diselenggarakan oleh HIMSI UBSI. Program ini bertujuan untuk menjaga kesehatan fisik dan mental mahasiswa serta mempererat tali silaturahmi antar mahasiswa sistem informasi.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(2, 'Campus Meetup Allstars x UBSI (HIMSI Study Club)', 2025, 'campus-meetup-allstars-x-ubsi-himsi-study-club', 'Dokumentasi acara Campus Meetup Allstars x UBSI yang diselenggarakan oleh HIMSI Study Club. Kegiatan ini merupakan kolaborasi dengan komunitas teknologi untuk sharing knowledge, networking, dan pengembangan skill mahasiswa sistem informasi dalam bidang teknologi terkini.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(3, 'Sertijab Pengurus HIMSI 2025', 2025, 'sertijab-pengurus-himsi-2025', 'Dokumentasi acara serah terima jabatan dari pengurus HIMSI periode 2024 kepada pengurus baru periode 2025. Acara ini menandai pergantian kepemimpinan dan regenerasi organisasi.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(4, 'HIMSI Berbagi Ramadan', 2025, 'himsi-berbagi-ramadan', 'Dokumentasi kegiatan HIMSI Berbagi selama bulan Ramadan berupa buka puasa bersama, pembagian takjil, santunan anak yatim, dan kegiatan sosial lainnya. Program ini merupakan bentuk kepedulian dan berbagi kebahagiaan dengan sesama di bulan yang penuh berkah.', '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -132,6 +134,18 @@ CREATE TABLE `cache` (
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('laravel-cache-global_login:127.0.0.1', 'i:4;', 1755151236),
+('laravel-cache-global_login:127.0.0.1:timer', 'i:1755151236;', 1755151236),
+('laravel-cache-login_ip:127.0.0.1', 'i:3;', 1755147696),
+('laravel-cache-login_ip:127.0.0.1:timer', 'i:1755147696;', 1755147696),
+('laravel-cache-login_nim:0000000001', 'i:3;', 1755147696),
+('laravel-cache-login_nim:0000000001:timer', 'i:1755147696;', 1755147696);
+
 -- --------------------------------------------------------
 
 --
@@ -143,6 +157,26 @@ CREATE TABLE `cache_locks` (
   `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `join_himsi`
+--
+
+CREATE TABLE `join_himsi` (
+  `id` bigint UNSIGNED NOT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `join_himsi`
+--
+
+INSERT INTO `join_himsi` (`id`, `link`, `created_at`, `updated_at`) VALUES
+(1, 'https://oprechimsi.com/', '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -183,13 +217,13 @@ CREATE TABLE `kategori_acara` (
 --
 
 INSERT INTO `kategori_acara` (`id`, `nama`, `slug`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 'Seminar & Workshop', 'seminar-workshop', 'Kategori acara untuk kegiatan seminar dan workshop yang bertujuan untuk meningkatkan pengetahuan dan keterampilan mahasiswa sistem informasi.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(2, 'Kompetisi', 'kompetisi', 'Kategori acara untuk berbagai kompetisi seperti programming contest, UI/UX design, dan kompetisi teknologi lainnya.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(3, 'Kegiatan Sosial', 'kegiatan-sosial', 'Kategori acara untuk kegiatan bakti sosial, donor darah, dan berbagai aktivitas kepedulian sosial lainnya.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(4, 'Olahraga & Kesehatan', 'olahraga-kesehatan', 'Kategori acara untuk turnamen olahraga, senam, dan kegiatan yang berkaitan dengan kesehatan fisik mahasiswa.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(5, 'Organisasi & Kepemimpinan', 'organisasi-kepemimpinan', 'Kategori acara untuk kegiatan organisasi seperti sertijab, rapat koordinasi, dan pelatihan kepemimpinan.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(6, 'HIMSI', 'himsi', 'Kategori acara untuk kegiatan HIMSI seperti rapat, diskusi, dan kegiatan internal organisasi.', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(7, 'Hiburan & Rekreasi', 'hiburan-rekreasi', 'Kategori acara untuk kegiatan hiburan, gathering, study tour, dan aktivitas rekreasi lainnya.', '2025-08-08 04:14:42', '2025-08-08 04:14:42');
+(1, 'Seminar & Workshop', 'seminar-workshop', 'Kategori acara untuk kegiatan seminar dan workshop yang bertujuan untuk meningkatkan pengetahuan dan keterampilan mahasiswa sistem informasi.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(2, 'Kompetisi', 'kompetisi', 'Kategori acara untuk berbagai kompetisi seperti programming contest, UI/UX design, dan kompetisi teknologi lainnya.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(3, 'Kegiatan Sosial', 'kegiatan-sosial', 'Kategori acara untuk kegiatan bakti sosial, donor darah, dan berbagai aktivitas kepedulian sosial lainnya.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(4, 'Olahraga & Kesehatan', 'olahraga-kesehatan', 'Kategori acara untuk turnamen olahraga, senam, dan kegiatan yang berkaitan dengan kesehatan fisik mahasiswa.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(5, 'Organisasi & Kepemimpinan', 'organisasi-kepemimpinan', 'Kategori acara untuk kegiatan organisasi seperti sertijab, rapat koordinasi, dan pelatihan kepemimpinan.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(6, 'HIMSI', 'himsi', 'Kategori acara untuk kegiatan HIMSI seperti rapat, diskusi, dan kegiatan internal organisasi.', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(7, 'Hiburan & Rekreasi', 'hiburan-rekreasi', 'Kategori acara untuk kegiatan hiburan, gathering, study tour, dan aktivitas rekreasi lainnya.', '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -257,40 +291,39 @@ CREATE TABLE `konten_album` (
 --
 
 INSERT INTO `konten_album` (`id`, `album_id`, `nama`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, 'foto/badmin1.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(2, 1, NULL, 'foto/badmin2.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(3, 1, NULL, 'foto/badmin3.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(4, 1, NULL, 'foto/badmin4.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(5, 2, NULL, 'foto/studyclub1.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(6, 2, NULL, 'foto/studyclub2.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(7, 2, NULL, 'foto/studyclub3.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(8, 2, NULL, 'foto/studyclub4.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(9, 2, NULL, 'foto/studyclub5.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(10, 2, NULL, 'foto/studyclub6.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(11, 2, NULL, 'foto/studyclub7.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(12, 2, NULL, 'foto/studyclub8.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(13, 2, NULL, 'foto/studyclub9.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(14, 2, NULL, 'foto/studyclub10.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(15, 3, NULL, 'foto/sertijab1.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(16, 3, NULL, 'foto/sertijab2.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(17, 3, NULL, 'foto/sertijab3.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(18, 3, NULL, 'foto/sertijab4.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(19, 3, NULL, 'foto/sertijab5.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(20, 3, NULL, 'foto/sertijab6.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(21, 3, NULL, 'foto/sertijab7.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(22, 3, NULL, 'foto/sertijab8.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(23, 3, NULL, 'foto/sertijab9.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(24, 3, NULL, 'foto/sertijab10.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(25, 4, NULL, 'foto/berbagi1.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(26, 4, NULL, 'foto/berbagi2.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(27, 4, NULL, 'foto/berbagi3.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(28, 4, NULL, 'foto/berbagi4.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(29, 4, NULL, 'foto/berbagi5.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(30, 4, NULL, 'foto/berbagi6.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(31, 4, NULL, 'foto/berbagi7.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(32, 4, NULL, 'foto/berbagi8.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(33, 4, NULL, 'foto/berbagi9.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42'),
-(34, 4, NULL, 'foto/berbagi10.jpeg', '2025-08-08 04:14:42', '2025-08-08 04:14:42');
+(1, 1, NULL, 'foto/badmin1.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(2, 1, NULL, 'foto/badmin2.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(3, 1, NULL, 'foto/badmin3.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(4, 1, NULL, 'foto/badmin4.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(5, 2, NULL, 'foto/studyclub1.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(6, 2, NULL, 'foto/studyclub2.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(7, 2, NULL, 'foto/studyclub3.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(8, 2, NULL, 'foto/studyclub4.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(9, 2, NULL, 'foto/studyclub5.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(10, 2, NULL, 'foto/studyclub6.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(11, 2, NULL, 'foto/studyclub7.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(12, 2, NULL, 'foto/studyclub8.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(13, 2, NULL, 'foto/studyclub9.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(14, 2, NULL, 'foto/studyclub10.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(15, 3, NULL, 'foto/sertijab1.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(16, 3, NULL, 'foto/sertijab2.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(17, 3, NULL, 'foto/sertijab3.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(18, 3, NULL, 'foto/sertijab4.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(19, 3, NULL, 'foto/sertijab5.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(20, 3, NULL, 'foto/sertijab7.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(21, 3, NULL, 'foto/sertijab8.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(22, 3, NULL, 'foto/sertijab9.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(23, 3, NULL, 'foto/sertijab10.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(24, 4, NULL, 'foto/berbagi1.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(25, 4, NULL, 'foto/berbagi2.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(26, 4, NULL, 'foto/berbagi3.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(27, 4, NULL, 'foto/berbagi4.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(28, 4, NULL, 'foto/berbagi5.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(29, 4, NULL, 'foto/berbagi6.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(30, 4, NULL, 'foto/berbagi7.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(31, 4, NULL, 'foto/berbagi8.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(32, 4, NULL, 'foto/berbagi9.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(33, 4, NULL, 'foto/berbagi10.jpeg', '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -323,7 +356,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2025_08_03_103900_add_kode_to_absensi_table', 1),
 (13, '2025_08_04_002212_create_voting', 1),
 (14, '2025_08_06_132603_create_struktur_organisasi', 1),
-(15, '2025_08_08_170505_create_cache_table', 2);
+(15, '2025_08_08_170505_create_cache_table', 1),
+(16, '2025_08_14_093500_create_join_himsi', 1);
 
 -- --------------------------------------------------------
 
@@ -375,19 +409,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('3qxuQfHzfSPHEwR2VWC3LGO8Z74k7ZqtnQbxaXPY', NULL, '127.0.0.1', 'WhatsApp/2.23.20.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZkJhWnM5clFlVUpyRUNWaFR6UVdkVG9LOFF0b203REd5ZFJvcm9GdSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9jaGFpbnMtY2F0YWxvZy1tZWxpc3NhLW1ha2Vycy50cnljbG91ZGZsYXJlLmNvbSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754633350),
-('876NvwTSdchfL1a3Qco74i4pxA3wxzh1ziMMtQ1n', NULL, '127.0.0.1', 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMW9FVmVxQzFqbGRnVzNLbjNCSUdXUlpJeXJxWXNnbFptSXdFNDJBNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9jaGFpbnMtY2F0YWxvZy1tZWxpc3NhLW1ha2Vycy50cnljbG91ZGZsYXJlLmNvbSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754632131),
-('eNireGu3UneHJSjqbdL7pJ05vN4k589ornJpe4z4', NULL, '127.0.0.1', 'WhatsApp/2.23.20.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWUgzcWt4QXhaRHlCOVRydkxCUFJRa3RXV0xUS2I5VVQ3ODhBUjNqbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9jaGFpbnMtY2F0YWxvZy1tZWxpc3NhLW1ha2Vycy50cnljbG91ZGZsYXJlLmNvbSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754633349),
-('GC6hp9KldvgibpffZK794ajvTCP9UUt20bCgs46S', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWHdOZFVLWk1wYWdpcE40SnM3RTg3djZFZHdRRjZLM3NENlBXYXVERiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9jaGFpbnMtY2F0YWxvZy1tZWxpc3NhLW1ha2Vycy50cnljbG91ZGZsYXJlLmNvbSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754635325),
-('iHzNSFm0QscZfro9ygg9kk1m4zXfO3RYzyY9HNTQ', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUk5aeEZIRTZTTmlvclFXcmsxTnp4Z1pyUEZFeXJTeThLemhtczhMUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTE2OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL2tlZ2lhdGFuLWFjYXJhL2NhbXB1cy1tZWV0dXAtaGltc2ktc3R1ZHktY2x1Yi0yMDI1LXgtYWxsc3RhcnMtYWNhZGVteS1pbmRvbmVzaWEvZWRpdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1OiJhbGVydCI7YTowOnt9fQ==', 1754641147),
-('iU93Zzo4a1R7Zqc9paetyRSb9cv3T8zvNg2a6zmk', NULL, '127.0.0.1', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieWdBOFZqS1F5emRzSmY0M2hXTDJKMWdhQlYzbjZtNDZLZzlEdjl1QyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTg6Imh0dHA6Ly9jYXRoZXJpbmUtZ3JhZHVhdGUtc3VjY2Vzcy1sb3NzZXMudHJ5Y2xvdWRmbGFyZS5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1754635480),
-('OerPEqzwqCGwOhimvqHvQyxK5SLyH1gXwFxoldZE', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQUJmaTNaTlNCN3VmcVh2RzJBNzVqTGZSTTVTMTRnR2xMdmF5N0RjbCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTg6Imh0dHA6Ly9jYXRoZXJpbmUtZ3JhZHVhdGUtc3VjY2Vzcy1sb3NzZXMudHJ5Y2xvdWRmbGFyZS5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1754635443),
-('QjLyyABYUOuGG1t9JshqYlhdx08xZySoZCWpwNT9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMEx1dkFGcFN1SUJ6cjlwVTNYSHA0UlJVMUN3UEVGMWVIY2x6clJXdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1OiJhbGVydCI7YTowOnt9fQ==', 1754666075),
-('RdbFBwyUI72OsnIJVjydcsoxgFWhoLDvWGGxFeqX', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicjdTZ2tiWmRkeFR2dG1scTNCOFp1a3lFbnBUSkVOdFRMTEpNdWRvQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9tYXJrLXNldmVyZS10b3VyLWJlbGtpbi50cnljbG91ZGZsYXJlLmNvbS9hY2FyYSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754635632),
-('TP2GLTTydE9UCRG7mW9EvObA531iSXSGc458eSTV', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiV2dld1V2M3NMV3ducVhHU1A3TlJYdTVKTUFEcEJNcEl5cnhOSG9BMSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754627661),
-('uMSgRI7CMeOhf6nI9py4vhYZ759ckbbf8iQnxaEc', NULL, '127.0.0.1', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNXlMSFpvdkxCeUg1cnM4Nk1GS3pXU2czcU5Db0pkZ3RFYm1jVENXcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTg6Imh0dHA6Ly9jYXRoZXJpbmUtZ3JhZHVhdGUtc3VjY2Vzcy1sb3NzZXMudHJ5Y2xvdWRmbGFyZS5jb20iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1754635478),
-('VpUktFpDYgSWHom12AVlWJIvbR3tZe4rwhT3sSGh', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieW1SRUJtNmQxR2JPU3BvTmJ1UWdqdVZqc0hXejROMTFzWXNzRGpJdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6OTI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hY2FyYS9jYW1wdXMtbWVldHVwLWhpbXNpLXN0dWR5LWNsdWItMjAyNS14LWFsbHN0YXJzLWFjYWRlbXktaW5kb25lc2lhIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1754747511),
-('WwFPA0qrwg7OSD7v1Wrra1IgtkRp7oSh8S8GxEa2', NULL, '127.0.0.1', 'WhatsApp/2.23.20.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiU3JKQ0RVR1pydlN6TURuZEpJbTJOUGZGSHpod0Q0V0l6RjVjaVc5UyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTQ6Imh0dHA6Ly9jaGFpbnMtY2F0YWxvZy1tZWxpc3NhLW1ha2Vycy50cnljbG91ZGZsYXJlLmNvbSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1754633350);
+('1RMwRa5ODv6W3enwnbjKqzyCF0tBF9qvrdzNpmU7', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVkRiVE1jd1RTQTF4NTFOZHRxRWZOc242TUN4QmNrc0tXcHVneE5kSyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0NjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZC9rb250ZW4tZ2FsbGVyeSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1755147654);
 
 -- --------------------------------------------------------
 
@@ -407,7 +429,7 @@ CREATE TABLE `struktur_organisasi` (
 --
 
 INSERT INTO `struktur_organisasi` (`id`, `konten`, `created_at`, `updated_at`) VALUES
-(1, 'struktur/himsi.png', '2025-08-08 04:14:42', '2025-08-08 04:14:42');
+(1, 'struktur/himsi.png', '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -436,53 +458,53 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nim`, `name`, `email`, `email_verified_at`, `password`, `role`, `photo`, `divisi`, `peringatan`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '0000000001', 'Admin HIMSI', 'admin@himsi.com', '2025-08-08 04:14:06', '$2y$12$r9wI1hIWDFdxE2BYo08gFeWz.3AoD/1n3fznoPCIZZYjVk.qUmfvK', 'admin', NULL, NULL, NULL, 'fwJBInNxoY', '2025-08-08 04:14:07', '2025-08-08 04:14:07'),
-(2, '12230060', 'Muhamad Fachri', '12230060@bsi.ac.id', NULL, '$2y$12$65xIzeyCWb7umwa.VT5j2OgEIQsuFm77SB.E5LagGUS.I.rcTq2nC', 'bph', NULL, 'ketua', NULL, NULL, '2025-08-08 04:14:08', '2025-08-08 04:14:08'),
-(3, '19230390', 'Reggy Helva Rezal', 'reggyhelva28@gmail.com', NULL, '$2y$12$w9MZcswhwlNynPlJ6sDrMu/FV1fLYOX1RLneg7FiLWliNi9Ct67Em', 'bph', NULL, 'wakil_ketua', NULL, NULL, '2025-08-08 04:14:08', '2025-08-08 04:14:08'),
-(4, '19231010', 'Adi Andrianto', 'adiandrianto146@gmail.com', NULL, '$2y$12$JzHMO49gDtguw4vmN/MKJeTZY6RzpEojCxSIfE3rokdiap0cOwH1e', 'bph', NULL, 'sekretaris', NULL, NULL, '2025-08-08 04:14:09', '2025-08-08 04:14:09'),
-(5, '12230105', 'Laurensia Stevanic Elizabeth', 'elizabethstevanic@gmail.com', NULL, '$2y$12$8wkqJK2CBxTpQjEQjO/W6elwIT7IQ/ENOB6eX9Od1fQhoHlclzXXi', 'bph', NULL, 'bendahara', NULL, NULL, '2025-08-08 04:14:10', '2025-08-08 04:14:10'),
-(6, '19240961', 'Andika Muhammad Rizky', 'andikaaa.muh.riz@gmail.com', NULL, '$2y$12$RDxjw3OmBx9GlfsOPeGOh.5oZLupQO4HliDbJCvvyitzYC9gAYmTy', 'bph', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:11', '2025-08-08 04:14:11'),
-(7, '19240891', 'Andhika Syarifudin', 'andika15657@gmail.com', NULL, '$2y$12$qp59WflS9qstnKVYRYVuROlS5kwKi0vIzupalzn4jQJTZA72W0Zgu', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:12', '2025-08-08 04:14:12'),
-(8, '12230102', 'Arya Ramadhani', 'arya.ramadhani091@gmail.com', NULL, '$2y$12$KTf7n78p0U4Zmnybi7J5geFSO8mn/xtjBRVWqMDlC5oXadUDwATPS', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:13', '2025-08-08 04:14:13'),
-(9, '19230089', 'Aqiila Aviani', 'aqiilaviani20@gmail.com', NULL, '$2y$12$0oU6gi80BoHYzxK0ODu3bOsxSllDLkLLLTcG2he1s7ZNpOZO2zQpC', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:13', '2025-08-08 04:14:13'),
-(10, '19231429', 'Faiz Ilyasa', 'faizilyasa16@gmail.com', NULL, '$2y$12$uHT/r77hxvdeodWadjxJ3OL1toR09pDfiMgLEdjtnYPT.F/3eTqhO', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:14', '2025-08-08 04:14:14'),
-(11, '19242299', 'Mochamad Fahri Putra Pratama', 'moch.fahriputra.p@gmail.com', NULL, '$2y$12$YJgoIK0ToLI07TCON1TE7evRdtMnIfD0tus.4rh5m2e9fcqe3GxG.', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:15', '2025-08-08 04:14:15'),
-(12, '19241675', 'Muhamad Nizam Zuhayr', 'nizamzuhayr12@gmail.com', NULL, '$2y$12$DMCALfckzHH6XwrphhVdCuTLMSF51bufBQRpaIlfqzGTvBlRu2sYC', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:16', '2025-08-08 04:14:16'),
-(13, '19241701', 'Rafly Dwi Maulana', 'raflydwimaulana9@gmail.com', NULL, '$2y$12$szVUSUFTGQShRyGgLJXVhOCZmYOmLWzamlnDJ846Bp6QU/05KHGxO', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:16', '2025-08-08 04:14:16'),
-(14, '19242003', 'Herlambang Chandra Radhitya', 'radhityachandra12@gmail.com', NULL, '$2y$12$33o4ctxRzGs41.mjiqzfZeuDQMf.cBF.lkTled0/PyA1z.tagIECi', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:18', '2025-08-08 04:14:18'),
-(15, '19242185', 'Tennoo Ramadhan Kurniawan', 'tenoramadhan1210@gmail.com', NULL, '$2y$12$GTqtMR0kTodm483BIXN/Vu3WJzVLM8DdCsw5ACDl64IrraZv9A.12', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:18', '2025-08-08 04:14:18'),
-(16, '19241360', 'Naufal Putra Winawan', 'putrawnaufal@gmail.com', NULL, '$2y$12$qqOjiNyjWaaVuf.Mf4pzuOfa8t7VvqN9zpVwf45wh2KhP70raD4JC', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-08 04:14:19', '2025-08-08 04:14:19'),
-(17, '12230101', 'Cahya Alia', 'cahyarismayanti@gmail.com', NULL, '$2y$12$SFJSDni/zF/Rg71EIJdyFuvdfCtj40BADfa2XbHlulxEaDsc4aAy2', 'bph', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:20', '2025-08-08 04:14:20'),
-(18, '19231416', 'Aisyah Putri Regardo', 'aisyahputriregardo@gmail.com', NULL, '$2y$12$XCl5unyssKCsDKfa4pJFe.qmuNL.6VE94FenN8gFVuaNTGWQ52PdC', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:20', '2025-08-08 04:14:20'),
-(19, '19231904', 'Arnanda Surya Mukti', 'arnandasr@gmail.com', NULL, '$2y$12$pSdNVdibCJXawNb3KQ2CPeZI0xikFDhZmx4YVmOIxZ0fadv10tP5e', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:21', '2025-08-08 04:14:21'),
-(20, '19231769', 'Yuni Saidah', 'yunisaidah05@gmail.com', NULL, '$2y$12$M42RchPFgEjfBwItzNnzweetYEcdi4R2EZ93z7.olMFrzLWSAdkwa', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:22', '2025-08-08 04:14:22'),
-(21, '19231251', 'Eriel Firman Suandanis', 'steelblack222@gmail.com', NULL, '$2y$12$qTBJ/2mIUwQVgH5CJvdHUeG8o3f9TzwSGwDPRJStbWWSCVmXS.B2W', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:22', '2025-08-08 04:14:22'),
-(22, '19231213', 'Fitra Hakiki Firdaus', 'fitrahakikif@gmail.com', NULL, '$2y$12$m85bhcleuCa.tG9mQR2nWuI3DImddeTIycCdK6LFBIrJHSW.27caG', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:23', '2025-08-08 04:14:23'),
-(23, '19240747', 'Adityo Nurcholis Wibisono', 'adityo.nw10@gmail.com', NULL, '$2y$12$9aZwMkLUj5wzAMrwJXg8ZuierHU1D3HxTY8GiSd1jEmaQuObsobTK', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:24', '2025-08-08 04:14:24'),
-(24, '12230042', 'Muhammad Rochman Triatmojo', 'muhammadrohmantriat@gmail.com', NULL, '$2y$12$NIudcXlB0pZCgMl8.jLBH.hRZPHgB6VZU8a8fCcJAHRWM8W9Rs.96', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:24', '2025-08-08 04:14:24'),
-(25, '19242335', 'Afifudin', 'afifudin141213@gmail.com', NULL, '$2y$12$UrsAsZQZK6itrijRQjOATuekG2v6mfqvs/6o1qVZrHRTCkyPVjp9O', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:25', '2025-08-08 04:14:25'),
-(26, '19242089', 'Najwan Muyassar', 'najwanmuyassar16@gmail.com', NULL, '$2y$12$qEviSD7b9MrOgjHKa9uH7uqXOn7yGTHIAf1AklSvjZcau2Sg52EMe', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:25', '2025-08-08 04:14:25'),
-(27, '19231413', 'Danu Pangestu', 'pangestudanu92@gmail.com', NULL, '$2y$12$.6.jgjML6Hf/fuInX1ro2ecnq61fSdGv4lF30gVLTCccxByTFeUZu', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-08 04:14:26', '2025-08-08 04:14:26'),
-(28, '12230001', 'Dafina Nabila Putri', 'dafinanabila122@gmail.com', NULL, '$2y$12$vbDRWIMOgJrH.sMyVbeeGOZ2LO9SN7k5CqOMTzjc.ygNnV9Hbu5u.', 'bph', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:26', '2025-08-08 04:14:26'),
-(29, '19231019', 'Indah Tri Rahmawati', 'indhrhmwt3084@gmail.com', NULL, '$2y$12$ojsxQpI6aq9JEWLs3fdX3.KGg4/TUJZo06j1ko8ZCvAsdSqipwuQ6', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:27', '2025-08-08 04:14:27'),
-(30, '19230049', 'Tiara Falensia', 'tiarafalensia2@gmail.com', NULL, '$2y$12$u24i6EqCcPIwUs4gRiB9WOk8GQk.DbPkHaX4pHuy2d4Jyy2Curfx6', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:28', '2025-08-08 04:14:28'),
-(31, '19231624', 'Ummi Kulsum', 'ummikalsumbahenol@gmail.com', NULL, '$2y$12$yVn4vz8pw/MowAkG3JIbjO5Q0XRDWa4Lw7zF5/X4jLpQd3y.8WITW', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:29', '2025-08-08 04:14:29'),
-(32, '19240043', 'Sauqi Danang Prastowo', 'danangprastowo99@gmail.com', NULL, '$2y$12$K7A2oGc9aTX3uIjnY0IMOeot9bO4LunUaUwdTUgf71K16bj0jnpiS', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:30', '2025-08-08 04:14:30'),
-(33, '19241262', 'Bilal Nur Akmal', 'bllnrkml12@gmail.com', NULL, '$2y$12$EcP75mG59VBIQmebohFU1ekU69ZqmN3wCQ.Wr/CFCBjW/hn/Di8y6', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:31', '2025-08-08 04:14:31'),
-(34, '19230786', 'Christian Octavio Arshendy', 'christian.octavio27@gmail.com', NULL, '$2y$12$tYrG3uNGJ/iHHCACwyShaejY1TQjpP3aK39XAuhzvXFoC7nC/adg6', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-08 04:14:32', '2025-08-08 04:14:32'),
-(35, '19241201', 'Aulia An Najmi', 'aulianajmi26@gmail.com', NULL, '$2y$12$zhXyyCClzrxj2HIMXZRgMearsO/Gzxa0CLeAKtdGeHMonzagT4Mbm', 'bph', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:33', '2025-08-08 04:14:33'),
-(36, '19231620', 'Hertha Berlina', 'herthaharyanto@gmail.com', NULL, '$2y$12$Ls2CRbui2qoeMe7/4fh10eggWZq7le3cV5r4rwx8SUadr1yvgdrwW', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:33', '2025-08-08 04:14:33'),
-(37, '19232215', 'Rahayu', 'Rahayuorlando@gmail.com', NULL, '$2y$12$53M6QCL6sKc8dEDzKIFXDuHEJuYd8pHdqnV6tOrrVFvWtr5ghHuey', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:33', '2025-08-08 04:14:33'),
-(38, '19231214', 'Rifaa Tumaadhira Adiibah', 'tumaadhirarifaa05@gmail.com', NULL, '$2y$12$I2nPVIzEukssnqnBdFCYbObBThblrWS9iishrpQN4KNSQLRlUKatC', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:34', '2025-08-08 04:14:34'),
-(39, '19231721', 'Farabi Rizki Januar', 'farabijkt006@gmail.com', NULL, '$2y$12$qAW4/5PPJhwWNKFOAlVE3OX.8usr0XgtT7h7uTgEV0129mR4Bb9hW', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:35', '2025-08-08 04:14:35'),
-(40, '19241849', 'Andrau Stevanus Parada Butar-butar', 'andraustefanus@gmail.com', NULL, '$2y$12$Bjho2FuHVbFq6ZT3DLcvxecW.Bo5e.owDTKoKHFP3xm.DuB3ZoEJK', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:36', '2025-08-08 04:14:36'),
-(41, '19241441', 'Septian Ramadhan', 'ian.septianramadhan@gmail.com', NULL, '$2y$12$dEelxGY5Baw7FMMyWPNnDeJspurzN4/ryGduK6kKwtbGpnH3WF9ia', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:37', '2025-08-08 04:14:37'),
-(42, '19242254', 'Muhammad Rizky Ferdiansyah', 'rizkya7y123@gmail.com', NULL, '$2y$12$SP31aT0G21vs8g5rSbrmMuQ9ZyH0sxSsvnv3Xz9MuotjwLmHjLeui', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:38', '2025-08-08 04:14:38'),
-(43, '19241408', 'Muhammad Erry Saputra', 'muhammadxrry@gmail.com', NULL, '$2y$12$Rw2bJHIQb.8T9T.ios1n0uPPCaEsgasctmncJyxldO8WR1.JqmXou', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:38', '2025-08-08 04:14:38'),
-(44, '19240864', 'Rakha Ikbar Amim', 'rakhaikbar01@gmail.com', NULL, '$2y$12$TF0xWQabtmi5Da6XbvqHZumIxs5d.oQFnwEVDzzIGpA5z/cOsf/Sy', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:39', '2025-08-08 04:14:39'),
-(45, '19240281', 'Kesya Jelita', 'keyzajelitaahmad@gmail.com', NULL, '$2y$12$qD7LEp6nXscHFOfmRIGqm.zs3F0QMwqddbiD4EiOBUyU0gF93LKtm', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:40', '2025-08-08 04:14:40'),
-(46, '19240930', 'Joel Esekiel Langkudi', 'joellangkudi2@gmail.com', NULL, '$2y$12$T9SGZvew1vaRE24kZbgQcOuBsStTt/lEvBqTfLJWsls43YQ3sH3nK', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:41', '2025-08-08 04:14:41'),
-(47, '19241919', 'Renu Yusmiar Kusumo', 'renuyusmiark@gmail.com', NULL, '$2y$12$wzC9V46bbvdgcjdJHm7up.bRSkgBH659jmjW4dPafDq16gR9A9gRu', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-08 04:14:42', '2025-08-08 04:14:42');
+(1, '0000000001', 'Admin HIMSI', 'admin@himsi.com', '2025-08-14 04:59:26', '$2y$12$xT3b/c.3l1aLxrAuq0gRzORiHZAJeuTHqwehH5/vycNpw4NeWGOlG', 'admin', NULL, NULL, NULL, '4FuIHhor4v', '2025-08-14 04:59:26', '2025-08-14 04:59:26'),
+(2, '12230060', 'Muhamad Fachri', '12230060@bsi.ac.id', NULL, '$2y$12$9BPu8k78joOXUR/qhpBBI.Degk2TDpRR75pLf./pdeiWrdYN.AwIy', 'bph', NULL, 'ketua', NULL, NULL, '2025-08-14 04:59:27', '2025-08-14 04:59:27'),
+(3, '19230390', 'Reggy Helva Rezal', 'reggyhelva28@gmail.com', NULL, '$2y$12$Pvb0EmKwQ73AWD3iw/uFBO8k53oeQXu.QnQ2LZekGrGATkAqWmVUe', 'bph', NULL, 'wakil_ketua', NULL, NULL, '2025-08-14 04:59:27', '2025-08-14 04:59:27'),
+(4, '19231010', 'Adi Andrianto', 'adiandrianto146@gmail.com', NULL, '$2y$12$wKwyj5BJioYgRaCvgN9bJeCf6o1iK2jicNtZFEqrjy3W6.2rk7fJu', 'bph', NULL, 'sekretaris', NULL, NULL, '2025-08-14 04:59:27', '2025-08-14 04:59:27'),
+(5, '12230105', 'Laurensia Stevanic Elizabeth', 'elizabethstevanic@gmail.com', NULL, '$2y$12$/JNKE548ysZSoFFMqVDnEOIfsFaSAsXMIlinwIZz4Iai3iOfRNC6G', 'bph', NULL, 'bendahara', NULL, NULL, '2025-08-14 04:59:27', '2025-08-14 04:59:27'),
+(6, '19240961', 'Andika Muhammad Rizky', 'andikaaa.muh.riz@gmail.com', NULL, '$2y$12$33ST04MgOKoY7Xb0HbNoXO8eehOP5qZJaikqAFNfwPgNe/U1ny59u', 'bph', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:28', '2025-08-14 04:59:28'),
+(7, '19240891', 'Andhika Syarifudin', 'andika15657@gmail.com', NULL, '$2y$12$Cb/pYItw5PP5uPcvzuS7melQX275rIMBMNZlwa0SVel1eUTtHgqmC', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:28', '2025-08-14 04:59:28'),
+(8, '12230102', 'Arya Ramadhani', 'arya.ramadhani091@gmail.com', NULL, '$2y$12$irmTPG1of8JhbimBeL51zOOFzxMrNfXlCV3PpkVQjdYNOTG8LROVK', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:28', '2025-08-14 04:59:28'),
+(9, '19230089', 'Aqiila Aviani', 'aqiilaviani20@gmail.com', NULL, '$2y$12$25s/FA5TJHIvJws3oK79ruJWaXPCl9UsTAOlXQwFzPnjr18C6wu.G', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:28', '2025-08-14 04:59:28'),
+(10, '19231429', 'Faiz Ilyasa', 'faizilyasa16@gmail.com', NULL, '$2y$12$685KWEy3tPKpxn2s29q0AOn5mB29cNVg0DHLi1ZNaXHgnVdoe32GS', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:29', '2025-08-14 04:59:29'),
+(11, '19242299', 'Mochamad Fahri Putra Pratama', 'moch.fahriputra.p@gmail.com', NULL, '$2y$12$8o.Ktcsr4iM4wh4e/KOvIefZglY65vx7KgpAmWm4pI05Q.DxMOjDG', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:29', '2025-08-14 04:59:29'),
+(12, '19241675', 'Muhamad Nizam Zuhayr', 'nizamzuhayr12@gmail.com', NULL, '$2y$12$5aZVUIdvRpJnf2FDPARa/OnRC6x1EMLStgIQ1JJbVKbZd7Zhn6UXK', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:29', '2025-08-14 04:59:29'),
+(13, '19241701', 'Rafly Dwi Maulana', 'raflydwimaulana9@gmail.com', NULL, '$2y$12$SJyS8fwjHXUTsetRJSqGyuB6YtGSMJkVNdBOAMXhHFwR0t5kJ8SQu', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:29', '2025-08-14 04:59:29'),
+(14, '19242003', 'Herlambang Chandra Radhitya', 'radhityachandra12@gmail.com', NULL, '$2y$12$ygrVlBmbG3pgt.nyXfz3IuuJCLGr3NLpoyreiKRIK0DE.5RQzXI8i', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:30', '2025-08-14 04:59:30'),
+(15, '19242185', 'Tennoo Ramadhan Kurniawan', 'tenoramadhan1210@gmail.com', NULL, '$2y$12$UaPyXEQndxdJ6iHEW27h4.SUeZFoyZIW8nyuT.T3/qjUVJhezWeo2', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:30', '2025-08-14 04:59:30'),
+(16, '19241360', 'Naufal Putra Winawan', 'putrawnaufal@gmail.com', NULL, '$2y$12$knGxTOKFRvwnvCjIQk9.3uW1yidfey8AqUWsETg1sv7eFgylIhOdS', 'anggota', NULL, 'rsdm', NULL, NULL, '2025-08-14 04:59:30', '2025-08-14 04:59:30'),
+(17, '12230101', 'Cahya Alia', 'cahyarismayanti@gmail.com', NULL, '$2y$12$ROiuqTqQlHyVrxEoG7kCm.le15RpiHdSpQe11aK0lfMt3ZQEntMeS', 'bph', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:30', '2025-08-14 04:59:30'),
+(18, '19231416', 'Aisyah Putri Regardo', 'aisyahputriregardo@gmail.com', NULL, '$2y$12$XYU3kDvnJLdMYWzKHys/suQAqZ8ctyvUc4GqRAqNcI14hyv07.RLK', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:31', '2025-08-14 04:59:31'),
+(19, '19231904', 'Arnanda Surya Mukti', 'arnandasr@gmail.com', NULL, '$2y$12$O.jEtK8ECkfpgvcXHxf/rugLhsEK5bUXk1pO7VIsqt2TinsBnpTbS', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:31', '2025-08-14 04:59:31'),
+(20, '19231769', 'Yuni Saidah', 'yunisaidah05@gmail.com', NULL, '$2y$12$zRx5Kp4.2tP6138lun1uU.QV.MITXh4eK.OpP1Eppp1z.TbgMtaai', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:31', '2025-08-14 04:59:31'),
+(21, '19231251', 'Eriel Firman Suandanis', 'steelblack222@gmail.com', NULL, '$2y$12$KoTp6lSlj9iEPVbMBHh2Ue0JKV4gW3ywTmBMHBDgP.3YjTiYY8H0K', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:32', '2025-08-14 04:59:32'),
+(22, '19231213', 'Fitra Hakiki Firdaus', 'fitrahakikif@gmail.com', NULL, '$2y$12$WHsBfGVh9Fw14Crg12t2Ouom65ezGeZ.YDXA2TRI.S14pTjPluLP.', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:32', '2025-08-14 04:59:32'),
+(23, '19240747', 'Adityo Nurcholis Wibisono', 'adityo.nw10@gmail.com', NULL, '$2y$12$IORYjd.WTHilT91XuwYY6eDdjpdQ69fhr4fX/1T3DPA6sYfbvjKEu', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:32', '2025-08-14 04:59:32'),
+(24, '12230042', 'Muhammad Rochman Triatmojo', 'muhammadrohmantriat@gmail.com', NULL, '$2y$12$9.e7p8A4ncbNd37yoSxHYOgwBQC82WWVOnUJVDJWhb5y3HGTMFLQu', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:32', '2025-08-14 04:59:32'),
+(25, '19242335', 'Afifudin', 'afifudin141213@gmail.com', NULL, '$2y$12$zFjYSoyfrEWGQv6IKF9XV.rS9S3nbQbiOkcAF.mIVgnvSXTQJ1SaG', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:33', '2025-08-14 04:59:33'),
+(26, '19242089', 'Najwan Muyassar', 'najwanmuyassar16@gmail.com', NULL, '$2y$12$eNVXT2j79fVzEy.laLCQMe1vGFfYpMI8JBMiUxNtGkvk7WbZ8yfWq', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:33', '2025-08-14 04:59:33'),
+(27, '19231413', 'Danu Pangestu', 'pangestudanu92@gmail.com', NULL, '$2y$12$W0w92OJa1et7xsczLHP/7.fui/rFHnm/lONYWkWfz98PGhI8.0AXm', 'anggota', NULL, 'litbang', NULL, NULL, '2025-08-14 04:59:33', '2025-08-14 04:59:33'),
+(28, '12230001', 'Dafina Nabila Putri', 'dafinanabila122@gmail.com', NULL, '$2y$12$w.BeNK./mrDat143uPBnUeVWS4Q7ojhtX7oJN86jJTmQyrfpOPkje', 'bph', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:33', '2025-08-14 04:59:33'),
+(29, '19231019', 'Indah Tri Rahmawati', 'indhrhmwt3084@gmail.com', NULL, '$2y$12$KN2rmmF0QIAC8kQarbCFH.327yXFy6IfayFXX3iS0izzGboGrmPju', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:34', '2025-08-14 04:59:34'),
+(30, '19230049', 'Tiara Falensia', 'tiarafalensia2@gmail.com', NULL, '$2y$12$NWrNmRevh86b05qUR5JRaeARJmH2TKV6OOLIlylEqangFFfW4gs3e', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:34', '2025-08-14 04:59:34'),
+(31, '19231624', 'Ummi Kulsum', 'ummikalsumbahenol@gmail.com', NULL, '$2y$12$OvPPlctrr3qxv2/ScmtXHukmPlc5AX30JmaIYnUp0qbE3Po5f/eHa', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:34', '2025-08-14 04:59:34'),
+(32, '19240043', 'Sauqi Danang Prastowo', 'danangprastowo99@gmail.com', NULL, '$2y$12$aN/tg1UICbzyGD1sfkgJcOaqbsMR6nl0lGQzKz1LJSjs6i3VLiNCG', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:34', '2025-08-14 04:59:34'),
+(33, '19241262', 'Bilal Nur Akmal', 'bllnrkml12@gmail.com', NULL, '$2y$12$7IltpZ5JHY/OCzGFXpmshelI.i3f/Z9PWCNfjRBoJMGc4At7qyJFm', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:35', '2025-08-14 04:59:35'),
+(34, '19230786', 'Christian Octavio Arshendy', 'christian.octavio27@gmail.com', NULL, '$2y$12$iQ63mMLLx9SCfoXg1AHhX.SyJRa78LCcVfHbjiLKeWcBkUlvbtXJS', 'anggota', NULL, 'pendidikan', NULL, NULL, '2025-08-14 04:59:35', '2025-08-14 04:59:35'),
+(35, '19241201', 'Aulia An Najmi', 'aulianajmi26@gmail.com', NULL, '$2y$12$Ph49CfxJ44qyrYqaCGIHa.UqmZ2aPOgu9FqXwzxbTdszjkCASgwXK', 'bph', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:35', '2025-08-14 04:59:35'),
+(36, '19231620', 'Hertha Berlina', 'herthaharyanto@gmail.com', NULL, '$2y$12$I7YwGRR7zSE2WyNXiUmlM.2UDG5dZw.YWk8jLbaJcnhRRBhCsreNu', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:35', '2025-08-14 04:59:35'),
+(37, '19232215', 'Rahayu', 'Rahayuorlando@gmail.com', NULL, '$2y$12$64ih7uJQYofB.tLghUFWqujIQJTJyjJMlTcVfWMX8UQFwtiE9LxQa', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:36', '2025-08-14 04:59:36'),
+(38, '19231214', 'Rifaa Tumaadhira Adiibah', 'tumaadhirarifaa05@gmail.com', NULL, '$2y$12$udkKuysUhtqcRSyzk/lZy.qlZ4BjqaNuAby78t8b7OYBxiJiJr6/W', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:36', '2025-08-14 04:59:36'),
+(39, '19231721', 'Farabi Rizki Januar', 'farabijkt006@gmail.com', NULL, '$2y$12$80juyVizyBryM1jViRNIEuDkNBuXi9qzRNl9kW0LY49I2DdcibK2q', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:36', '2025-08-14 04:59:36'),
+(40, '19241849', 'Andrau Stevanus Parada Butar-butar', 'andraustefanus@gmail.com', NULL, '$2y$12$4E9FYzrYkvxQImyfy8.GTer1rOpm5jRinD.qMAkpXP671mgyLirea', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:36', '2025-08-14 04:59:36'),
+(41, '19241441', 'Septian Ramadhan', 'ian.septianramadhan@gmail.com', NULL, '$2y$12$SvYPjgXKZkbwHPfgDYbv9uY3sLj.DpU9q9Gw/zBkoVSmjTLCCT1Dm', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:37', '2025-08-14 04:59:37'),
+(42, '19242254', 'Muhammad Rizky Ferdiansyah', 'rizkya7y123@gmail.com', NULL, '$2y$12$Oreuymg8ruROEkAfoMDajuUlRkwAW0rYEKSqYJ4EOEJ9dgrn/aHvG', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:37', '2025-08-14 04:59:37'),
+(43, '19241408', 'Muhammad Erry Saputra', 'muhammadxrry@gmail.com', NULL, '$2y$12$laJtAhKttoviSGmufcgK5eXpxI6PZrnEKtUkTdKp0uMwL2lH7YtMa', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:37', '2025-08-14 04:59:37'),
+(44, '19240864', 'Rakha Ikbar Amim', 'rakhaikbar01@gmail.com', NULL, '$2y$12$GMSLfp.lfzkZmOY70L0DKeJVrXJuayk2gL2pOEbhxLATB7YujdIOa', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:37', '2025-08-14 04:59:37'),
+(45, '19240281', 'Kesya Jelita', 'keyzajelitaahmad@gmail.com', NULL, '$2y$12$eGlQWo1JB1DJfEgEt4t7Pefo3AkJYuU2pBrSfPUBPZwguzdPiysNW', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(46, '19240930', 'Joel Esekiel Langkudi', 'joellangkudi2@gmail.com', NULL, '$2y$12$VJgB9SH9W6IweMCECSPPXeoZSNngnknKNEfFzA7ZREh6uUUEAZvve', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:38', '2025-08-14 04:59:38'),
+(47, '19241919', 'Renu Yusmiar Kusumo', 'renuyusmiark@gmail.com', NULL, '$2y$12$9nFWIDJN9fG2uqEiP5QnQenQHKW.6EQWy5VdSjgsyD/Qxb.cFYNCO', 'anggota', NULL, 'kominfo', NULL, NULL, '2025-08-14 04:59:38', '2025-08-14 04:59:38');
 
 -- --------------------------------------------------------
 
@@ -545,6 +567,12 @@ ALTER TABLE `cache`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `join_himsi`
+--
+ALTER TABLE `join_himsi`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kandidat`
@@ -662,6 +690,12 @@ ALTER TABLE `artikels`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `join_himsi`
+--
+ALTER TABLE `join_himsi`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `kandidat`
 --
 ALTER TABLE `kandidat`
@@ -689,13 +723,13 @@ ALTER TABLE `kesan-pesan`
 -- AUTO_INCREMENT for table `konten_album`
 --
 ALTER TABLE `konten_album`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pemilihan`

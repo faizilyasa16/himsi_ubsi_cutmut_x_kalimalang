@@ -14,7 +14,7 @@ class KesanPesanController extends Controller
     public function index()
     {
         // Fetch all KesanPesan records from the database
-        $kesanPesans = KesanPesan::all();
+        $kesanPesans = KesanPesan::paginate(6); // Paginate results for better performance
         return view('user.kesan-pesan.index' , compact('kesanPesans'));
     }
 
