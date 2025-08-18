@@ -300,6 +300,15 @@ section h1 {
 .nav-item:not(.dropdown) .nav-link:hover::after {
     width: 100%;
 }
+.fs-md-3 {
+  font-size: 1.2rem; /* sesuai fs-3 */
+}
+
+@media (max-width: 768px) {
+  .fs-md-3 {
+    font-size: 1rem; /* lebih kecil di layar kecil */
+  }
+}
 
 .dropdown-arrow {
     font-size: 0.8em;

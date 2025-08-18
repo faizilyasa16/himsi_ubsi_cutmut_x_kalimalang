@@ -24,7 +24,7 @@
 <section class="container-1500 mt-5 mb-5">
     <div class="row">
         <div class="col-12">
-            <p class="text-center Poppins" style="font-size: 1.2rem;">
+            <p class="text-center Poppins fs-md-3">
                 HIMSI (Himpunan Mahasiswa Sistem Informasi) Kampus UBSI Cut Mutia x Kalimalang adalah organisasi mahasiswa yang berfokus pada pengembangan ilmu pengetahuan dan teknologi di bidang sistem informasi. Kami berkomitmen untuk menciptakan lingkungan akademis yang mendukung inovasi, kolaborasi, dan pengembangan diri bagi seluruh anggota kami.
             </p>
         </div>
