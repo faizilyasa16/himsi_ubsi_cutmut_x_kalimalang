@@ -171,6 +171,18 @@
                     </div>
                     @endif --}}
                 </div>
+                <!-- Share Footer -->
+                <div class="bg-light border-top p-4 mt-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 text-md-end mt-3 mt-md-0">
+                            <div class="d-flex justify-content-md-end gap-2">
+                                <button class="btn btn-outline-primary btn-sm" onclick="shareArticle()">
+                                    <i class="bi bi-share me-1"></i>Bagikan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- Tombol Kembali -->
@@ -187,4 +199,5 @@
 @section('scripts')
     <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('home/home/layout.js') }}"></script>
+    <script src="{{ asset('home/home/share.js') }}"></script>
 @endsection

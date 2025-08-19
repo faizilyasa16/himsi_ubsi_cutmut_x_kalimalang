@@ -211,10 +211,23 @@
                         @if($index == 0)
                             {{-- Artikel besar (kolom kiri) --}}
                             <div class="col-12 col-lg-6 mb-4 px-2">
-                                <a href="#artikel-{{ $artikel->slug }}" class="action-card-link" aria-labelledby="artikel-title-{{ $artikel->id }}" aria-describedby="artikel-desc-{{ $artikel->id }}">
-                                    <div class="card action-card h-100">
+                                <a href="{{ route('artikel.show', $artikel->slug) }}" class="action-card-link" aria-labelledby="artikel-title-{{ $artikel->id }}" aria-describedby="artikel-desc-{{ $artikel->id }}">
+                                    <div class="card  action-card h-100">
                                         <img src="{{ asset('storage/' . $artikel->konten) }}" class="kegiatan-img-top" style="height: 250px;" alt="{{ $artikel->judul }}" width="600" height="250">
                                         <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                @if($artikel->kategori)
+                                                    <span class="badge px-3 py-2 rounded-pill artikel-badge">
+                                                        {{ ucfirst($artikel->kategori) }}
+                                                    </span>
+                                                @endif
+
+                                                @if ($artikel->created_at)
+                                                    <span class="artikel-date">
+                                                        {{ \Carbon\Carbon::parse($artikel->created_at)->format('d M Y') }}
+                                                    </span>
+                                                @endif
+                                            </div>
                                             <h3  class="card-title Spartan">{{ $artikel->judul }}</h3>
                                             <p  class="card-text">{{ Str::limit(strip_tags($artikel->deskripsi), 150) }}</p>
                                         </div>
@@ -226,7 +239,7 @@
                         @else
                             {{-- Artikel kecil (di kolom kanan) --}}
                                     <div class="col-12 mb-3">
-                                        <a href="#artikel-{{ $artikel->slug }}" class="action-card-link" aria-labelledby="artikel-title-{{ $artikel->id }}" aria-describedby="artikel-desc-{{ $artikel->id }}">
+                                        <a href="{{ route('artikel.show', $artikel->slug) }}" class="action-card-link" aria-labelledby="artikel-title-{{ $artikel->id }}" aria-describedby="artikel-desc-{{ $artikel->id }}">
                                             <div class="card action-card">
                                                 <div class="d-flex">
                                                     <div class="col-4">
@@ -234,8 +247,21 @@
                                                     </div>
                                                     <div class="col-8">
                                                         <div class="card-body">
-                                                            <h3 class="card-title Spartan">{{ $artikel->judul }}</h3>
-                                                            <p  class="card-text">{{ Str::limit(strip_tags($artikel->deskripsi), 50) }}</p>
+                                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                @if($artikel->kategori)
+                                                                    <span class="badge px-3 py-2 rounded-pill artikel-badge">
+                                                                        {{ ucfirst($artikel->kategori) }}
+                                                                    </span>
+                                                                @endif
+
+                                                                @if ($artikel->created_at)
+                                                                    <span class="artikel-date">
+                                                                        {{ \Carbon\Carbon::parse($artikel->created_at)->format('d M Y') }}
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <h3  class="card-title Spartan">{{ $artikel->judul }}</h3>
+                                                            <p  class="card-text">{{ Str::limit(strip_tags($artikel->deskripsi), 150) }}</p>
                                                         </div>
                                                     </div>
                                                 </div>

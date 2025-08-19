@@ -51,9 +51,11 @@
                             </div>
                             <div class="card-footer">
                                 <div class="author-info d-flex align-items-center">
-                                    <img src="{{ asset('asset/logo/himsi.png') }}" alt="Author" class="rounded-circle me-3">
+                                    <img src="{{ $item->user->photo ? asset('storage/' . $item->user->photo) : asset('asset/logo/himsi.png') }}" class="rounded-circle me-2" alt="{{ $item->user->name }}" style="width: 40px; height: 40px; object-fit: cover;">
                                     <div>
-                                        <small class="text-muted d-block">Oleh: <strong>{{ $item->penulis ?? 'HIMSI UBSI' }}</strong></small>
+                                        <small class="text-muted d-block">
+                                            Oleh: <strong>{{ $item->user->name }}</strong>
+                                        </small>
                                     </div>
                                 </div>
                             </div>

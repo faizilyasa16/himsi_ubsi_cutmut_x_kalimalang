@@ -55,6 +55,27 @@ footer {
     flex-shrink: 0; /* Footer tidak ikut mengecil */
 }
 
+/* Splash Screen Overlay */
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    pointer-events: auto; /* blok interaksi ke bawahnya */
+    touch-action: none;   /* blok gesture pada mobile */
+}
+
+#splash-screen img {
+    max-width: 120px;
+    height: auto;
+}
+
 /* Scroll to Top Button - Fixed Styling */
 #scrollToTopBtn {
     position: fixed;
@@ -205,7 +226,11 @@ section h1 {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 139, 0.1);
 }
-
+.action-card:hover .artikel-date {
+    background: #E6E6F3; /* setara dg rgba(0,0,139,0.1) di atas putih */
+    color: #00008B;      /* tetap biru tua */
+    cursor: pointer;
+}
 .action-card:hover .card-title {
     color: #97d4ff;
 }
