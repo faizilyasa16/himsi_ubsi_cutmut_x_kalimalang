@@ -22,7 +22,6 @@
 
     <!-- Overlay untuk mobile -->
     <div class="sidebar-overlay" id="overlay"></div>
-
     <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('home/dashboard/layout.js') }}"></script>
     @yield('scripts')

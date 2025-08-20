@@ -79,7 +79,7 @@
     top: 0;
     left: 0;
     width: 280px;
-    height: 100vh;
+    height: 100dvh;
     transform: translateX(0);
     transition: transform 0.3s ease;
     z-index: 999;
@@ -162,7 +162,7 @@
     margin-top: 0;
     padding: 2rem;
     transition: margin-left 0.3s ease;
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .main-content.expanded {
@@ -193,7 +193,7 @@
     .sidebar {
         top: 0;
         width: 320px; /* Lebih lebar untuk mobile */
-        height: 100vh;
+        height: 100dvh;
         transform: translateX(-100%);
         background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
         box-shadow: 5px 0 25px rgba(0,0,0,0.3);
@@ -219,7 +219,7 @@
         margin-left: 0;
         margin-top: 0;
         padding: 1.5rem;
-        min-height: 100vh;
+        min-height: 100dvh;
     }
     
     .sidebar-toggle-btn {
@@ -230,7 +230,7 @@
 @media (max-width: 576px) {
     .sidebar {
         top: 0;
-        height: 100vh;
+        height: 100dvh;
         width: 300px; /* Sedikit lebih kecil untuk mobile kecil */
     }
     
@@ -242,7 +242,7 @@
     .main-content {
         margin-top: 0;
         padding: 1rem;
-        min-height: 100vh;
+        min-height: 100dvh;
     }
     
     .sidebar-toggle-btn {

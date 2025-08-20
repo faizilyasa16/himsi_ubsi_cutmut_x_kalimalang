@@ -107,7 +107,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('home/home/layout.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

@@ -333,7 +333,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('home/home/layout.js') }}"></script>
     <script src="{{ asset('home/home/home.js') }}"></script>
     <script src="{{ asset('home/js/counter.js') }}"></script>

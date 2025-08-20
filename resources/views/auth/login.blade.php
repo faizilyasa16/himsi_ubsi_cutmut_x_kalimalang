@@ -85,7 +85,8 @@
                 </div>
             </div>
     </div>
-    <script src="{{ asset('home/js/login.js') }}"></script>
+    
     <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('home/js/login.js') }}"></script>
 </body>
 </html>

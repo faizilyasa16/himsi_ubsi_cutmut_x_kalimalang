@@ -54,5 +54,6 @@
     @yield('scripts')
     @include('sweetalert::alert')
 
+    <script src="{{ asset('home/Bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
