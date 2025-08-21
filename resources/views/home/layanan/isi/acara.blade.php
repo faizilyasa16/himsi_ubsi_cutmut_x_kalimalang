@@ -116,7 +116,7 @@
                     </div>
                     
                     <!-- Contact Person dan Link -->
-                    @if($waUrl || $acara->link_pendaftaran || $acara->link_wa)
+                    @if($acara->contact_person || $acara->link_pendaftaran || $acara->link_wa)
                         <div class="border-top pt-4 text-center">
                             <h4 class="Spartan mb-3">Informasi Kontak</h4>
                             <div class="row d-flex justify-content-center align-items-center p-0">
@@ -129,7 +129,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                @if($waUrl)
+                                @if($acara->contact_person)
                                 <div class="col-md-6 mb-3">
                                     <div class="text-center">
                                         <a href="{{ $waUrl }}" target="_blank" class="btn btn-success-cari">

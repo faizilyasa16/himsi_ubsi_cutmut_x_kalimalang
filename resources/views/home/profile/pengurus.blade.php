@@ -29,7 +29,7 @@
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="card h-100 shadow-sm border-0 rounded overflow-hidden transform-on-hover">
                     <div class="position-relative">
-                        <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('asset/logo/himsi.png') }}" class="card-img-top" alt="{{ $user->name }}" style="height: 400px; object-fit: cover;">
+                        <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('asset/logo/himsi.png') }}" class="card-img-top" alt="{{ $user->name }}" style="aspect-ratio: 3 / 4; object-fit: cover;">
                         <div class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-25 text-white p-3 Poppins">
                             <h4 class="card-title mb-1 fw-bold">{{ $user->name }}</h4>
                             <p class="card-text mb-0">
@@ -37,7 +37,7 @@
                                 <div class="d-flex flex-column">
                                     <span>{{ ucwords(str_replace('_', ' ', $user->divisi)) }}</span>
                                     @if (in_array($user->divisi, ['litbang', 'kominfo', 'pendidikan', 'rsdm']))
-                                        <span>{{ ucfirst($user->role) }}</span>
+                                        <span>Koordinator</span>
                                     @endif
                                 </div>
                             @else

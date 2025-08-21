@@ -159,14 +159,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fungsi untuk animasi counter
     function animateCounter(element, target, duration = 2000) {
         let start = 0;
-        const increment = target / (duration / 16); // 60 FPS
+        const originalTarget = target;
+        
+        // Cek apakah ini counter untuk "Anggota yang Bergabung"
+        const isAnggotaBergabung = element.closest('.card').querySelector('h3').textContent.includes('Anggota yang Bergabung');
+        const shouldShowPlus = isAnggotaBergabung && originalTarget > 50;
+        const displayTarget = shouldShowPlus ? 50 : originalTarget;
+        const increment = displayTarget / (duration / 16); // 60 FPS
         
         element.classList.add('counter-animating');
         
         const timer = setInterval(() => {
             start += increment;
-            if (start >= target) {
-                element.textContent = target;
+            if (start >= displayTarget) {
+                if (shouldShowPlus) {
+                    element.textContent = '40+';
+                } else {
+                    element.textContent = originalTarget;
+                }
                 clearInterval(timer);
                 element.classList.remove('counter-animating');
             } else {

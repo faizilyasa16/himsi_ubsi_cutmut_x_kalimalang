@@ -20,7 +20,7 @@
                     <h2 class="card-title mb-2 ">Divisi</h2>
                     <div class="card-text">
                         <span class="fs-3 fw-bold">
-                            6
+                            4
                         </span>
                     </div>
                 </div>
